@@ -111,6 +111,9 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
 :root {
   --backgroundColor: rgb(0, 0, 0);
+  --sidebarbackgroundColor: rgb(0, 0, 0);
+  --fontColor: #ffffff;
+  --fontOutlineColor: #000000;
   --colorShadeA: rgb(7, 74, 23);
   --colorShadeB: rgb(1, 23, 8);
   --colorShadeC: rgb(47, 138, 73);
@@ -134,17 +137,40 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 .h1 {
   font-family: 'headerfont';
   font-size: 40px;
-  text-outline: 1px black solid;
+  color: var(--fontColor);
+  text-outline: 1px var(--fontOutlineColor) solid;
   text-align: center;
 }
 
 .h2 {
   font-family: 'headerfont';
   font-size: 20px;
-  text-outline: 1px white solid;
+    color: var(--fontColor);
+  text-outline: 1px var(--fontOutlineColor) solid;
   text-align: center;
 }
 
+.h3 {
+  font-family: 'headerfont';
+  font-size: 16px;
+  color: var(--fontColor);
+  text-outline: 1px var(--fontOutlineColor) solid;
+  text-align: center;
+}
+
+.sidebarbox {
+  background-image:url("sidebarbgtest.jpg");
+  height: auto;
+  width: auto;
+  border-style: ridge;
+  border-width: 1px;
+  border-color: (--colorShadeA);
+  border-radius: 15px 15px 15px 15px;
+  padding: 5px;
+  text-align: center;
+  align-items: center;
+}
+  
 
 .characterlayoutleft {
   display: grid;
@@ -198,49 +224,29 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
 
 .charactersidebar {
+  background: var(--sidebarbackgroundColor);
   width: auto;
   height: auto;
   border-style: ridge;
   border-width: 1px;
   border-color: (--colorShadeA);
   border-radius: 15px 15px 15px 15px;
-  padding: 10px;
+  padding: 5px;
   display: none;
 }
 
-.memorybox {
-  font-family: 'computer4';
-  font-size: 20px;
-  text-outline: 1px black solid;
-  position: relative;
-  background-image:url("bg2.png");
-  background-size:100% 100%;
-  height: auto;
+.sidebarbg {
+  text-align: center;
+  align-items: center;
+  background: var(--sidebarbackgroundColor);
   width: auto;
+  height: auto;
   border-style: ridge;
   border-width: 1px;
   border-color: (--colorShadeA);
   border-radius: 15px 15px 15px 15px;
-  padding: 30px;
-  text-align: center;
-  align-items: center;
 }
 
-.collapsible {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-}
-
-.active, .collapsible:hover {
-  background-color: #ccc;
-}
   
 .sidebar-image {
   height: 15vh;
@@ -261,6 +267,8 @@ $(document).on(':passagestart', function (ev) {
 		State.variables.return = ev.passage.title;
 	}
 });
+
+
 
 setup.intro = {
 	intro1: ["You have no idea where you are.", "Where are you?", "What is this place?"],
@@ -301,22 +309,91 @@ setup.eyes = {
 }
 
 setup.class = {
-	sentence: ["You are here because of a calling to the ", "Your whole life has led you here, to study the ", "You never thought it would happen, but here you are, called to study the ",],
-	type: ["necromantic", "psychic", "elemental", "natural"],
-	sentence1: ["arts.", "discipline.", "field."],
-	necromancer: [""],
-	physic: [""],
-	elementalist: [""],
-	druid: [""],
+	intro: ["You suddenly curse - you're late, and on such an important day!"],
+	intro2: ["Rushing to get ready, you can't help but think about the events which brought you here to $school."],
+	sentence: ["Ever since childhood, you've felt a constant calling to the ", "Your whole life has led you here, to study the ", "You never thought it would happen, but here you are, called to study the ",],
+	type: ["lunar", "starsworn", "astrological", "prescient"],
+	sentence2: ["arts.", "discipline.", "field."],
+  intro3: ["After a moment of nostalgia, you break your reverie - adventure awaits! At least, that's what your advisor promised when she convinced you to sign up for this research trip. You only hope that your discoveries outweigh the ominous feeling that you still can't shake..."],
 }
 
 setup.characters = {
+	list: ["char1", "char2", "char3", "char4", "char5"],
 	magic: ["Astral Projection", "Moon Mana", "Starbeams", "Nightwisp", "Omens"],
 	fear: ["water", "fire", "placeholder3", "placeholder4", "placeholder5"],
 	food: ["celestial pie", "full moon cake", "starlight sorbet", "comet cookies", "lunarberry trifle"],
 	familiar: ["songbird", "cat", "butterfly", "squirrel", "puppy"],
+}
 	
-}</script><tw-passagedata pid="1" name="Dream" tags="" position="260,103" size="100,100">&lt;&lt;audio &quot;:playing&quot; fadeout&gt;&gt;
+	setup.bus = {
+	qlist: ["magic", "familiar", "food", "fear"],
+	clist: ["char1", "char2", "char3", "char4", "char5"],
+	ctext: ["Chat with ", "Start a conversation with ", "Talk to ", "Introduce yourself to ", "Strike up a conversation with ", "Try to talk to ", "Greet "],
+	char1: ["the blue skinned young man sitting aloofy away from others."],
+	char2: ["the lanky thaloon sprawled near the front."],
+	char3: ["the muscular young woman sitting across from you."],
+	char4: ["the mysterious older woman in the back."],
+	char5: ["the red-headed scamp giving you an eager wave."],
+	magic: ["What brought you here to the school?", "What are you here to study?"],
+	familiar: ["Is that your familiar there?", "What shape is your familiar?"],
+	food: ["Did you bring any snacks?"],
+	fear: ["Anything you're particularly nervous about?"],
+}
+
+setup.char1 = {
+	name: ["Yu"],
+	fullname: ["Lord Fnarfop Yu"],
+	intro: ["\"Hmm...hello, there. I'm Lord Yu, Fnarfop Yu. I suppose it's nice to make your acquaintance...\""], 
+	dismiss: ["\"Do be on your way, now. I've grown tired of this conversation.\""],
+	magic: ["\"'Twas ordained from birth, for me - my great-great-great-something or other was a founder. And of course, no doubt you've heard of my family? We're renowned for our mastery of $char1magic.\""],
+	familiar: ["\"I'm not surprised you've never seen one quite so majestic. We conjured it up in a ritual that's a rather close-kept family secret.\" The young nobleman smiles archly over at his shimmering $char1familiar familiar."],
+	food: ["\"Of course, but I'm hardly going to share with some unknown element like you. You could be trying to poison me! I had an uncle who was assassinated.\""],
+	foodtrust: ["I've had the servants pack some of my favorite treat: $char1food.\""],
+	feartrust: ["\"I'll share a secret...I've never been good around $char1fear.\""],
+	fear: ["The noble simply stares at you in disbelief for asking such a crass question."],
+}
+
+setup.char2 = {
+	name: ["Adriash"],
+	fullname: ["Adriash Honde"],
+	magic: ["magic"],
+	familiar: ["Familiar Adriash $char2familiar familiar."],
+	food: ["\"No food\""],
+	foodtrust: ["Yes food\""],
+	intro: ["\"I'm Adriash Honde\""], 
+	dismiss: ["The thaloon merely bares his teeth - it's clear he's done talking."],
+		feartrust: ["\"I'll share a secret...I've never been good around $char1fear.\""],
+	fear: ["The thaloon's silence is the only reply you receive."],
+}
+
+setup.char3 = {
+	name: ["Matiska"],
+	fullname: ["Matiska"],
+		magic: ["\"'Magic Matiska\""],
+	familiar: ["Familiar Matiska $char3familiar familiar."],
+	foodnotrust: ["\"No food\""],
+	foodtrust: ["Yes food\""],
+	intro: ["\"I'm Matiska\""], 
+	dismiss: ["Matiska's attention drifts away from the conversation."],
+}
+
+setup.char4 = {
+	name: ["Atana"],
+	fullname: ["Ersatz Atana"],
+}
+
+setup.char5 = {
+	name: ["Nevry"],
+	fullname: ["Nevry Jackson"],
+}
+
+
+
+// meters.min.js, for SugarCube 2, by Chapel
+// v1.0.1, 2021-04-20, 53d1a20e9321b3782a303cf7dbe00f5c51e947db
+;!function(){"use strict";var t=!0,e=!1,s=!1,i={full:"#2ECC40",empty:"#FF4136",back:"#DDDDDD",height:"12px",width:"180px",animate:400,easing:"swing",text:"#111111",label:"",align:"center"},n=["center","left","right"],r=["swing","linear"];function a(t,e){return t&&"string"==typeof t&&(t=t.toLowerCase().trim())?t:e||""}function o(t){return t<.5?2*t*t:(4-2*t)*t-1}function l(t,e){if(!(this instanceof l))return new l(t,e);var s=clone(i);this.settings=Object.assign(s,t),this.settings.align=a(this.settings.align),this.settings.easing=a(this.settings.easing),n.includes(this.settings.align)||(this.settings.align="center"),r.includes(this.settings.easing)||(this.settings.easing="swing"),e=Number(e),Number.isNaN(e)&&(e=1),e=Math.clamp(e,0,1),this.value=e;var h=$(document.createElement("div")).addClass("chapel-meter").attr({"data-val":e,"data-label":this.settings.label}).css({position:"relative","background-color":this.settings.back,height:this.settings.height,width:this.settings.width,overflow:"hidden"}),g=$(document.createElement("div")).addClass("meter-label").css({top:0,right:0,"font-size":this.settings.height,"font-weight":"bold","line-height":"100%",width:"100%",height:"100%","vertical-align":"middle","text-align":this.settings.align,color:this.settings.text,"z-index":1,position:"relative",bottom:"100%"}).wiki(this.settings.label).appendTo(h),u=$(document.createElement("div")).addClass("meter-top").css({"background-color":this.settings.full,opacity:o(this.value),width:"100%",height:"100%","z-index":0}),c=$(document.createElement("div")).addClass("meter-bottom").css({position:"absolute",top:0,left:0,"background-color":this.settings.empty,opacity:1,width:100*this.value+"%",height:"100%","z-index":0}).append(u).appendTo(h);this.$element=h,this.$bars={top:u,bottom:c},this.$label=g,g.css("font-size",parseInt(h.css("height"),10)<parseInt($(".passage").css("font-size"),10)?h.css("height"):$(".passage").css("font-size")),g.css("line-height",h.css("height"))}Object.assign(l,{_list:new Map,is:function(t){return t instanceof l},has:function(t){return l._list.has(t)&&l.is(l._list.get(t))},get:function(t){return l.has(t)?l._list.get(t):null},del:function(t){l.has(t)&&l._list.delete(t)},add:function(t,s,i){if(!l.has(t)||e){Object.assign(s,{id:t});var n=new l(s,i);return l._list.set(t,n),n}console.error('Meter "'+t+'" already exists.')},_emit:function(t,e){l.is(t)&&t.$element.trigger({type:":"+e,meter:t})}}),Object.assign(l.prototype,{constructor:l,_label:function(t){var e=this;function s(){e.$label.empty().wiki(e.settings.label),e.$label.css("font-size",parseInt(e.$element.css("height"),10)<parseInt(e.$element.parent().css("font-size"),10)?e.$element.css("height"):e.$element.parent().css("font-size")),e.$label.css("line-height",e.$element.css("height"))}return t?setTimeout(s,Engine.minDomActionDelay):s(),this},_width:function(){var t=this;return this.$bars.bottom.animate({width:100*this.value+"%"},this.settings.animate,this.settings.easing,(function(){l._emit(t,"meter-animation-complete")})),this},_color:function(){return this.$bars.top.animate({opacity:o(this.value)},this.settings.animate,this.settings.easing),this},animate:function(){return l._emit(this,"meter-animation-start"),this._color()._width()._label()},val:function(t){return void 0!==t&&(t=Number(t),Number.isNaN(t)&&(t=1),t=Math.clamp(t,0,1),this.value=t,this.animate()),this.value},options:function(t){return t&&"object"==typeof t&&Object.assign(this.settings,t),this.settings},unwrap:function(){return this.$element[0]},place:function(t,e){var s=$(document.createElement("span"));return t instanceof jQuery||(t=$(t)),t[0]||console.warn("meter#place() -> no valid target"),e&&"object"==typeof e&&(e.classes&&(Array.isArray(e.classes)||"string"==typeof e.classes)&&s.addClass(e.classes),e.attr&&"object"==typeof e.attr&&s.attr(e.attr)),t.append(s.append(this.$element)),this._label(!0),this},on:function(t,e){return"function"!=typeof e?this:t&&"string"==typeof t&&t.trim()?(t=t.split(" ").map((function(t){return(t=t.split(".")[0])+".userland"})).join(" "),this.$element.on(t,e),this):this},one:function(t,e){return"function"!=typeof e?this:t&&"string"==typeof t&&t.trim()?(t=t.split(" ").map((function(t){return(t=t.split(".")[0])+".userland"})).join(" "),this.$element.one(t,e),this):this},off:function(t){return t=t&&"string"==typeof t&&t.trim()?t.split(" ").map((function(t){return(t=t.split(".")[0])+".userland"})).join(" "):".userland",this.$element.off(t),this},click:function(t,e){return this.$element.ariaClick(t,e),this},clone:function(){return new l(this.settings,this.value)},toJSON:function(){return JSON.reviveWrapper("new setup.Meter("+JSON.stringify(this.settings)+", "+this.value+")")}}),setup.Meter=l,t&&(window.Meter=window.Meter||l),Macro.add("newmeter",{tags:["colors","sizing","animation","label"],handler:function(){if(State.length>0&&!s)return this.error("The `<<newmeter>>` macro must be called in your `StoryInit` special passage. Seriously. No excuses. --Love, Chapel");if(this.args.length<1)return this.error("The `<<newmeter>>` macro requires at least one argument: a meter name.");var t=this.args[0],i=null,n=null,r=null,a=null;if("string"!=typeof t)return this.error("Invalid meter name.");if(t=t.trim(),l.has(t)&&!e)return this.error('Cannot clobber the existing meter "'+t+'".');this.payload.length&&(i=this.payload.find((function(t){return"colors"===t.name})),n=this.payload.find((function(t){return"sizing"===t.name})),r=this.payload.find((function(t){return"animation"===t.name})),a=this.payload.find((function(t){return"label"===t.name})));var o={};if(i){if(!i.args.length)return this.error("No arguments passed to the `<<colors>>` tag.");switch(i.args.length){case 1:o.empty=i.args[0],o.full="transparent";break;case 2:o.full=i.args[0],o.empty=i.args[1];break;default:o.full=i.args[0],o.empty=i.args[1],o.back=i.args[2]}}if(n){if(!n.args.length)return this.error("No arguments passed to the `<<sizing>>` tag.");o.width=n.args[0],n.args[1]&&(o.height=n.args[1])}if(r){if(!r.args.length)return this.error("No arguments passed to the `<<animation>>` tag.");if("boolean"!=typeof r.args[0]||r.args[0]){if("string"!=typeof r.args[0])return this.error("The argument to the `<<animation>>` tag should be `true`, `false`, or a valid CSS time value.");o.animate=Util.fromCssTime(r.args[0])}else o.animate=0;r.args[1]&&["swing","linear"].includes(r.args[1])&&(o.easing=r.args[1])}if(a){var h=a.args[0];if(!h||"string"!=typeof h)return this.error("The labelText argument for the `<<label>>` tag is required.");o.label=h.trim(),a.args[1]&&"string"==typeof a.args[1]&&(o.text=a.args[1]),a.args[2]&&"string"==typeof a.args[2]&&(o.align=a.args[2])}l.add(t,o,this.args[1])}}),Macro.add("showmeter",{handler:function(){if(this.args.length<1)return this.error("This macro requires at least one argument: the meter's name.");var t=this.args[0];if("string"!=typeof t)return this.error("Invalid meter name.");t=t.trim();var e=l.get(t);if(!e||!l.is(e))return this.error('The meter "'+t+'" does not exist.');"number"==typeof this.args[1]&&e.val(this.args[1]),e.place(this.output,{classes:"macro-"+this.name,attr:{id:"meter-"+Util.slugify(t)}})}}),Macro.add("updatemeter",{handler:function(){if(this.args.length<2)return this.error("This macro requires two arguments: the meter's name and a value.");var t=this.args[0];if("string"!=typeof t)return this.error("Invalid meter name.");t=t.trim();var e=l.get(t);if(!e||!l.is(e))return this.error('The meter "'+t+'" does not exist.');e.val(this.args[1])}})}();
+// end meters.min.js
+</script><tw-passagedata pid="1" name="Dream" tags="" position="260,103" size="100,100">&lt;&lt;audio &quot;:playing&quot; fadeout&gt;&gt;
 &lt;&lt;playlist &quot;game&quot; loop play&gt;&gt;
 
 &lt;&lt;set $ingame = 1&gt;&gt;
@@ -359,19 +436,22 @@ $intro3 $danger1
 &lt;/span&gt;
 
 
-</tw-passagedata><tw-passagedata pid="2" name="Scene 1" tags="" position="880,387" size="100,100">Scene 1: Visitor&#39;s shack. Ranger present, no Lady Ella. Main path is something like &quot;can you take us to the Henge? Our familiars aren&#39;t getting enough bars out here so we need a place with lots of magic to talk to the school and get help&quot;
+</tw-passagedata><tw-passagedata pid="2" name="Scene 1" tags="" position="1048,247" size="100,100">Introduction: Come quick, the feathersaurus we all rode in [aka the magic school bus] on has been poisoned! We&#39;re trapped here. You&#39;d better find Lady Ella [security/chaperone employed by the school].
 
-[[Scene 2]]</tw-passagedata><tw-passagedata pid="3" name="Scene 2" tags="" position="1021,384" size="100,100">Scene 2: Deep in the forest, the students gather around a bloody stone tablet where some kind of ritual has clearly happened like, really bloody recently. What if it&#39;s Lady Ella? We&#39;re out here with no protection and we can&#39;t call for help. Go up top of hillock, camp near the henge overnight
+Scene 1: Visitor&#39;s shack. Ranger present, no Lady Ella. Main path is something like &quot;can you take us to the Henge? Our familiars aren&#39;t getting enough bars out here so we need a place with lots of magic to talk to the school and get help&quot;
 
-[[Scene 3]]</tw-passagedata><tw-passagedata pid="4" name="Scene 3" tags="" position="1157,382" size="100,100">Scene 3: Morning, ranger is missing. Students begin to suspect there&#39;s a traitor. Send blood sample from stone tablet back to the school using the magic of the Henge, it belongs to a known shapeshifting criminal who apparently replaced Lady Ella. So it&#39;s very likely the killer is hiding among them
+[[Scene 2]]</tw-passagedata><tw-passagedata pid="3" name="Scene 2" tags="" position="1199,246" size="100,100">Scene 2: Deep in the forest, the students gather around a bloody stone tablet where some kind of ritual has clearly happened like, really bloody recently. What if it&#39;s Lady Ella? We&#39;re out here with no protection and we can&#39;t call for help. Go up top of hillock, camp near the henge overnight
 
-[[End]]</tw-passagedata><tw-passagedata pid="5" name="End" tags="" position="1303,384" size="100,100">Game over man, game over.
+[[Scene 3]]</tw-passagedata><tw-passagedata pid="4" name="Scene 3" tags="" position="1340,248" size="100,100">Scene 3: Morning, ranger is missing. Students begin to suspect there&#39;s a traitor. Send blood sample from stone tablet back to the school using the magic of the Henge, it belongs to a known shapeshifting criminal who apparently replaced Lady Ella. So it&#39;s very likely the killer is hiding among them
 
-[[Main Menu]]</tw-passagedata><tw-passagedata pid="6" name="Intro" tags="" position="735,386" size="100,100">&lt;&lt;set $introdone = 1&gt;&gt;
+[[End]]</tw-passagedata><tw-passagedata pid="5" name="End" tags="" position="1355,461" size="100,100">Game over man, game over.
+
+[[Main Menu]]</tw-passagedata><tw-passagedata pid="6" name="Intro" tags="" position="1088,98" size="100,100">&lt;&lt;set $introdone = 1&gt;&gt;
+
 &lt;br&gt;
-Introduction: Come quick, the feathersaurus we all rode in [aka the magic school bus] on has been poisoned! We&#39;re trapped here. You&#39;d better find Lady Ella [security/chaperone employed by the school].
-&lt;br&gt;
-[[Scene 1]]</tw-passagedata><tw-passagedata pid="7" name="gender" tags="" position="516,103" size="100,100">&lt;&lt;set $setting5 = setup.intro.setting5.pluck()&gt;&gt;
+Add in player name selection.
+&lt;br&gt;&lt;br&gt;
+[[Bus]]</tw-passagedata><tw-passagedata pid="7" name="gender" tags="" position="516,103" size="100,100">&lt;&lt;set $setting5 = setup.intro.setting5.pluck()&gt;&gt;
 &lt;&lt;set $genderSentence = setup.gender.sentence.pluck()&gt;&gt;
 &lt;&lt;set $gender1 = setup.gender.type.pluck()&gt;&gt;
 &lt;&lt;set $gender2 = setup.gender.type.pluck()&gt;&gt;
@@ -469,7 +549,7 @@ $hairSentence...
 	&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-</tw-passagedata><tw-passagedata pid="9" name="StoryInit" tags="" position="96,98" size="100,100">&lt;&lt;cacheaudio &quot;menu&quot; &quot;magic00.mp3&quot;&gt;&gt;
+</tw-passagedata><tw-passagedata pid="9" name="StoryInit" tags="" position="94,98" size="100,100">&lt;&lt;cacheaudio &quot;menu&quot; &quot;magic00.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;song1&quot; &quot;magic01.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;song2&quot; &quot;magic02.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;song3&quot; &quot;magic03.mp3&quot;&gt;&gt;
@@ -513,6 +593,36 @@ $hairSentence...
 
 &lt;&lt;set $inGame = 0&gt;&gt;
 
+&lt;&lt;set $dialogchoices = [&quot;&quot;]&gt;&gt;
+
+&lt;&lt;newmeter &#39;char1meter&#39;&gt;&gt;
+	&lt;&lt;colors &#39;green&#39; &#39;red&#39; &#39;white&#39;&gt;&gt;
+	&lt;&lt;label &#39;$char1trusttext&#39;&gt;&gt;
+	&lt;&lt;sizing 75% 25px&gt;&gt;
+&lt;&lt;/newmeter&gt;&gt;
+
+&lt;&lt;newmeter &#39;char2meter&#39;&gt;&gt;
+	&lt;&lt;label &#39;$char2trusttext&#39;&gt;&gt;
+	&lt;&lt;sizing 75% 25px&gt;&gt;
+&lt;&lt;/newmeter&gt;&gt;
+
+&lt;&lt;newmeter &#39;char3meter&#39;&gt;&gt;
+	&lt;&lt;label &#39;$char3trusttext&#39;&gt;&gt;
+	&lt;&lt;sizing 75% 25px&gt;&gt;
+&lt;&lt;/newmeter&gt;&gt;
+
+&lt;&lt;newmeter &#39;char4meter&#39;&gt;&gt;
+	&lt;&lt;label &#39;$char4trusttext&#39;&gt;&gt;
+	&lt;&lt;sizing 75% 25px&gt;&gt;
+&lt;&lt;/newmeter&gt;&gt;
+
+&lt;&lt;newmeter &#39;char5meter&#39;&gt;&gt;
+	&lt;&lt;label &#39;$char5trusttext&#39;&gt;&gt;
+	&lt;&lt;sizing 75% 25px&gt;&gt;
+&lt;&lt;/newmeter&gt;&gt;
+
+&lt;&lt;set $school = &quot;Starsworn Academy&quot;&gt;&gt;
+&lt;&lt;set $rounds = 1&gt;&gt;
 &lt;&lt;set $char1magic = setup.characters.magic.pluck()&gt;&gt;
 &lt;&lt;set $char2magic = setup.characters.magic.pluck()&gt;&gt;
 &lt;&lt;set $char3magic = setup.characters.magic.pluck()&gt;&gt;
@@ -533,7 +643,36 @@ $hairSentence...
 &lt;&lt;set $char3familiar = setup.characters.familiar.pluck()&gt;&gt;
 &lt;&lt;set $char4familiar = setup.characters.familiar.pluck()&gt;&gt;
 &lt;&lt;set $char5familiar = setup.characters.familiar.pluck()&gt;&gt;
-</tw-passagedata><tw-passagedata pid="10" name="eyes" tags="" position="800,98" size="100,100">&lt;&lt;set $eyesSentence = setup.eyes.sentence.pluck()&gt;&gt;
+&lt;&lt;set $char1trust = 4&gt;&gt;
+&lt;&lt;set $char2trust = 3&gt;&gt;
+&lt;&lt;set $char3trust = 5&gt;&gt;
+&lt;&lt;set $char4trust = 5&gt;&gt;
+&lt;&lt;set $char5trust = 5&gt;&gt;
+&lt;&lt;set $char1namedisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char1magicdisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char1familiardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char1fooddisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char1feardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char2namedisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char2magicdisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char2familiardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char2fooddisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char2feardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char3namedisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char3magicdisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char3familiardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char3fooddisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char3feardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char4namedisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char4magicdisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char4familiardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char4fooddisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char4feardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char5namedisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char5magicdisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char5familiardisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char5fooddisplay = &quot;???&quot;&gt;&gt;
+&lt;&lt;set $char5feardisplay = &quot;???&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="eyes" tags="" position="801,101" size="100,100">&lt;&lt;set $eyesSentence = setup.eyes.sentence.pluck()&gt;&gt;
 &lt;&lt;set $eyes1 = setup.eyes.type.pluck()&gt;&gt;
 &lt;&lt;set $eyes2 = setup.eyes.type.pluck()&gt;&gt;
 &lt;&lt;set $eyes3 = setup.eyes.type.pluck()&gt;&gt;
@@ -581,57 +720,48 @@ $eyesSentence...
 	&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-</tw-passagedata><tw-passagedata pid="11" name="class" tags="" position="953,100" size="100,100">&lt;&lt;set $classSentence = setup.class.sentence.pluck()&gt;&gt;
-&lt;&lt;set $classSentence1 = setup.class.sentence1.pluck()&gt;&gt;
-&lt;&lt;set $class1 = setup.class.type.pluck()&gt;&gt;
-&lt;&lt;set $class2 = setup.class.type.pluck()&gt;&gt;
-&lt;&lt;set $class3 = setup.class.type.pluck()&gt;&gt;
-&lt;&lt;set $class4 = setup.class.type.pluck()&gt;&gt;
+</tw-passagedata><tw-passagedata pid="11" name="class" tags="" position="953,99" size="100,100">&lt;&lt;set _classintro = setup.class.intro.random()&gt;&gt;
+&lt;&lt;set _classintro2 = setup.class.intro2.random()&gt;&gt;
+&lt;&lt;set _classintro3 = setup.class.intro3.random()&gt;&gt;
+&lt;&lt;set _classSentence = setup.class.sentence.random()&gt;&gt;
+&lt;&lt;set _classSentence2 = setup.class.sentence2.random()&gt;&gt;
+&lt;&lt;set _class1 = setup.class.type.pluck()&gt;&gt;
+&lt;&lt;set _class2 = setup.class.type.pluck()&gt;&gt;
+&lt;&lt;set _class3 = setup.class.type.pluck()&gt;&gt;
 
-Add in some brief backstory choices. Add in player name selection.
 
+&lt;br&gt;&lt;br&gt;
+
+_classintro _classintro2 
 &lt;span id=&quot;class&quot;&gt;
-$classSentence...
+_classSentence...
 &lt;br&gt;
 &lt;span class=&quot;big-button&quot;&gt;
-&lt;&lt;button $class1&gt;&gt;
-	&lt;&lt;set $playerclass to $class1&gt;&gt;
-	&lt;&lt;replace &quot;#class&quot;&gt;&gt;$classSentence $playerclass $classSentence1.
+&lt;&lt;button _class1&gt;&gt;
+	&lt;&lt;set $playerclass to _class1&gt;&gt;
+	&lt;&lt;replace &quot;#class&quot;&gt;&gt;_classSentence $playerclass _classSentence2 &lt;br&gt;&lt;br&gt;_classintro3
 		&lt;&lt;include &quot;Intro&quot;&gt;&gt;
 	&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
 
-&lt;span id=&quot;class&quot;&gt;
 &lt;span class=&quot;big-button&quot;&gt;
-&lt;&lt;button $class2&gt;&gt;
-	&lt;&lt;set $playerclass to $class2&gt;&gt;
-	&lt;&lt;replace &quot;#class&quot;&gt;&gt;$classSentence $playerclass $classSentence1.
+&lt;&lt;button _class2&gt;&gt;
+	&lt;&lt;set $playerclass to _class2&gt;&gt;
+	&lt;&lt;replace &quot;#class&quot;&gt;&gt;_classSentence $playerclass _classSentence2  &lt;br&gt;&lt;br&gt; _classintro3
 		&lt;&lt;include &quot;Intro&quot;&gt;&gt;
 	&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
 
-&lt;span id=&quot;class&quot;&gt;
 &lt;span class=&quot;big-button&quot;&gt;
-&lt;&lt;button $class3&gt;&gt;
-	&lt;&lt;set $playerclass to $class3&gt;&gt;
-	&lt;&lt;replace &quot;#class&quot;&gt;&gt;$classSentence $playerclass $classSentence1.
+&lt;&lt;button _class3&gt;&gt;
+	&lt;&lt;set $playerclass to _class3&gt;&gt;
+	&lt;&lt;replace &quot;#class&quot;&gt;&gt;_classsSentence $playerclass _classSentence2 &lt;br&gt;&lt;br&gt;_classintro3
 		&lt;&lt;include &quot;Intro&quot;&gt;&gt;
 	&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/button&gt;&gt;
-&lt;/span&gt;
-
-&lt;span id=&quot;class&quot;&gt;
-&lt;span class=&quot;big-button&quot;&gt;
-&lt;&lt;button $class4&gt;&gt;
-	&lt;&lt;set $playerclass to $class4&gt;&gt;
-	&lt;&lt;replace &quot;#class&quot;&gt;&gt;$classSentence $playerclass $classSentence1.
-		&lt;&lt;include &quot;Intro&quot;&gt;&gt;
-	&lt;&lt;/replace&gt;&gt;
-&lt;&lt;/button&gt;&gt;
-&lt;/span&gt;
-</tw-passagedata><tw-passagedata pid="12" name="Main Menu" tags="noreturn" position="398,542.5" size="100,100">
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="12" name="Main Menu" tags="noreturn" position="398,542.5" size="100,100">
 
 &lt;div class=&quot;titlebox&quot;&gt;
 &lt;span class=&quot;h1&quot;&gt;
@@ -739,97 +869,170 @@ Jackson is the least experienced and youngest of the group; he looks like a red-
 
 &lt;br&gt;&lt;br&gt;
 
-[[Main Menu]]</tw-passagedata><tw-passagedata pid="16" name="StoryCaption" tags="" position="466,698.5" size="100,100">
+[[Main Menu]]</tw-passagedata><tw-passagedata pid="16" name="StoryCaption" tags="" position="466,700.5" size="100,100">&lt;&lt;if $char1trust &lt; 2&gt;&gt;
+	&lt;&lt;set $char1trusttext = &quot;Hostile&quot;&gt;&gt;
+&lt;&lt;elseif $char1trust &lt; 3&gt;&gt;
+	&lt;&lt;set $char1trusttext = &quot;Disdainful&quot;&gt;&gt;
+&lt;&lt;elseif $char1trust &lt; 6&gt;&gt;
+	&lt;&lt;set $char1trusttext = &quot;Aloof&quot;&gt;&gt;
+&lt;&lt;elseif $char1trust &lt; 8&gt;&gt;
+	&lt;&lt;set $char1trusttext = &quot;Cordial&quot;&gt;&gt;
+&lt;&lt;elseif $char1trust &lt; 10&gt;&gt;
+	&lt;&lt;set $char1trusttext = &quot;Benevolent&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $char2trust &lt; 2&gt;&gt;
+	&lt;&lt;set $char2trusttext = &quot;Mortal Enemy&quot;&gt;&gt;
+&lt;&lt;elseif $char2trust &lt; 4&gt;&gt;
+	&lt;&lt;set $char2trusttext = &quot;Wary&quot;&gt;&gt;
+&lt;&lt;elseif $char2trust &lt; 6&gt;&gt;
+	&lt;&lt;set $char2trusttext = &quot;Cautious&quot;&gt;&gt;
+&lt;&lt;elseif $char2trust &lt; 8&gt;&gt;
+	&lt;&lt;set $char2trusttext = &quot;Curious&quot;&gt;&gt;
+&lt;&lt;elseif $char2trust &lt; 10&gt;&gt;
+	&lt;&lt;set $char2trusttext = &quot;Acquaintance&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $char3trust &lt; 2&gt;&gt;
+	&lt;&lt;set $char3trusttext = &quot;Enemy&quot;&gt;&gt;
+&lt;&lt;elseif $char3trust &lt; 4&gt;&gt;
+	&lt;&lt;set $char3trusttext = &quot;Guarded&quot;&gt;&gt;
+&lt;&lt;elseif $char3trust &lt; 7&gt;&gt;
+	&lt;&lt;set $char3trusttext = &quot;Indifferent&quot;&gt;&gt;
+&lt;&lt;elseif $char3trust &lt; 8&gt;&gt;
+	&lt;&lt;set $char3trusttext = &quot;Civil&quot;&gt;&gt;
+&lt;&lt;elseif $char3trust &lt; 10&gt;&gt;
+	&lt;&lt;set $char3trusttext = &quot;Ally&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $char4trust &lt; 2&gt;&gt;
+	&lt;&lt;set $char4trusttext = &quot;Inscrutable&quot;&gt;&gt;
+&lt;&lt;elseif $char4trust &lt; 4&gt;&gt;
+	&lt;&lt;set $char4trusttext = &quot;Mysterious&quot;&gt;&gt;
+&lt;&lt;elseif $char4trust &lt; 6&gt;&gt;
+	&lt;&lt;set $char4trusttext = &quot;Watchful&quot;&gt;&gt;
+&lt;&lt;elseif $char4trust &lt; 8&gt;&gt;
+	&lt;&lt;set $char4trusttext = &quot;Tentative&quot;&gt;&gt;
+&lt;&lt;elseif $char4trust &lt; 10&gt;&gt;
+	&lt;&lt;set $char4trusttext = &quot;Teammate&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $char5trust &lt; 2&gt;&gt;
+	&lt;&lt;set $char5trusttext = &quot;Uncertain&quot;&gt;&gt;
+&lt;&lt;elseif $char5trust &lt; 4&gt;&gt;
+	&lt;&lt;set $char5trusttext = &quot;Polite&quot;&gt;&gt;
+&lt;&lt;elseif $char5trust &lt; 6&gt;&gt;
+	&lt;&lt;set $char5trusttext = &quot;Friend&quot;&gt;&gt;
+&lt;&lt;elseif $char5trust &lt; 8&gt;&gt;
+	&lt;&lt;set $char5trusttext = &quot;Close Pal&quot;&gt;&gt;
+&lt;&lt;elseif $char5trust &lt; 10&gt;&gt;
+	&lt;&lt;set $char5trusttext = &quot;Best Friend&quot;&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+
+
+&lt;div class=&quot;sidebarbox&quot; align=&quot;center&quot;&gt;
+&lt;div class=&quot;sidebarbg&quot;&gt;
 &lt;&lt;if $introdone == 1&gt;&gt;
+&lt;span class=&quot;h3&quot;&gt;
 [[Characters]]&lt;br&gt;
 &lt;&lt;link &quot;Return to game&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;br&gt;
 [[Main Menu]]
 &lt;br&gt;&lt;br&gt;
 You are $playerName, a $playerGender student with $playerhair hair and $playerEyes eyes.
+&lt;/span&gt;
 &lt;br&gt;&lt;br&gt;
-
-&lt;&lt;click &quot;&lt;img src=&#39;LordYuThumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
+&lt;&lt;click &quot;&lt;img src=&#39;char1thumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
 &lt;&lt;toggleclass &quot;#char1expand&quot; &quot;charactersidebar&quot;&gt;&gt;
 &lt;&lt;/click&gt;&gt;
-&lt;div id=&quot;char1expand&quot; class=&quot;charactersidebar&quot;&gt;
+&lt;div id=&quot;char1expand&quot; class=&quot;charactersidebar&quot; align=&quot;center&quot;&gt;
 &lt;span class=&quot;h2&quot;&gt;
- Lord Fnarfop Yu
+ &lt;&lt;print setup.char1.fullname&gt;&gt;
  &lt;/span&gt;&lt;br&gt;
-Specialty: $char1magic
+&lt;&lt;showmeter &#39;char1meter&#39; &#96;$char1trust / 10&#96;&gt;&gt;
+&lt;span class=&quot;h3&quot;&gt;
+Specialty: $char1magicdisplay
 &lt;br&gt;
-Familiar: $char1familiar
+Familiar: $char1familiardisplay
 &lt;br&gt;
-Favorite food: $char1food
+Favorite food: $char1fooddisplay
 &lt;br&gt;
-Deepest fear: $char1fear
+Deepest fear: $char1feardisplay
+&lt;/span&gt;
 &lt;/div&gt;
 &lt;br&gt;
-&lt;&lt;click &quot;&lt;img src=&#39;LordYuThumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
+
+&lt;&lt;click &quot;&lt;img src=&#39;char2thumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
 &lt;&lt;toggleclass &quot;#char2expand&quot; &quot;charactersidebar&quot;&gt;&gt;
 &lt;&lt;/click&gt;&gt;
-&lt;div id=&quot;char2expand&quot; class=&quot;charactersidebar&quot;&gt;
+&lt;div id=&quot;char2expand&quot; class=&quot;charactersidebar&quot; align=&quot;center&quot;&gt;
 &lt;span class=&quot;h2&quot;&gt;
- Adriash Honde
+ &lt;&lt;print setup.char2.fullname&gt;&gt;
  &lt;/span&gt;&lt;br&gt;
-Specialty: $char2magic
+&lt;&lt;showmeter &#39;char2meter&#39; &#96;$char2trust / 10&#96;&gt;&gt;
+Specialty: $char2magicdisplay
 &lt;br&gt;
-Familiar: $char2familiar
+Familiar: $char2familiardisplay
 &lt;br&gt;
-Favorite food: $char2food
+Favorite food: $char2fooddisplay
 &lt;br&gt;
-Deepest fear: $char2fear
+Deepest fear: $char2feardisplay
 &lt;/div&gt;
 &lt;br&gt;
-&lt;&lt;click &quot;&lt;img src=&#39;LordYuThumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
-&lt;&lt;toggleclass &quot;#char3expand&quot; &quot;charactersidebar&quot;&gt;&gt;
+&lt;&lt;click &quot;&lt;img src=&#39;char3thumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
+&lt;&lt;toggleclass &quot;#char3expand&quot; &quot;charactersidebar&quot; align=&quot;center&quot;&gt;&gt;
 &lt;&lt;/click&gt;&gt;
 &lt;div id=&quot;char3expand&quot; class=&quot;charactersidebar&quot;&gt;
 &lt;span class=&quot;h2&quot;&gt;
- Matiska
+ &lt;&lt;print setup.char3.fullname&gt;&gt;
  &lt;/span&gt;&lt;br&gt;
-Specialty: $char3magic
+&lt;&lt;showmeter &#39;char3meter&#39; &#96;$char3trust / 10&#96;&gt;&gt;
+Specialty: $char3magicdisplay
 &lt;br&gt;
-Familiar: $char3familiar
+Familiar: $char3familiardisplay
 &lt;br&gt;
-Favorite food: $char3food
+Favorite food: $char3fooddisplay
 &lt;br&gt;
-Deepest fear: $char3fear
+Deepest fear: $char3feardisplay
 &lt;/div&gt;
 &lt;br&gt;
-&lt;&lt;click &quot;&lt;img src=&#39;LordYuThumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
-&lt;&lt;toggleclass &quot;#char4expand&quot; &quot;charactersidebar&quot;&gt;&gt;
+&lt;&lt;click &quot;&lt;img src=&#39;char4thumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
+&lt;&lt;toggleclass &quot;#char4expand&quot; &quot;charactersidebar&quot; align=&quot;center&quot;&gt;&gt;
 &lt;&lt;/click&gt;&gt;
 &lt;div id=&quot;char4expand&quot; class=&quot;charactersidebar&quot;&gt;
 &lt;span class=&quot;h2&quot;&gt;
- Ersatz Atana
+ &lt;&lt;print setup.char4.fullname&gt;&gt;
  &lt;/span&gt;&lt;br&gt;
-Specialty: $char4magic
+&lt;&lt;showmeter &#39;char4meter&#39; &#96;$char4trust / 10&#96;&gt;&gt;
+Specialty: $char4magicdisplay
 &lt;br&gt;
-Familiar: $char4familiar
+Familiar: $char4familiardisplay
 &lt;br&gt;
-Favorite food: $char4food
+Favorite food: $char4fooddisplay
 &lt;br&gt;
-Deepest fear: $char4fear
+Deepest fear: $char4feardisplay
 &lt;/div&gt;
 &lt;br&gt;
-&lt;&lt;click &quot;&lt;img src=&#39;LordYuThumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
-&lt;&lt;toggleclass &quot;#char5expand&quot; &quot;charactersidebar&quot;&gt;&gt;
+&lt;&lt;click &quot;&lt;img src=&#39;char5thumb.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
+&lt;&lt;toggleclass &quot;#char5expand&quot; &quot;charactersidebar&quot; align=&quot;center&quot;&gt;&gt;
 &lt;&lt;/click&gt;&gt;
 &lt;div id=&quot;char5expand&quot; class=&quot;charactersidebar&quot;&gt;
 &lt;span class=&quot;h2&quot;&gt;
- Nevry Jackson
+ &lt;&lt;print setup.char5.fullname&gt;&gt;
  &lt;/span&gt;&lt;br&gt;
-Specialty: $char5magic
+&lt;&lt;showmeter &#39;char5meter&#39; &#96;$char5trust / 10&#96;&gt;&gt;
+Specialty: $char5magicdisplay
 &lt;br&gt;
-Familiar: $char5familiar
+Familiar: $char5familiardisplay
 &lt;br&gt;
-Favorite food: $char5food
+Favorite food: $char5fooddisplay
 &lt;br&gt;
-Deepest fear: $char5fear
+Deepest fear: $char5feardisplay
 &lt;/div&gt;
+&lt;br&gt;
 
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="StoryMenu" tags="noreturn" position="595,697.5" size="100,100"></tw-passagedata><tw-passagedata pid="18" name="Dream2" tags="" position="389,102" size="100,100">&lt;&lt;if $lastchoice == 1&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="17" name="Dream2" tags="" position="389,102" size="100,100">&lt;&lt;if $lastchoice == 1&gt;&gt;
 	&lt;&lt;set $result = setup.intro.result1.pluck()&gt;&gt;
 &lt;&lt;elseif $lastchoice == 2&gt;&gt;
 	&lt;&lt;set $result = setup.intro.result2.pluck()&gt;&gt;
@@ -837,7 +1040,7 @@ Deepest fear: $char5fear
     &lt;&lt;set $result = setup.intro.result3.pluck()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;set $danger2= setup.intro.danger2.pluck()&gt;&gt;
+&lt;&lt;set $danger2 = setup.intro.danger2.pluck()&gt;&gt;
 &lt;&lt;set $wake = setup.intro.wake.pluck()&gt;&gt;
 &lt;&lt;set $portent = setup.intro.portent.pluck()&gt;&gt;
 &lt;&lt;set $center = setup.intro.center.pluck()&gt;&gt;
@@ -871,7 +1074,335 @@ $wake $portent $center $center1 $setting2 $setting3 $setting4
   &lt;&lt;set $lastchoice = 3&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-</tw-passagedata></tw-storydata>
+</tw-passagedata><tw-passagedata pid="18" name="Round End" tags="" position="869,610.5" size="100,100">Attempt spell
+Check for attunement
+
+for all characters
+if character is attuned, then success
+
+if full success, then
+
+[[Final Battle]]
+
+else
+
+[[New Round]]</tw-passagedata><tw-passagedata pid="19" name="Final Battle" tags="" position="794,760.5" size="100,100">text about battle
+
+pull choices from $setup.characters.weakness
+
+if player select correctly, then [[Victory]]
+
+else 
+
+[[Loss]]</tw-passagedata><tw-passagedata pid="20" name="Bus" tags="" position="259,264.5" size="100,100">&lt;&lt;set $rounds = 3&gt;&gt;
+&lt;&lt;set $scene = &quot;bus&quot;&gt;&gt;
+
+	 &lt;&lt;set $nextscene = &quot;arrival&quot;&gt;&gt;
+
+	 &lt;&lt;set $charChoices to Array.from(setup.bus.clist)&gt;&gt;
+	 &lt;&lt;set $choiceText to Array.from(setup.bus.ctext)&gt;&gt;
+
+
+&lt;&lt;set _choice1 = $charChoices.pluck()&gt;&gt;
+&lt;&lt;set _choice1text1 = $choiceText.pluck()&gt;&gt;
+&lt;&lt;set _choice1text2 = setup.bus[_choice1].random()&gt;&gt;
+&lt;&lt;set _choice1text = &quot;&quot; + _choice1text1 + _choice1text2&gt;&gt;
+
+&lt;&lt;set _choice2 = $charChoices.pluck()&gt;&gt;
+&lt;&lt;set _choice2text1 = $choiceText.pluck()&gt;&gt;
+&lt;&lt;set _choice2text2 = setup.bus[_choice2].random()&gt;&gt;
+&lt;&lt;set _choice2text = &quot;&quot; + _choice2text1 + _choice2text2&gt;&gt;
+
+&lt;&lt;set _choice3 = $charChoices.pluck()&gt;&gt;
+&lt;&lt;set _choice3text1 = $choiceText.pluck()&gt;&gt;
+&lt;&lt;set _choice3text2 = setup.bus[_choice3].random()&gt;&gt;
+&lt;&lt;set _choice3text = &quot;&quot; + _choice3text1 + _choice3text2&gt;&gt;
+
+
+Students on the bus. Scene to chit chat and gather info. What do you do to pass the time?
+&lt;br&gt;&lt;br&gt;
+
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button _choice1text &quot;DialogBus1&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = _choice1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button _choice2text &quot;DialogBus1&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = _choice2&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button _choice3text &quot;DialogBus1&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = _choice3&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
+</tw-passagedata><tw-passagedata pid="21" name="Victory" tags="" position="719,910.5" size="100,100">Yay you win
+
+[[Main Menu]]</tw-passagedata><tw-passagedata pid="22" name="Loss" tags="" position="869,910.5" size="100,100">Game over man, game over.
+
+[[Main Menu]]</tw-passagedata><tw-passagedata pid="23" name="New Round" tags="" position="1026,610.5" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="24" name="DialogBus1" tags="noreturn" position="389,265.5" size="100,100">
+&lt;&lt;set _scene = $scene&gt;&gt;
+&lt;&lt;set _char = $dialogtarget&gt;&gt;
+
+&lt;&lt;set $dialogChoices to Array.from(setup[_scene].qlist)&gt;&gt;
+&lt;&lt;set _text = setup[_char].intro&gt;&gt;
+
+&lt;&lt;set _choice1 = $dialogChoices.pluck()&gt;&gt;
+&lt;&lt;set _choice1text = &quot; &quot; + setup[_scene][_choice1].random()&gt;&gt;
+&lt;&lt;set _answer1 = &quot; &quot; + setup[_char][_choice1].random()&gt;&gt;
+
+
+&lt;&lt;set _choice2 = $dialogChoices.pluck()&gt;&gt;
+&lt;&lt;if _choice2 == &quot;&quot;&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;set _choice2text = &quot; &quot; + setup[_scene][_choice2].random()&gt;&gt;
+&lt;&lt;set _answer2 = &quot; &quot; + setup[_char][_choice2].random()&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;set _choice3 = $dialogChoices.pluck()&gt;&gt;
+&lt;&lt;if _choice3 == &quot;&quot;&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;set _choice3text = &quot; &quot; + setup[_scene][_choice3].random()&gt;&gt;
+&lt;&lt;set _answer3 = &quot; &quot; + setup[_char][_choice3].random()&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;set $dialogimg = &quot;&quot; + [_char] + &quot;.png&quot;&gt;&gt;
+&lt;&lt;set _dialogname = setup[_char].fullname&gt;&gt;
+
+&lt;div class=&quot;characterlayoutleft&quot;&gt;
+
+&lt;div class=&quot;characterimage&quot;&gt;
+	&lt;img class=&quot;characterimagefit&quot; @src=$dialogimg /&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;charactertext&quot;&gt;
+&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogname&lt;/span&gt;
+
+&lt;&lt;if _choice1 == &quot;&quot;&gt;&gt;
+	&lt;&lt;set _text = setup[_char].dismiss.random()&gt;&gt;
+	&lt;br&gt;&lt;br&gt;
+	_text
+	&lt;br&gt;&lt;br&gt;
+	&lt;&lt;include &quot;DialogEnd&quot;&gt;&gt;
+	&lt;/span&gt;
+&lt;&lt;else&gt;&gt;
+
+&lt;br&gt;&lt;br&gt;
+_text
+
+&lt;br&gt;&lt;br&gt;
+&lt;span id=&quot;choices&quot;&gt;
+
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button _choice1text&gt;&gt;
+&lt;&lt;set $lastchoice = _choice1&gt;&gt;
+ &lt;&lt;replace &quot;#choices&quot;&gt;&gt;&lt;i&gt;_choice1text&lt;/i&gt;&lt;br&gt;&lt;br&gt;_answer1
+		&lt;&lt;include &quot;DialogEnd&quot;&gt;&gt;
+	&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+
+&lt;&lt;if _choice2 == &quot;&quot;&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button _choice2text&gt;&gt;
+&lt;&lt;set $lastchoice = _choice2&gt;&gt;
+ &lt;&lt;replace &quot;#choices&quot;&gt;&gt;&lt;i&gt;_choice2text&lt;/i&gt;&lt;br&gt;&lt;br&gt;_answer2
+		&lt;&lt;include &quot;DialogEnd&quot;&gt;&gt;
+	&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if _choice3 == &quot;&quot;&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button _choice3text&gt;&gt;
+&lt;&lt;set $lastchoice = _choice3&gt;&gt;
+ &lt;&lt;replace &quot;#choices&quot;&gt;&gt;&lt;i&gt;_choice3text&lt;/i&gt;&lt;br&gt;&lt;br&gt;_answer3
+		&lt;&lt;include &quot;DialogEnd&quot;&gt;&gt;
+	&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="25" name="Dialog Setup" tags="noreturn" position="373,375.5" size="100,100">&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button $choice1text &quot;DialogBus1&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = $choice1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button $choice2text &quot;DialogBus2&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = $choice2&gt;&gt;
+ &lt;&lt;set $lastchoice = 1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;&lt;if $choice3&gt;&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button $choice3text &quot;DialogBus3&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = $choice3&gt;&gt;
+ &lt;&lt;set $lastchoice = 1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;&lt;if $choice4&gt;&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button $choice4text &quot;DialogBus4&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = $choice4&gt;&gt;
+ &lt;&lt;set $lastchoice = 1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;&lt;if $choice5&gt;&gt;
+&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button $choice5text &quot;DialogBus5&quot;&gt;&gt;
+ &lt;&lt;set $dialogtarget = $choice5&gt;&gt;
+ &lt;&lt;set $lastchoice = 1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;set $choice1 = [&quot;&quot;],&gt;&gt;
+&lt;&lt;set $choice2 = [&quot;&quot;],&gt;&gt;
+&lt;&lt;set $choice3 = [&quot;&quot;],&gt;&gt;
+&lt;&lt;set $choice4 = [&quot;&quot;],&gt;&gt;
+&lt;&lt;set $choice5 = [&quot;&quot;],&gt;&gt;
+
+&lt;&lt;if $dialogtarget == char2&gt;&gt;
+	&lt;&lt;set $dialogimg = &quot;$char2.png&quot;&gt;&gt;
+	&lt;&lt;set $dialogname = setup.char2.fullname&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $dialogtarget == char3&gt;&gt;
+	&lt;&lt;set $dialogimg = &quot;$char3.png&quot;&gt;&gt;
+	&lt;&lt;set $dialogname = setup.char3.fullname&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $dialogtarget == char4&gt;&gt;
+	&lt;&lt;set $dialogimg = &quot;$char4.png&quot;&gt;&gt;
+	&lt;&lt;set $dialogname = setup.character4.fullname&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $dialogtarget == char5&gt;&gt;
+	&lt;&lt;set $dialogimg = &quot;$char5.png&quot;&gt;&gt;
+	&lt;&lt;set $dialogname = setup.character5.fullname&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="DialogEnd" tags="" position="535,265.5" size="100,100">&lt;&lt;set $char1trust += 1&gt;&gt;
+&lt;&lt;set $rounds -= 1&gt;&gt;
+
+
+
+&lt;&lt;switch $dialogtarget&gt;&gt;
+&lt;&lt;case &quot;char1&quot;&gt;&gt;
+	&lt;&lt;switch $lastchoice&gt;&gt;
+		&lt;&lt;case &quot;magic&quot;&gt;&gt;
+			&lt;&lt;set $char1magicdisplay = $char1magic&gt;&gt;
+		&lt;&lt;case &quot;food&quot;&gt;&gt;
+			&lt;&lt;set $char1fooddisplay = $char1food&gt;&gt;
+		&lt;&lt;case &quot;familiar&quot;&gt;&gt;
+			&lt;&lt;set $char1familiardisplay = $char1familiar&gt;&gt;
+		&lt;&lt;case &quot;fear&quot;&gt;&gt;
+			&lt;&lt;set $char1feardisplay = $char1fear&gt;&gt;
+	&lt;&lt;/switch&gt;&gt;
+&lt;&lt;case &quot;char2&quot;&gt;&gt;
+	&lt;&lt;switch $lastchoice&gt;&gt;
+		&lt;&lt;case &quot;smagic&quot;&gt;&gt;
+			&lt;&lt;set $char2magicdisplay = $char1magic&gt;&gt;
+		&lt;&lt;case &quot;sfood&quot;&gt;&gt;
+			&lt;&lt;set $char2fooddisplay = $char1food&gt;&gt;
+		&lt;&lt;case &quot;sfamiliar&quot;&gt;&gt;
+			&lt;&lt;set $char2familiardisplay = $char1familiar&gt;&gt;
+		&lt;&lt;case &quot;sfear&quot;&gt;&gt;
+			&lt;&lt;set $char2feardisplay = $char1fear&gt;&gt;
+	&lt;&lt;/switch&gt;&gt;	
+&lt;&lt;/switch&gt;&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;&lt;if $rounds &lt; 1&gt;&gt; [[Arrival]]
+&lt;&lt;else&gt;&gt;
+[[More questions|DialogBus1]] or [[return to bus|Bus]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="scratch" tags="" position="1289,663.5" size="100,100">/*&lt;span class=&quot;big-button&quot;&gt;
+&lt;&lt;button $choice3&gt;&gt;
+&lt;&lt;set $choicesSelected.push(&quot;3&quot;)&gt;&gt;
+&lt;&lt;if $char1trust &gt; 5&gt;&gt; 
+	&lt;&lt;set $char1fooddisplay = $char1food&gt;&gt; 
+		&lt;&lt;replace &quot;#choices&quot;&gt;&gt;&lt;i&gt;$choice3&lt;/i&gt;&lt;br&gt;&lt;br&gt;$answer3&lt;br&gt;&lt;br&gt;The young nobleman fastidiously offers you a small serving of $char1food.
+			&lt;&lt;include &quot;DialogEnd&quot;&gt;&gt;
+		&lt;&lt;/replace&gt;&gt;
+&lt;&lt;else&gt;&gt;
+ 		&lt;&lt;replace &quot;#choices&quot;&gt;&gt;&lt;i&gt;$choice3&lt;/i&gt;&lt;br&gt;&lt;br&gt;$answer3
+			&lt;&lt;include &quot;DialogEnd&quot;&gt;&gt;
+		&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/if&gt;&gt;	
+&lt;&lt;set $char1trust += 1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+*/
+
+&lt;&lt;set $answer1 = setup.char1.amagic&gt;&gt;
+&lt;&lt;set $answer2 = setup.char1.afamiliar&gt;&gt;
+&lt;&lt;if $char1trust &gt; 5&gt;&gt;
+	&lt;&lt;set $answer3 = setup.char1.afoodtrust&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;set $answer3 = setup.char1.afoodnotrust&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+&lt;&lt;for _i = 0; _i &lt; setup.qlist.intro.length; _i++&gt;&gt;
+	 &lt;&lt;set _temp = setup.qlist.intro[_i]&gt;&gt;
+	 T: _temp
+  	 &lt;&lt;run $dialogchoices.push(setup.qlist.intro[_i])&gt;&gt;
+	 	D: $dialogchoices
+&lt;&lt;/for&gt;&gt;
+
+
+&lt;&lt;for _i = 0; _i &lt; setup.characters.list.length; _i++&gt;&gt;
+	 &lt;&lt;set _temp = setup.characters.list[_i]&gt;&gt;
+	 &lt;&lt;set $count = _i&gt;&gt;
+&lt;&lt;click &quot;&lt;img src=&#39;_temp.png&#39; class=&#39;sidebar-image&#39;&gt;&quot;&gt;&gt;
+&lt;&lt;toggleclass &quot;#$count&quot; &quot;charactersidebar&quot;&gt;&gt;
+&lt;&lt;/click&gt;&gt;
+&lt;div id=&quot;$count&quot; class=&quot;charactersidebar&quot;&gt;
+&lt;span class=&quot;h2&quot;&gt;
+&lt;&lt;print setup[_temp].fullname&gt;&gt;
+ &lt;/span&gt;&lt;br&gt;
+&lt;&lt;showmeter &#39;$count&#39;&gt;&gt;
+Specialty: $[_temp]magicdisplay
+&lt;br&gt;
+Familiar: $[_temp]familiardisplay
+&lt;br&gt;
+Favorite food: $[_temp]fooddisplay
+&lt;br&gt;
+Deepest fear: $[_temp]feardisplay
+&lt;/div&gt;
+&lt;br&gt;
+&lt;&lt;/for&gt;&gt;
+
+&lt;&lt;for _i = 0; _i &lt; setup.qlist.intro.length; _i++&gt;&gt;
+	 &lt;&lt;set _temp = setup.qlist.intro[_i]&gt;&gt;
+  	 &lt;&lt;run $dialogchoices.push(_temp)&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+$dialogchoices
+&lt;&lt;run $dialogchoices.delete($lastchoice)&gt;&gt;
+
+
+&lt;&lt;set _tt = setup.templatelist.random()&gt;&gt;
+&lt;&lt;set _template = setup.templates[_tt]&gt;&gt;
+&lt;&lt;set _m1 = &quot;&quot;&gt;&gt;
+&lt;&lt;for _i to 0; _i lt _template.length; _i++&gt;&gt;
+   &lt;&lt;set _m1 += &quot; &quot; + setup.words[_template[_i]].random()&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;&lt;set _m1 = _m1.toUpperFirst()&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="Arrival" tags="" position="823,248.5" size="100,100">Arrival at ruins
+
+[[Scene 1]]</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
 	if(document.documentElement.getAttribute("data-init")==="loading"){!function(window,document,jQuery,undefined){"use strict";function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,r=Array(e.length);t<e.length;t++)r[t]=e[t];return r}return Array.from(e)}var _createClass=function(){function e(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(t,r,n){return r&&e(t.prototype,r),n&&e(t,n),t}}(),_slicedToArray=function(){function e(e,t){var r=[],n=!0,a=!1,i=undefined;try{for(var o,s=e[Symbol.iterator]();!(n=(o=s.next()).done)&&(r.push(o.value),!t||r.length!==t);n=!0);}catch(e){a=!0,i=e}finally{try{!n&&s.return&&s.return()}finally{if(a)throw i}}return r}return function(t,r){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,r);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},errorPrologRegExp=/^(?:(?:uncaught\s+(?:exception:\s+)?)?\w*(?:error|exception|_err):\s+)+/i,Alert=function(){function e(e,t,r,n){var a="fatal"===e,i="Apologies! "+(a?"A fatal":"An")+" error has occurred.";i+=a?" Aborting.":" You may be able to continue, but some parts may not work properly.",null==t&&null==r||(i+="\n\nError",null!=t&&(i+=" ["+t+"]"),i+=null!=r?": "+r.replace(errorPrologRegExp,"")+".":": unknown error."),"object"===(void 0===n?"undefined":_typeof(n))&&null!==n&&n.stack&&(i+="\n\nStack Trace:\n"+n.stack),window.alert(i)}function t(t,r,n){e(null,t,r,n)}function r(t,r,n){e("fatal",t,r,n)}return function(e){window.onerror=function(n,a,i,o,s){"complete"===document.readyState?t(null,n,s):(r(null,n,s),window.onerror=e,"function"==typeof window.onerror&&window.onerror.apply(this,arguments))}}(window.onerror),Object.freeze(Object.defineProperties({},{error:{value:t},fatal:{value:r}}))}(),Patterns=function(){var e=function(){var e=new Map([[" ","\\u0020"],["\f","\\f"],["\n","\\n"],["\r","\\r"],["\t","\\t"],["\v","\\v"],[" ","\\u00a0"],[" ","\\u1680"],["᠎","\\u180e"],[" ","\\u2000"],[" ","\\u2001"],[" ","\\u2002"],[" ","\\u2003"],[" ","\\u2004"],[" ","\\u2005"],[" ","\\u2006"],[" ","\\u2007"],[" ","\\u2008"],[" ","\\u2009"],[" ","\\u200a"],["\u2028","\\u2028"],["\u2029","\\u2029"],[" ","\\u202f"],[" ","\\u205f"],["　","\\u3000"],["\ufeff","\\ufeff"]]),t=/^\s$/,r="";return e.forEach(function(e,n){t.test(n)||(r+=e)}),r?"[\\s"+r+"]":"\\s"}(),t="[\\u0020\\f\\t\\v\\u00a0\\u1680\\u180e\\u2000-\\u200a\\u202f\\u205f\\u3000\\ufeff]",r="\\s"===e?"\\S":e.replace(/^\[/,"[^"),n="[0-9A-Z_a-z\\-\\u00c0-\\u00d6\\u00d8-\\u00f6\\u00f8-\\u00ff\\u0150\\u0170\\u0151\\u0171]",a=n.replace("\\-",""),i=function(){var e="(?:[\\x2D.0-9A-Z_a-z\\xB7\\xC0-\\xD6\\xD8-\\xF6\\xF8-\\u037D\\u037F-\\u1FFF\\u200C\\u200D\\u203F\\u2040\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|[\\uD800-\\uDB7F][\\uDC00-\\uDFFF])";return"[A-Za-z](?:"+e+"*-"+e+"*|[0-9A-Za-z]*)"}(),o=function(){return"("+n+"+)\\(([^\\)\\|\\n]+)\\):|"+t+"*("+n+"+)"+t+"*:([^;\\|\\n]+);|"+t+"*((?:[#.]"+n+"+"+t+"*)+);"}();return Object.freeze({space:e,spaceNoTerminator:t,lineTerminator:"[\\n\\r\\u2028\\u2029]",notSpace:r,anyChar:"(?:.|[\\n\\r\\u2028\\u2029])",anyLetter:n,anyLetterStrict:a,identifierFirstChar:"[$A-Z_a-z]",identifierNextChar:"[$0-9A-Z_a-z]",identifier:"[$A-Z_a-z][$0-9A-Z_a-z]*",variableSigil:"[$_]",variable:"[$_][$A-Z_a-z][$0-9A-Z_a-z]*",macroName:"[A-Za-z][\\w-]*|[=-]",templateName:"[A-Za-z][\\w-]*",htmlTagName:i,cssIdOrClassSigil:"[#.]",cssImage:"\\[[<>]?[Ii][Mm][Gg]\\[(?:\\s|\\S)*?\\]\\]+",inlineCss:o,url:"(?:file|https?|mailto|ftp|javascript|irc|news|data):[^\\s'\"]+"})}();!function(){function e(e,t){var r=Number.parseInt(e,10)||0;if(r<1)return"";var n=void 0===t?"":String(t);for(""===n&&(n=" ");n.length<r;){var a=n.length,i=r-a;n+=a>i?n.slice(0,i):n}return n.length>r&&(n=n.slice(0,r)),n}var t=function(){function e(e,n){var a=String(e);if(!a)return a;switch(n){case"start":return t.test(a)?a.replace(t,""):a;case"end":return r.test(a)?a.replace(r,""):a;default:throw new Error('_trimString called with incorrect where parameter value: "'+n+'"')}}var t=new RegExp("^"+Patterns.space+Patterns.space+"*"),r=new RegExp(""+Patterns.space+Patterns.space+"*$");return e}();Array.prototype.flat||Object.defineProperty(Array.prototype,"flat",{configurable:!0,writable:!0,value:function(){function e(){if(null==this)throw new TypeError("Array.prototype.flat called on null or undefined");var t=0===arguments.length?1:Number(arguments[0])||0;return t<1?Array.prototype.slice.call(this):Array.prototype.reduce.call(this,function(r,n){return n instanceof Array?r.push.apply(r,_toConsumableArray(e.call(n,t-1))):r.push(n),r},[])}return e}()}),Array.prototype.flatMap||Object.defineProperty(Array.prototype,"flatMap",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatMap called on null or undefined");return Array.prototype.map.apply(this,arguments).flat()}}),Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includes called on null or undefined");if(0===arguments.length)return!1;var e=this.length>>>0;if(0===e)return!1;var t=arguments[0],r=Number(arguments[1])||0;for(r<0&&(r=Math.max(0,e+r));r<e;++r){var n=this[r];if(n===t||n!==n&&t!==t)return!0}return!1}}),Object.entries||Object.defineProperty(Object,"entries",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)throw new TypeError("Object.entries object parameter must be an object");return Object.keys(e).map(function(t){return[t,e[t]]})}}),Object.fromEntries||Object.defineProperty(Object,"fromEntries",{configurable:!0,writable:!0,value:function(e){return Array.from(e).reduce(function(e,t){if(Object(t)!==t)throw new TypeError("Object.fromEntries iterable parameter must yield objects");return t[0]in e?Object.defineProperty(e,t[0],{configurable:!0,enumerable:!0,writable:!0,value:t[1]}):e[t[0]]=t[1],e},{})}}),Object.getOwnPropertyDescriptors||Object.defineProperty(Object,"getOwnPropertyDescriptors",{configurable:!0,writable:!0,value:function(e){if(null==e)throw new TypeError("Object.getOwnPropertyDescriptors object parameter is null or undefined");var t=Object(e);return Reflect.ownKeys(t).reduce(function(e,r){var n=Object.getOwnPropertyDescriptor(t,r);return void 0!==n&&(r in e?Object.defineProperty(e,r,{configurable:!0,enumerable:!0,writable:!0,value:n}):e[r]=n),e},{})}}),Object.values||Object.defineProperty(Object,"values",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)throw new TypeError("Object.values object parameter must be an object");return Object.keys(e).map(function(t){return e[t]})}}),String.prototype.padStart||Object.defineProperty(String.prototype,"padStart",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padStart called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:e(i-a,r)+n}}),String.prototype.padEnd||Object.defineProperty(String.prototype,"padEnd",{configurable:!0,writable:!0,value:function(t,r){if(null==this)throw new TypeError("String.prototype.padEnd called on null or undefined");var n=String(this),a=n.length,i=Number.parseInt(t,10);return i<=a?n:n+e(i-a,r)}}),String.prototype.trimStart||Object.defineProperty(String.prototype,"trimStart",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimStart called on null or undefined");return t(this,"start")}}),String.prototype.trimLeft||Object.defineProperty(String.prototype,"trimLeft",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimLeft called on null or undefined");return t(this,"start")}}),String.prototype.trimEnd||Object.defineProperty(String.prototype,"trimEnd",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimEnd called on null or undefined");return t(this,"end")}}),String.prototype.trimRight||Object.defineProperty(String.prototype,"trimRight",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.trimRight called on null or undefined");return t(this,"end")}})}(),function(){function _random(){var e=void 0,t=void 0;switch(arguments.length){case 0:throw new Error("_random called with insufficient parameters");case 1:e=0,t=arguments[0];break;default:e=arguments[0],t=arguments[1]}if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.floor(_nativeMathRandom()*(t-e+1))+e}function _randomIndex(e,t){var r=void 0,n=void 0;switch(t.length){case 1:r=0,n=e-1;break;case 2:r=0,n=Math.trunc(t[1]);break;default:r=Math.trunc(t[1]),n=Math.trunc(t[2])}return Number.isNaN(r)?r=0:!Number.isFinite(r)||r>=e?r=e-1:r<0&&(r=e+r)<0&&(r=0),Number.isNaN(n)?n=0:!Number.isFinite(n)||n>=e?n=e-1:n<0&&(n=e+n)<0&&(n=e-1),_random(r,n)}function _getCodePointStartAndEnd(e,t){var r=e.charCodeAt(t);if(Number.isNaN(r))return{char:"",start:-1,end:-1};if(r<55296||r>57343)return{char:e.charAt(t),start:t,end:t};if(r>=55296&&r<=56319){var n=t+1;if(n>=e.length)throw new Error("high surrogate without trailing low surrogate");var a=e.charCodeAt(n);if(a<56320||a>57343)throw new Error("high surrogate without trailing low surrogate");return{char:e.charAt(t)+e.charAt(n),start:t,end:n}}if(0===t)throw new Error("low surrogate without leading high surrogate");var i=t-1,o=e.charCodeAt(i);if(o<55296||o>56319)throw new Error("low surrogate without leading high surrogate");return{char:e.charAt(i)+e.charAt(t),start:i,end:t}}var _nativeMathRandom=Math.random;Object.defineProperty(Array,"random",{configurable:!0,writable:!0,value:function(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e||!Object.prototype.hasOwnProperty.call(e,"length"))throw new TypeError("Array.random array parameter must be an array or array-lke object");var t=e.length>>>0;if(0!==t){return e[0===arguments.length?_random(0,t-1):_randomIndex(t,Array.prototype.slice.call(arguments,1))]}}}),Object.defineProperty(Array.prototype,"concatUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.concatUnique called on null or undefined");var e=Array.from(this);if(0===arguments.length)return e;var t=Array.prototype.reduce.call(arguments,function(e,t){return e.concat(t)},[]),r=t.length;if(0===r)return e;for(var n=Array.prototype.indexOf,a=Array.prototype.push,i=0;i<r;++i){var o=t[i];-1===n.call(e,o)&&a.call(e,o)}return e}}),Object.defineProperty(Array.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.count called on null or undefined");for(var e=Array.prototype.indexOf,t=arguments[0],r=Number(arguments[1])||0,n=0;-1!==(r=e.call(this,t,r));)++n,++r;return n}}),Object.defineProperty(Array.prototype,"delete",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.delete called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.concat.apply([],arguments),r=t.length,n=[],a=0;a<e;++a)for(var i=this[a],o=0;o<r;++o){var s=t[o];if(i===s||i!==i&&s!==s){n.push(a);break}}for(var u=[],l=0,c=n.length;l<c;++l)u[l]=this[n[l]];for(var d=Array.prototype.splice,f=n.length-1;f>=0;--f)d.call(this,n[f],1);return u}}),Object.defineProperty(Array.prototype,"deleteAt",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.deleteAt called on null or undefined");if(0===arguments.length)return[];var e=this.length>>>0;if(0===e)return[];for(var t=Array.prototype.splice,r=[].concat(_toConsumableArray(new Set(Array.prototype.concat.apply([],arguments).map(function(t){return t<0?Math.max(0,e+t):t})).values())),n=[].concat(_toConsumableArray(r)).sort(function(e,t){return t-e}),a=[],i=0,o=r.length;i<o;++i)a[i]=this[r[i]];for(var s=0,u=n.length;s<u;++s)t.call(this,n[s],1);return a}}),Object.defineProperty(Array.prototype,"deleteWith",{configurable:!0,writable:!0,value:function(e,t){if(null==this)throw new TypeError("Array.prototype.deleteWith called on null or undefined");if("function"!=typeof e)throw new Error("Array.prototype.deleteWith predicate parameter must be a function");var r=this.length>>>0;if(0===r)return[];for(var n=Array.prototype.splice,a=[],i=[],o=0;o<r;++o)e.call(t,this[o],o,this)&&(i.push(this[o]),a.push(o));for(var s=a.length-1;s>=0;--s)n.call(this,a[s],1);return i}}),Object.defineProperty(Array.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.first called on null or undefined");if(0!=this.length>>>0)return this[0]}}),Object.defineProperty(Array.prototype,"includesAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAll called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAll.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(!Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!1;return!0}}),Object.defineProperty(Array.prototype,"includesAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.includesAny called on null or undefined");if(1===arguments.length)return Array.isArray(arguments[0])?Array.prototype.includesAny.apply(this,arguments[0]):Array.prototype.includes.apply(this,arguments);for(var e=0,t=arguments.length;e<t;++e)if(Array.prototype.some.call(this,function(e){return e===this.val||e!==e&&this.val!==this.val},{val:arguments[e]}))return!0;return!1}}),Object.defineProperty(Array.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.last called on null or undefined");var e=this.length>>>0;if(0!==e)return this[e-1]}}),Object.defineProperty(Array.prototype,"pluck",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pluck called on null or undefined");var e=this.length>>>0;if(0!==e){var t=0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)));return Array.prototype.splice.call(this,t,1)[0]}}}),Object.defineProperty(Array.prototype,"pluckMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.pluckMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.pluckMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=Array.prototype.splice,a=[],i=t-1;do{a.push(n.call(this,_random(0,i--),1)[0])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"pushUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.pushUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.push,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Array.prototype,"random",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.random called on null or undefined");var e=this.length>>>0;if(0!==e){return this[0===arguments.length?_random(0,e-1):_randomIndex(e,[].concat(Array.prototype.slice.call(arguments)))]}}}),Object.defineProperty(Array.prototype,"randomMany",{configurable:!0,writable:!0,value:function(e){if(null==this)throw new TypeError("Array.prototype.randomMany called on null or undefined");var t=this.length>>>0;if(0===t)return[];var r=Math.trunc(e);if(!Number.isInteger(r))throw new Error("Array.prototype.randomMany want parameter must be an integer");if(r<1)return[];r>t&&(r=t);var n=new Map,a=[],i=t-1;do{var o=void 0;do{o=_random(0,i)}while(n.has(o));n.set(o,!0),a.push(this[o])}while(a.length<r);return a}}),Object.defineProperty(Array.prototype,"shuffle",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.shuffle called on null or undefined");var e=this.length>>>0;if(0===e)return this;for(var t=e-1;t>0;--t){var r=Math.floor(_nativeMathRandom()*(t+1));if(t!==r){var n=this[t];this[t]=this[r],this[r]=n}}return this}}),Object.defineProperty(Array.prototype,"unshiftUnique",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.unshiftUnique called on null or undefined");var e=arguments.length;if(0===e)return this.length>>>0;for(var t=Array.prototype.indexOf,r=Array.prototype.unshift,n=0;n<e;++n){var a=arguments[n];-1===t.call(this,a)&&r.call(this,a)}return this.length>>>0}}),Object.defineProperty(Function.prototype,"partial",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Function.prototype.partial called on null or undefined");var e=Array.prototype.slice,t=this,r=e.call(arguments,0);return function(){for(var n=[],a=0,i=0;i<r.length;++i)n.push(r[i]===undefined?arguments[a++]:r[i]);return t.apply(this,n.concat(e.call(arguments,a)))}}}),Object.defineProperty(Math,"clamp",{configurable:!0,writable:!0,value:function(e,t,r){var n=Number(e);return Number.isNaN(n)?NaN:n.clamp(t,r)}}),Object.defineProperty(Math,"easeInOut",{configurable:!0,writable:!0,value:function(e){return 1-(Math.cos(Number(e)*Math.PI)+1)/2}}),Object.defineProperty(Number.prototype,"clamp",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Number.prototype.clamp called on null or undefined");if(2!==arguments.length)throw new Error("Number.prototype.clamp called with an incorrect number of parameters");var e=Number(arguments[0]),t=Number(arguments[1]);if(e>t){var r=[t,e];e=r[0],t=r[1]}return Math.min(Math.max(this,e),t)}}),RegExp.escape||function(){var e=/[\\^$*+?.()|[\]{}]/g,t=new RegExp(e.source);Object.defineProperty(RegExp,"escape",{configurable:!0,writable:!0,value:function(r){var n=String(r);return n&&t.test(n)?n.replace(e,"\\$&"):n}})}(),function(){var e=/{(\d+)(?:,([+-]?\d+))?}/g,t=new RegExp(e.source);Object.defineProperty(String,"format",{configurable:!0,writable:!0,value:function(r){function n(e,t,r){if(!t)return e;var n=Math.abs(t)-e.length;if(n<1)return e;var a=String(r).repeat(n);return t<0?e+a:a+e}if(arguments.length<2)return 0===arguments.length?"":r;var a=2===arguments.length&&Array.isArray(arguments[1])?[].concat(_toConsumableArray(arguments[1])):Array.prototype.slice.call(arguments,1);return 0===a.length?r:t.test(r)?(e.lastIndex=0,r.replace(e,function(e,t,r){var i=a[t];if(null==i)return"";for(;"function"==typeof i;)i=i();switch(void 0===i?"undefined":_typeof(i)){case"string":break;case"object":i=JSON.stringify(i);break;default:i=String(i)}return n(i,r?Number.parseInt(r,10):0," ")})):r}})}(),Object.defineProperty(String.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.contains called on null or undefined");return-1!==String.prototype.indexOf.apply(this,arguments)}}),Object.defineProperty(String.prototype,"count",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.count called on null or undefined");var e=String(arguments[0]||"");if(""===e)return 0;for(var t=String.prototype.indexOf,r=e.length,n=Number(arguments[1])||0,a=0;-1!==(n=t.call(this,e,n));)++a,n+=r;return a}}),Object.defineProperty(String.prototype,"first",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.first called on null or undefined");return _getCodePointStartAndEnd(String(this),0).char}}),Object.defineProperty(String.prototype,"last",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.last called on null or undefined");var e=String(this);return _getCodePointStartAndEnd(e,e.length-1).char}}),Object.defineProperty(String.prototype,"splice",{configurable:!0,writable:!0,value:function(e,t,r){if(null==this)throw new TypeError("String.prototype.splice called on null or undefined");var n=this.length>>>0;if(0===n)return"";var a=Number(e);Number.isSafeInteger(a)?a<0&&(a+=n)<0&&(a=0):a=0,a>n&&(a=n);var i=Number(t);(!Number.isSafeInteger(i)||i<0)&&(i=0);var o=this.slice(0,a);return void 0!==r&&(o+=r),a+i<n&&(o+=this.slice(a+i)),o}}),Object.defineProperty(String.prototype,"splitOrEmpty",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.splitOrEmpty called on null or undefined");return""===String(this)?[]:String.prototype.split.apply(this,arguments)}}),Object.defineProperty(String.prototype,"toLocaleUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toLocaleUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toLocaleUpperCase()+e.slice(n+1)}}),Object.defineProperty(String.prototype,"toUpperFirst",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.toUpperFirst called on null or undefined");var e=String(this),t=_getCodePointStartAndEnd(e,0),r=t.char,n=t.end;return-1===n?"":r.toUpperCase()+e.slice(n+1)}}),Object.defineProperty(Date.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:date)",this.toISOString()]}}),Object.defineProperty(Function.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)","("+this.toString()+")"]}}),Object.defineProperty(Map.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:map)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(RegExp.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:eval)",this.toString()]}}),Object.defineProperty(Set.prototype,"toJSON",{configurable:!0,writable:!0,value:function(){return["(revive:set)",[].concat(_toConsumableArray(this))]}}),Object.defineProperty(JSON,"reviveWrapper",{configurable:!0,writable:!0,value:function(e,t){if("string"!=typeof e)throw new TypeError("JSON.reviveWrapper code parameter must be a string");return["(revive:eval)",[e,t]]}}),Object.defineProperty(JSON,"_real_stringify",{value:JSON.stringify}),Object.defineProperty(JSON,"stringify",{configurable:!0,writable:!0,value:function(e,t,r){return JSON._real_stringify(e,function(e,r){var n=r;if("function"==typeof t)try{n=t(e,n)}catch(e){}return void 0===n&&(n=["(revive:eval)","undefined"]),n},r)}}),Object.defineProperty(JSON,"_real_parse",{value:JSON.parse}),Object.defineProperty(JSON,"parse",{configurable:!0,writable:!0,value:function value(text,reviver){return JSON._real_parse(text,function(key,val){var value=val;if(Array.isArray(value)&&2===value.length)switch(value[0]){case"(revive:set)":value=new Set(value[1]);break;case"(revive:map)":value=new Map(value[1]);break;case"(revive:date)":value=new Date(value[1]);break;case"(revive:eval)":try{if(Array.isArray(value[1])){var $ReviveData$=value[1][1];value=eval(value[1][0])}else value=eval(value[1])}catch(e){}}else if("string"==typeof value&&"@@revive@@"===value.slice(0,10))try{value=eval(value.slice(10))}catch(e){}if("function"==typeof reviver)try{value=reviver(key,value)}catch(e){}return value})}}),Object.defineProperty(Array.prototype,"contains",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.contains called on null or undefined");return Array.prototype.includes.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAll",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAll called on null or undefined");return Array.prototype.includesAll.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"containsAny",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.containsAny called on null or undefined");return Array.prototype.includesAny.apply(this,arguments)}}),Object.defineProperty(Array.prototype,"flatten",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("Array.prototype.flatten called on null or undefined");return Array.prototype.flat.call(this,1/0)}}),Object.defineProperty(String.prototype,"readBracketedList",{configurable:!0,writable:!0,value:function(){if(null==this)throw new TypeError("String.prototype.readBracketedList called on null or undefined");for(var e=new RegExp("(?:\\[\\[((?:\\s|\\S)*?)\\]\\])|([^\"'\\s]\\S*)","gm"),t=[],r=void 0;null!==(r=e.exec(this));)r[1]?t.push(r[1]):r[2]&&t.push(r[2]);return t}})}();var Browser=function(){var e=navigator.userAgent.toLowerCase(),t=e.includes("windows phone"),r=Object.freeze({Android:!t&&e.includes("android"),BlackBerry:/blackberry|bb10/.test(e),iOS:!t&&/ip(?:hone|ad|od)/.test(e),Opera:!t&&("object"===_typeof(window.operamini)||e.includes("opera mini")),Windows:t||/iemobile|wpdesktop/.test(e),any:function(){return r.Android||r.BlackBerry||r.iOS||r.Opera||r.Windows}}),n=!r.Windows&&!/khtml|trident|edge/.test(e)&&e.includes("gecko"),a=!e.includes("opera")&&/msie|trident/.test(e),i=a?function(){var t=/(?:msie\s+|rv:)(\d+\.\d)/.exec(e);return t?Number(t[1]):0}():null,o=e.includes("opera")||e.includes(" opr/"),s=o?function(){var t=new RegExp((/khtml|chrome/.test(e)?"opr":"version")+"\\/(\\d+\\.\\d+)"),r=t.exec(e);return r?Number(r[1]):0}():null,u=e.includes("vivaldi");return Object.freeze({userAgent:e,isMobile:r,isGecko:n,isIE:a,ieVersion:i,isOpera:o,operaVersion:s,isVivaldi:u})}(),Has=function(){var e=function(){try{return"function"==typeof document.createElement("audio").canPlayType}catch(e){}return!1}(),t=function(){try{return"Blob"in window&&"File"in window&&"FileList"in window&&"FileReader"in window&&(!Browser.isOpera||Browser.operaVersion>=15)}catch(e){}return!1}(),r=function(){try{return"geolocation"in navigator&&"function"==typeof navigator.geolocation.getCurrentPosition&&"function"==typeof navigator.geolocation.watchPosition}catch(e){}return!1}(),n=function(){try{return"MutationObserver"in window&&"function"==typeof window.MutationObserver}catch(e){}return!1}(),a=function(){try{return"performance"in window&&"function"==typeof window.performance.now}catch(e){}return!1}(),i=function(){try{return"ontouchstart"in window||!!window.DocumentTouch&&document instanceof window.DocumentTouch||!!navigator.maxTouchPoints||!!navigator.msMaxTouchPoints}catch(e){}return!1}(),o=function(){try{for(var e=new Map([["transition","transitionend"],["MSTransition","msTransitionEnd"],["WebkitTransition","webkitTransitionEnd"],["MozTransition","transitionend"]]),t=[].concat(_toConsumableArray(e.keys())),r=document.createElement("div"),n=0;n<t.length;++n)if(r.style[t[n]]!==undefined)return e.get(t[n])}catch(e){}return!1}();return Object.freeze({audio:e,fileAPI:t,geolocation:r,mutationObserver:n,performance:a,touch:i,transitionEndEvent:o})}(),Visibility=function(){function e(){return a}function t(){return a&&document[a.stateProperty]||"visible"}function r(){return Boolean(a)}function n(){return Boolean(a&&document[a.hiddenProperty])}var a=function(){try{return Object.freeze([{hiddenProperty:"hidden",stateProperty:"visibilityState",changeEvent:"visibilitychange"},{hiddenProperty:"webkitHidden",stateProperty:"webkitVisibilityState",changeEvent:"webkitvisibilitychange"},{hiddenProperty:"mozHidden",stateProperty:"mozVisibilityState",changeEvent:"mozvisibilitychange"},{hiddenProperty:"msHidden",stateProperty:"msVisibilityState",changeEvent:"msvisibilitychange"}].find(function(e){return e.hiddenProperty in document}))}catch(e){}return undefined}();return Object.freeze(Object.defineProperties({},{vendor:{get:e},state:{get:t},isEnabled:{value:r},isHidden:{value:n},hiddenProperty:{value:a&&a.hiddenProperty},stateProperty:{value:a&&a.stateProperty},changeEvent:{value:a&&a.changeEvent}}))}(),Fullscreen=function(){function e(e){var t=e||document.documentElement;return t===document.documentElement&&("msRequestFullscreen"===f.requestFn||Browser.isOpera&&Browser.operaVersion<15)&&(t=document.body),t}function t(){return f}function r(){return(f||null)&&document[f.element]}function n(){return Boolean(f&&document[f.isEnabled])}function a(){return Boolean(f&&document[f.element])}function i(t,r){var n=this;if(!f)return Promise.reject(new Error("fullscreen not supported"));var i=e(r);if("function"!=typeof i[f.requestFn])return Promise.reject(new Error("fullscreen not supported"));if(a())return Promise.resolve();if(p())return i[f.requestFn](t);var o=".Fullscreen_requestFullscreen";return new Promise(function(e,r){jQuery(i).off(o).one(""+f.errorEvent+o+" "+f.changeEvent+o,function(t){jQuery(n).off(o),t.type===f.errorEvent?r(new Error("unknown fullscreen request error")):e()}),i[f.requestFn](t)})}function o(){var e=this;if(!f||"function"!=typeof document[f.exitFn])return Promise.reject(new TypeError("fullscreen not supported"));if(!a())return Promise.reject(new TypeError("fullscreen mode not active"));if(p())return document[f.exitFn]();var t=".Fullscreen_exitFullscreen";return new Promise(function(r,n){jQuery(document).off(t).one(""+f.errorEvent+t+" "+f.changeEvent+t,function(a){jQuery(e).off(t),a.type===f.errorEvent?n(new Error("unknown fullscreen exit error")):r()}),document[f.exitFn]()})}function s(e,t){return a()?o():i(e,t)}function u(t,r){if(f){var n=e(r);$(n).on(f.changeEvent,t)}}function l(t,r){if(f){var n=e(r);t?$(n).off(f.changeEvent,t):$(n).off(f.changeEvent)}}function c(t,r){if(f){var n=e(r);$(n).on(f.errorEvent,t)}}function d(t,r){if(f){var n=e(r);t?$(n).off(f.errorEvent,t):$(n).off(f.errorEvent)}}var f=function(){try{return Object.freeze([{isEnabled:"fullscreenEnabled",element:"fullscreenElement",requestFn:"requestFullscreen",exitFn:"exitFullscreen",changeEvent:"fullscreenchange",errorEvent:"fullscreenerror"},{isEnabled:"webkitFullscreenEnabled",element:"webkitFullscreenElement",requestFn:"webkitRequestFullscreen",exitFn:"webkitExitFullscreen",changeEvent:"webkitfullscreenchange",errorEvent:"webkitfullscreenerror"},{isEnabled:"mozFullScreenEnabled",element:"mozFullScreenElement",requestFn:"mozRequestFullScreen",exitFn:"mozCancelFullScreen",changeEvent:"mozfullscreenchange",errorEvent:"mozfullscreenerror"},{isEnabled:"msFullscreenEnabled",element:"msFullscreenElement",requestFn:"msRequestFullscreen",exitFn:"msExitFullscreen",changeEvent:"MSFullscreenChange",errorEvent:"MSFullscreenError"}].find(function(e){return e.isEnabled in document}))}catch(e){}return undefined}(),p=function(){function e(){if(null!==t)return t;if(t=!1,f)try{var e=document.exitFullscreen();e.catch(function(){}),t=e instanceof Promise}catch(e){}return t}var t=null;return e}();return Object.freeze(Object.defineProperties({},{vendor:{get:t},element:{get:r},isEnabled:{value:n},isFullscreen:{value:a},request:{value:i},exit:{value:o},toggle:{value:s},onChange:{value:u},offChange:{value:l},onError:{value:c},offError:{value:d}}))}(),_ref3=function(){function e(e){for(var t=e.cloneNode(!0),r=document.createDocumentFragment(),n=void 0;null!==(n=t.firstChild);){if(n.nodeType===Node.ELEMENT_NODE)switch(n.nodeName.toUpperCase()){case"BR":case"DIV":case"P":r.appendChild(document.createTextNode(" "))}r.appendChild(n)}return r.textContent}function t(e){if("object"!==(void 0===e?"undefined":_typeof(e))||null===e)return e;if(e instanceof String)return String(e);if(e instanceof Number)return Number(e);if(e instanceof Boolean)return Boolean(e)
