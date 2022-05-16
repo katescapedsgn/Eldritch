@@ -1,0 +1,172 @@
+// ------=={{ C H A R A C T E R   F O U R }}==------ \\
+
+//setup character basics
+setup.char4 = {
+	name: ["Atana"],
+	fullname: ["Ersatz Atana"],	
+	desc: ["$char4NameDisplay"],
+	descriptions: ["a sleek, mature woman", "a nimble, middle-aged woman"],
+	nameDisplay: ["a sleek, mature woman", "a nimble, middle-aged woman"],
+	intro: ["The woman sketches out a lazy salute."], 
+	dismiss: ["Atana lifts a hand, forestalling any further conversation."],
+}
+
+setup.char4.action = {
+	bus: [""],
+	arrival: [""],
+	ruins: [""],
+	cliffs: [""],
+	forest: [""],
+	henge: [""],
+}
+
+
+//answers vary based on character's trust of player
+//set his responses at low trust level
+setup.char4.answerLow = {
+	alibi: ["Here. With everyone."],
+	familiar: ["It is around here somewhere."],
+	fear: ["No."],
+	food: ["Yes. For later."],
+	magic: ["I would not say I am skilled at any magic, yet."],
+	magicFamiliar: ["This is far beyond my skill."],
+	reception: ["No. It is odd.."],
+	suspicion: ["Unsure."],
+	teacherBody: ["Yes."],
+	teacherClass: ["No."],
+	teacherMissing: ["Unsure."],
+	trip: ["To learn. There is deep, ancient magic up here."],
+	witness: ["Unfortunately, no."],
+	}
+
+setup.char4.emoteLow = {
+		alibi: ["The thaloon bares their teeth in a quiet challenge."],
+		familiar: ["They lift their chin to indicate their nearby familiar."],
+		fear: ["Their eyes narrow as they regard you suspiciously."],
+		food: ["The thaloon methodically checks their pack to ensure all the fastenings are buckled."],
+		magic: ["They sigh softly, but do not elaborate."],
+		magicFamiliar: ["There is a melancholy note to their vote and their stare drifts away."],
+	  reception: ["Their brow furrows in thought."],
+	  suspicion: ["They narrow their eyes at you."],
+	  teacherBody: ["The thaloon heaves a weary sigh."],
+	  teacherClass: ["They seem unbothered by the confusion."],
+  	  teacherMissing: ["Hints of concern can just barely be glimpse beneath their stoic expression."],
+	  trip: ["They offer you a faint, tentative smile."],
+  	witness: ["The thaloon gives you a wary glance."],
+}
+
+setup.char4.actionLow = {
+		alibi: ["loseTrust"],
+	    familiar: ["clueFamiliar"],
+		fear: ["loseTrust"],
+	    food: [""],
+		magic: ["gainTrust"],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: ["gainTrust"],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: ["gainTrust"],
+		witness: [""],
+}
+
+//set his responses at medium trust level
+setup.char4.answerMed = {
+	alibi: [""],
+	familiar: [""],
+	fear: [""],
+	food: [""],
+	magic: [""],
+	magicFamiliar: [""],
+	reception: [""],
+	suspicion: [""],
+	teacherBody: [""],
+	teacherClass: [""],
+	teacherMissing: [""],
+	trip: [""],
+	witness: [""],
+
+}
+
+setup.char4.emoteMid = {
+		alibi: [""],
+		familiar: [""],
+		fear: [""],
+		food: [""],
+		magic: [""],
+		magicFamiliar: [""],
+	    reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: [""],
+		witness: [""],
+}
+
+setup.char4.actionMid = {
+		alibi: ["loseTrust"],
+	    familiar: ["clueFamiliar"],
+		fear: ["loseTrust"],
+	    food: ["clueFood"],
+		magic: ["clueMagic"],
+		magicFamiliar: ["gainTrust"],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: ["gainTrust"],
+		teacherClass: [""],
+		teacherMissing: ["gainTrust"],
+		trip: ["gainTrust"],
+		witness: [""],
+}
+
+//set his responses at high trust level
+setup.char4.answerHigh = {
+	alibi: [""],
+	familiar: [""],
+	fear: [""],
+	food: [""],
+	magic: [""],
+	magicFamiliar: [""],
+	reception: [""],
+	suspicion: [""],
+	teacherBody: [""],
+	teacherClass: [""],
+	teacherMissing: [""],
+	trip: [""],
+	witness: [""],
+
+}
+
+setup.char4.emoteHigh = {
+		alibiEmote: [""],
+		familiar: [""],	
+		fear: [""],
+		food: [""],
+		magic: [""],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+	  trip: [""],
+		witness: [""],
+}
+
+setup.char4.actionHigh = {
+		alibi: ["loseTrust"],
+	  familiar: ["clueFamiliar"],
+		fear: ["clueFear"],
+	  food: ["clueFood"],
+		magic: ["clueMagic"],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: ["gainTrust"],
+		witness: ["clueHabit"],
+}

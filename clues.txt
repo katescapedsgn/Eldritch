@@ -1,0 +1,81 @@
+// ------=={{ C L U E S }}==------ \\
+
+//set list of all potential secret/clue pairs. Static ones appear every game
+setup.clues = {
+ types: ["magic", "food", "familiar", "habit", "appearance"],
+ search: ["You scour your surroundings as perceptively as you can."],
+ discoverySuccess: ["You find what seems to be a clue! It looks like"],
+ discoveryFailure: ["You carefully search the area but can't find anything helpful."],
+ searchChoice: ["Search the area for clues"],
+ searchDone: ["Return to the group", "Find the others"],
+ convo: ["You've learned a clue!"],
+	
+}
+
+setup.secrets = {
+ types: ["magic", "food", "familiar", "habit", "appearance"],
+}
+
+//set list of all clues for each secret
+//these are physical objects found by examining the scene or from spell results. "You find things"
+setup.clues.items = {
+	types: ["pie", "cake", "liquid", "cookies", "star", "sun", "moon", "mind", "nails", "ink", "hair", "skin", "familiarDesc", "wound", "nothing"],
+	pie: ["a few small crumbs", "a glob of fruity filling"],
+	cake: ["a dollop of frosting", "a few small crumbs"],
+	liquid: ["a sticky puddle"],
+	cookies: ["a few small crumbs", "a trampled cookie crust"],
+	star: ["glinting starlight"],
+	sun: ["a stray sunbeam"],
+	moon: ["a shimmering moonbeam"],
+	mind: ["nothing at all"],
+	nails: ["chewed up slivers of nails"],
+	ink: ["faint spatters of a dark substance"],
+	hair: ["a tangled clump of hair", "some blood-soaked strands of hair"],
+	skin: ["some dusty flakes of skin"],
+	familiarDesc: ["a residual trail from something  $gFamiliarDesc"],
+	wound: ["a smear of blood on some tree bark"],
+	nothing: ["nothing at all"],
+}
+
+//these are things familiars and spells can report back. "You see a shadowy image of <observation>"
+setup.clues.observations = {
+	food: ["someone eating some $gFood"],
+	magic: ["someone casting a $gSpellType spell"],
+	familiar: ["a furtive $gFamiliar familiar"],
+}
+				 
+//set potential favorite foods
+setup.secrets.food = {
+	types: ["pie", "cake", "cookies", "liquid"],
+  pie: ["celestial berry pie"],
+	cake: ["full moon cake"],
+	liquid: ["starlight sorbet", "lunarberry trifle"],
+	cookies: ["comet cookies"],
+}
+
+//set potential types of magic
+//overwriting this with spells
+setup.secrets.magic = {
+	types: ["star", "sun", "moon", "mind"],
+	star: ["starbeams", "starshine"],
+	sun: ["sunbeams", "sunglow"],
+	moon: ["moon mana", "moonglow"],
+	mind:	["astral projection", "omens"],
+}
+								
+//these will be obtained through interactions, either through dialog ("I remember seeing <character> <observation>") or observations in scene or in dialog ("You notice <character> <observation>")
+//habits
+setup.secrets.habit = {
+	types: ["nails", "hair", "skin"],
+	nails: ["furtively chewing on their nails"],
+	hair: ["tugging on their hair"],
+	skin: ["picking at their skin"],	
+}
+
+//appearance details
+setup.secrets.appearance = {
+	types: ["ink", "wound", "tear"],
+	ink: ["a dark ink stain on their satchel"],
+	wound: ["a fresh wound on their hand", "a recent cut on their arm"],
+	tear: ["a ragged tear in their cape"],
+}

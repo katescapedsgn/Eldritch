@@ -1,0 +1,407 @@
+// ------=={{ Scene: Intro }}==------ \\
+
+setup.intro = {
+	intro1: ["You have no idea where you are.", "Where are you?", "What is this place?"],
+	setting: ["Mist sinks low in the hollows of this ancient forest, obscuring sight and baffling sound.", "These woods are primeval and menacing.", "Cold moonlight illuminates an ancient forest, cloaked in mist."],
+	intro2: ["You're certain you've never been here before in your life.", "You have never been here before."],
+	intro3: ["Suddenly, a scream pierces the still of the night - it came from deeper in the woods.", "An abrupt scream shatters the silence from somewhere deeper in the woods.", "From the depths of the woods, you hear a sudden, bloodcurdling scream."],
+	danger1: ["You freeze for a moment, torn with indecision, before finally choosing to...", "Your heart races as you weigh your options, before deciding to..."],
+	choice1: ["Investigate the scream", "Help whoever is in trouble"],
+	choice2: ["Hide as best you can", "Find a hiding spot"], 
+	choice3: ["Flee!", "Run!"],
+	result1: ["You take off at a run in the direction of the scream.", "You instantly spring into action, running into the gloomy undergrowth.", "Mustering up your courage, you dash deeper into the woods to find the source of the screaming."],
+	result2: ["You wedge yourself into a nearby rotted log, doing your best to remain silent.", "You wriggle into a nearby shrubbery, trying in vain to stop the rustling of leaves."],
+	result3: ["You bravely run away, away!", "You immediately run in the opposite direction, trying to distance yourself from the danger."],
+	danger2: ["Within moments, you find yourself paralyzed as a malevolent presence begins to overwhelm you. Everything begins to grow dark...", "Seconds later, an ominous feeling overwhelms you as you sense the presence of something deeply malevolent. Darkness creeps in..."],
+	wake: ["Gasping, you suddenly burst awake.", "Just before you perish, you suddenly snap awake.", "Moments before your doom, you wake with a sobbing gasp."],
+	portent: ["You've been getting these dreams for weeks now.", "You've never had a dream this vivid before. It felt like you were right there.", "A chill runs down your spine as you recall that girl a year above you and what HER dreams ended up leading to."],
+	center: ["You take several deep breaths, centering yourself and", "You take a moment to rebuild your latent wards and"],
+    center1: ["feel a reassuring surge of magic in reply.", "siphon off a hint of magic to calm your nerves."],
+	setting2: ["The wards are strong here in the dorms,", "You've just been too stressed lately,"],
+	setting3: ["you chide yourself,", "you remind yourself,"],
+	setting4: ["although your dream has left you with a lingering feeling of...", "though the frightening dream has left you with an unshakeable feeling of..."],
+	setting5: ["You glance around your room, admiring the warm glow of early-morning sun on its wooden furnishings, before catching your reflection in your mirror across the room."],
+}
+
+setup.gender = {
+	sentence: ["Your reflection gazes back"],
+	types: ["his", "her", "their"],
+}
+
+setup.hair = {
+	sentence: ["hair a deep", "brightly colored hair a distinctive shade of", "bold hair a dark", "hair a light"],
+	types: ["blue", "pink", "red", "brown", "blonde", "black", "purple", "midnight", "silver", "violet", "white", "auburn", "blue", "pink", "green", "orange"],
+}
+
+setup.eyes = {
+	sentence: ["and eyes a striking shade of", ", with eyes a startling hue of", "and eyes a bright", ", with eyes a deep", "and eyes a startling"],
+	types: ["blue", "pink", "red", "brown", "green", "black", "purple", "midnight", "amber", "hazel", "violet", "scarlet", "emerald", "cerulean", "sapphire", "amethyst"],
+}
+
+setup.class = {
+	intro: ["You suddenly curse - you're late, and on such an important day!"],
+	intro2: ["Rushing to get ready, you can't help but think about the events which brought you here to $school."],
+	sentence1: ["Ever since childhood, you've felt a constant calling to the ", "Your whole life has led you here, to study the", "You never thought it would happen, but here you are, called to study the",],
+	types: ["lunar", "starsworn", "astrological", "prescient"],
+	sentence2: ["arts.", "discipline.", "field."],
+  intro3: ["After a moment of nostalgia, you break your reverie - adventure awaits! At least, that's what your advisor promised when she convinced you to sign up for this research trip. You only hope that your discoveries outweigh the ominous feeling that you still can't shake..."],
+}
+
+setup.name = {
+	intro1: ["A very small group of students is milling about when you arrive at the skydocks."],
+	intro2: ["They are a motley range of ages and species - fairly typical for $school."],
+	intro3: [""],
+	sentence1: ["You quickly join them, looking for your name on the sign-in scroll."],
+	sentence2: ["Given how few of you there are, it doesn't take you very long to find..."],
+	types: ["Anyak", "Merope", "Lydn", "Fryn", "Karit", "Hyn", "Protu", "Wyl", "Quarl", "Zip", "Xym", "Nyrwa", "Lour", "Shashona", "Gydeon", "Syam", "Elya"],
+}
+
+setup.familiar = {
+	intro1: ["\"Welcome to StarSoar, \<span class\=\"choice\"\>$playerName\<\/span\>!\" the skyship's construct cheerily greets you as the group begins to file aboard."],
+	intro2: ["Moments after boarding, however, panic grips your chest - your familiar has wandered off to explore...and the ship is ready to embark!"],
+	intro3: ["More than just an ethereal companion, your familiar is how anyone keeps in touch over long distances."],
+	sentence1: ["Being without one, in the wilds, would be a disaster."],
+	sentence2: ["Frantically you scan the vicinity, doing your best to spot"],
+	types: ["songbird", "cat", "butterfly", "squirrel", "puppy", "owl", "lizard", "snake", "raven", "spider"],
+	desc: ["a shimmering", "a glowing", "a glinting", "a spectral", "a luminescent", "a celestial", "a starbound", "a glittering"],
+}
+
+
+// ------=={{ Scene: Bus }}==------ \\
+	
+setup.bus = {
+	qlist: ["magic", "familiar", "food", "fear", "trip", "teacherClass"],
+	clist: ["$withPlayer"],
+	intro1: ["The skyship soars away from the dock, shreds of cloud clinging to her prow."],
+	intro2: ["A crisp wind blasts through the boat before warming wards snap into effect, leaving you passengers cozy and snug without compromising the dazzling view."],
+	intro3: ["The group wanders apart from each other to various corners of the ship."],
+	sentence1: ["What do you ?", "You decide to..."],
+	view: ["Admire the view", "Watch the clouds go by", "Take a moment to appreciate the view"],
+	convo: ["Find someone to talk to", "Return to the group"],
+	viewText: ["In the distance, mountains jut high, snow-dusted peaks glinting in the sunlight.", "The ship cuts through clouds in a smooth soar, skimming through the sky at a dazzling pace.", "A lone raptor paces you for a span, before letting out a lonely cry and wheeling towards the ground.", "Your skin prickles as an icy gust of wind snares in through the warming wards.", "Far above, light refracts through ice crystals to create a shimmering rainbow halo.", "Sunbeams lance down through the clouds in dancing displays.", "You squint and extend a tendril of magic, catching a glimpse of the far-off glint of sunlight on the gilded Academy towers.", "A hush rolls over the ship as it quickly slips beneath a looming ancient cloudolmen."],
+	char1: ["the blue skinned young man sitting aloofy away from others"],
+	char2: ["the lanky thaloon sprawled near the front"],
+	char3: ["the muscular young woman pacing the deck"],
+	char4: ["the mysterious older woman in the aft of the ship"],
+	char5: ["the red-headed scamp giving you an eager wave"],
+}
+
+// ------=={{ Scene: Arrival }}==------ \\
+
+//no dialog here so far
+setup.arrival = {
+	intro1: ["Arrive at destination."],
+	intro2: ["Groups decide to split up."],
+	sentence1: ["Decide who to go with..."],
+	clist: ["$withPlayer"],
+	ctext1: ["Head to the ruins with", "Walk to the ruins with", "Hike to the ruins with"],
+	ctext2: ["Go to the cliffs with", "Head to the cliffs with", "Find the cliffs with"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Ruins }}==------ \\
+
+setup.ruins = {
+ 	intro1: ["Group reaches ruins."],
+	intro2: ["Try to get familiar service."],
+	sentence1: ["The group has fanned out, following their faintly shimmering familiars.", "Everyone stands a bit apart from one another, and the air is palpable with unease."],
+	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
+	qlist: ["magic", "familiar", "food", "fear", "suspicion", "reception", "magicFamiliar", "teacherMissing", "teacherClass", "trip"],
+	clist: ["$withPLayer"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Cliffs }}==------ \\
+
+setup.cliffs = { 
+	intro1: ["Group reaches cliffs."],
+	intro2: ["Try to get familiar service."],
+	sentence1: ["The group has fanned out, following their faintly shimmering familiars.", "Everyone stands a bit apart from one another, and the air is palpable with unease."],
+	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
+  qlist: ["magic", "familiar", "food", "fear", "suspicion", "reception", "magicFamiliar", "teacherMissing", "teacherClass", "trip"],
+	clist: ["$withPLayer"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Forest }}==------ \\
+
+setup.forest = {
+	intro1: ["Group comes back together in forest."],
+	intro2: ["Finds altar and remains of teacher."],
+	intro3: ["Details about ritual."],
+	sentence1: ["What could have done this?"],
+	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
+	qlist: ["magic", "food", "fear", "witness", "suspicion", "alibi", "teacherMissing", "teacherClass", "teacherBody", "reception", "trip"],
+	clist: ["char1", "char2", "char3", "char4", "char5"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Henge }}==------ \\
+
+setup.henge = {
+	intro1: ["Group retreats to hilltop henge."],
+	intro2: ["Set wards for the night."],
+	sentence1: ["Night falls, but everyone lingers near the magefire, reluctant to disperse."],
+	sentence2: ["Who do you speak to for one last conversation before bed?"],
+	qlist: ["magic", "food", "fear", "witness", "suspicion", "alibi", "teacherMissing", "teacherClass", "teacherBody", "reception", "trip"],
+	clist: ["char1", "char2", "char3", "char4", "char5"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Night1 }}==------ \\
+
+setup.night1 = {
+	intro1: ["Something spooky"],
+	intro2: ["More about the spooky"],
+	sentence1: ["What could have done this?"],
+	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
+	qlist: ["magic", "food", "fear", "witness", "suspicion", "alibi", "teacherMissing", "teacherClass", "teacherBody", "reception", "trip"],
+	clist: ["char1", "char2", "char3", "char4", "char5"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Night2 }}==------ \\
+
+setup.night2 = {
+	intro1: ["Something spooky"],
+	intro2: ["More about the spooky"],
+	sentence1: ["What could have done this?"],
+	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
+	qlist: ["magic", "food", "fear", "witness", "suspicion", "alibi", "teacherMissing", "teacherClass", "teacherBody", "reception", "trip"],
+	clist: ["char1", "char2", "char3", "char4", "char5"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Night3 }}==------ \\
+
+setup.night3 = {
+	intro1: ["Final scene before endgame."],
+	intro2: ["You can't delay performing the ritual any longer."],
+	sentence1: ["Who is to blame?"],
+	sentence2: ["Who do you target the ritual at?"],
+	qlist: ["$playerSpellsList"],
+	clist: ["char1", "char2", "char3", "char4", "char5"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Ritual }}==------ \\
+
+setup.ritual = {
+	intro1: ["You square off facing them,"],
+	intro2: ["pulling in magic from your allies and channeling it at $cTarget."],
+	intro3: ["Maintaining focus is exhausting, but with the strength of the others, you push through the casting."],
+	failure1: ["A sudden explosion of magical backlash blasts you off your feet as the ritual violently fails."],
+	failureTrust: ["You feel a sudden, aching sense of loneliness."],
+	failureTrustHint: ["You must not have all been in sync. Perhaps someone doesn't trust you enough to share their magic..."],
+	failureTarget: ["$cTarget groans in agony before the corruscating magic dissipates harmlessly."],
+	failureTargetHint: ["Perhaps the spell was directed at the wrong target?"],	
+	clist: ["char1", "char2", "char3", "char4", "char5"],
+	char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+// ------=={{ Scene: Battle }}==------ \\
+
+//add messages for the final battle where player encourages NPC to overcome the fear
+setup.battle = {
+	intro1: ["The ritual leaves an unnerving silence in its wake, broken only when"],
+	intro2: ["$cGuilty suddenly cries out in pure terror."],
+	intro3: ["It knows...", "It sees all my fears...", "It knows!", "It sees everything!"],
+	intro4: ["they sob", "they cry", "they wail"],
+	intro5: ["Waves of darkness begin to dance across their body, shadows muffling their screams."],
+	intro6: ["Finally, only a rippling void stands before you, instead of $cGuilty."],
+	sentence1: ["Your actions here might still save them -.", "Maybe you can still save them:"],
+	sentence2: ["you just need to help them force the presence out.", "you just need to help them fight off the presence."],
+		ctext: ["What do you do next?", "What do you do?"],
+	choice1: ["Flee!", "Run!", "Escape!"],
+	result1: ["battleRun"],
+	choice2: ["Fight!"],
+	result2: ["battleFight"],
+	choice3: ["Talk"],
+	result3: ["battleTalk"],
+		char1: ["$char1NameDisplay"],
+	char2: ["$char2NameDisplay"],
+	char3: ["$char3NameDisplay"],
+	char4: ["$char4NameDisplay"],
+	char5: ["$char5NameDisplay"],
+}
+
+
+// ------=={{ Scene: Battle }}==------ \\
+
+setup.battle = {
+	choices: ["talk", "run"],
+	talk: ["Solve this with words"],
+	run: ["Flee!"],
+}
+
+setup.battle.talk.gChar = {
+	types: ["reason", "encourage"],
+}
+
+setup.battle.talk.gChar.reason = {
+	selectText: ["Reason with $gChar. You know they are still in there!"],
+	answer: ["You catch a glimpse of them through the swirling darkness. It seems like they are listening!"],
+	pickText: ["Don't give up on your dream of..."],
+	choice1: ["$gCharDream"],
+	choice2: ["$gCharDreamFalse1"],
+	choice3: ["$gCharDreamFalse2"],
+	choice4: ["$gCharDreamFalse3"],
+	choice5: ["$gCharDreamFalse4"],
+}
+
+//leaving this out for now, can't think of story logic to make intimidate work
+setup.battle.talk.gChar.intimidate = {
+  selectText: ["Intimidate $gChar. Threaten to expose their darkest fear."],
+	answer: ["You hear a garbled sound in response - was that the entity or $gChar crying out?"],
+	pickText: [""],
+}
+
+setup.battle.talk.gChar.encourage = {
+	selectText: ["Soothe $gChar and encourage them to fight off their fear."],
+	answer: ["The crawling darkness seems to pause in response - is the entity worried?"],
+	pickText: ["You can do it! Stand up to your fear of..."],
+	choice1: ["$gCharFear"],
+	choice2: ["$gCharFearFalse1"],
+	choice3: ["$gCharFearFalse2"],
+	choice4: ["$gCharFearFalse3"],
+	choice5: ["$gCharFearFalse4"],
+}
+
+	//maybe add this in later for more fun, easter eggy endings
+setup.battle.talk.entity = {
+	choice1: ["Address the entity"],
+	answer1: [""],
+}
+	
+setup.battle.talk = {
+	win: ["Your words pierce through the malevolent fog $gChar is trapped in. Their struggles renew and they let out a defiant shout. With your encouragement, they manage to escape the entity's evil clutches."],
+	lose: ["The entity's evil has rooted deeply into $gChar's mind and your chosen words do nothing to free them. You watch helplessly as their struggling slows, then stills, as they are pulled into oblivion."],
+}
+
+setup.battle.run = {
+	result: ["You turn tail and run, hoping the ritual is enough."],
+}
+
+//leaving this out for now
+setup.battle.fight = {
+}
+
+//add in more detailed text here later to vary per ending
+setup.battle.end = {
+	line1: ["The ritual finally completes, washing the area in a bright glow of $playerMagic."],
+	line2: ["The entity shrivels away from the light, emiting a screech as it begins to dissipate."],
+	line3: ["Everything goes black and time seems to stand still."],
+}
+
+// ------=={{ Endings: Setup }}==------ \\
+
+//putting these in past tense, adding a menu option to review old plays
+//list of all things to include
+setup.end = {
+	types: ["rounds", "trust", "solve", "battle"],
+}
+
+//text based on solving attempt
+setup.end.solve = {
+	attempt1: ["Impressively, you only needed to attempt the ritual a single time."],
+	attempts: ["It took you $ritualAttempts tries to successfully complete the ritual."],
+}
+
+//text based on how battle goes
+setup.end.battle = {
+	run: ["You fled from battle, leaving $gChar to die."],
+	fightWin: ["You skillfully defeated the entity and freed $gChar from its grasp."],
+	fightLose: ["You were unable to best the entity in combat and $gChar sadly perished."],
+	talkWin: ["Due to your insightful words, you were able to pull $gChar back from the brink"],
+	talkLose: ["Sadly, the entity's evil had rooted too deeply into $gChar's mind. Your chosen words did nothing to free them and they were pulled along with the presence into oblivion."],
+}
+
+//text based on number of rounds used
+setup.end.rounds = {
+	low: ["Your speedy thinking allowed you to save everyone else.", "Thanks to your quick actions, everyone else was safe."],
+	lowmid: ["You worked as quick as you could and managed to spare almost everyone else, except for $cDead1."],
+	mid: ["You were fast, but the entity was faster. As it faded into nothing, it lashed out to slay $cDead1 and $cDead2."],
+	highmid: ["The presence was banished, but not before a final slash of malevolent magic, felling down $cDead1, $cDead2 and $cDead3."],
+	high: ["It had grown too powerful - the entity was banished, but the toll was immense, leaving everyone yourself slain."],
+}
+
+//text based on overall trust level
+setup.end.trust = {
+	low: ["Your methods may not have been very popular."],
+	mid: ["There were mixed feelings about the choices you made."],
+	high: ["Everyone agreed you did what was best."],
+}
+
+
+//anything else we want to include
+setup.end.random = {
+}
+
+// ------=={{ Endings: Worst outcome }}==------ \\
+
+setup.endLose = {
+	intro1: ["Oh no."],
+	intro2: ["Stuff sucks."],
+	intro3: ["Really badly."],
+	intro4: ["Doom is here"],
+	intro5: ["Ahhhhhhh help"],
+	intro6: ["The End. You didn't save anyone"],
+}
+
+// ------=={{ Endings: Mediocre outcome }}==------ \\
+
+setup.endMid = {
+	intro1: ["Good effort"],
+	intro2: ["Fought off monster."],
+	intro3: ["Sadly not everyone survived."],
+	intro4: ["More text"],
+	intro5: ["More words"],
+	intro6: ["The End. You saved the world, but lost $cDead."],
+}
+
+// ------=={{ Endings: Mediocre outcome }}==------ \\
+
+setup.endWin = {
+	intro1: ["Good effort"],
+	intro2: ["Fought off monster."],
+	intro3: ["Everything is sunshine and rainbows."],
+	intro4: ["More text"],
+	intro5: ["More words"],
+	intro6: ["The End. You saved the world and all your new friends!"],
+}

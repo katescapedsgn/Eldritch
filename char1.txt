@@ -1,0 +1,173 @@
+// ------=={{ C H A R A C T E R   O N E }}==------ \\
+
+//setup character basics
+setup.char1 = {
+	name: ["Yu"],
+	fullname: ["Lord Fnarfop Yu"],	
+	desc: ["$char1NameDisplay"],
+	descriptions: ["blue-skinned young man", "aristocratic young man", "young nobleman"],
+	nameDisplay: ["an aristocratic, blue-skinned young man"],
+	intro: ["Hmm...hello, there. I'm Lord Yu, Fnarfop Yu. I suppose it's nice to make your acquaintance..."], 
+	dismiss: ["\"Do be on your way, now. I've grown tired of this conversation.\""],
+}
+
+setup.char1.action = {
+	bus: ["$char1Desc takes a seat by himself and pointedly looks out the window."],
+	arrival: ["$char1Desc lingers behind, fussing with his familiar."],
+	ruins: ["$char1Desc gives the ruins a haughty stare, before tramping towards a destroyed column."],
+	cliffs: ["$char1Desc walks towards the edge of the cliffs, a faint tendril of magic extended to his familiar."],
+	forest: ["$char1Desc gasps and goes a paler shade of blue."],
+	henge: ["$char1Desc settles into a seat atop a throne-like stone."],
+}
+
+
+//answers vary based on character's trust of player
+//set his responses at low trust level
+setup.char1.answerLow = {
+	alibi: ["I've been with the group the entire time!", "What are you insinuating, peon?"],
+	familiar: ["I'm not surprised you've never seen one quite so majestic. We conjured it up in a ritual that's a rather close-kept family secret."],
+	fear: ["Are you serious?"],
+	food: ["Of course, but I'm hardly going to share with some unknown element like you. You could be trying to poison me! I had an uncle who was assassinated."],
+	magic: ["It's precious that you want to know. It only shows how out of touch with high society you are. My family is renowned."],
+	magicFamiliar: ["Yes, of course, but I'm hardly going to waste time educating a peon like you in its deep intricacies."],
+	reception: ["Unfortunately, I can't! And if I can't, I doubt YOU can!"],
+	suspicion: ["Perhaps YOU are behind this all."],
+	teacherBody: ["Are you dimwitted? Who else would it be?"],
+	teacherClass: ["No... I've heard only riff-raff attend her classes."],
+	teacherMissing: ["Certainly not doing what my parents pay my tuiton for her to do!"],
+	trip: ["None of your business, peon."],
+	witness: ["No, but when we find out who did this, I shall be taking them to the magistrate to sue for emotional damages!"],
+	}
+
+setup.char1.emoteLow = {
+		alibi: ["He crosses his arms across his chest and gives you an angry glare."],
+		familiar: ["The young nobleman smiles archly over at $char1FamiliarDesc $char1Familiar familiar."],
+		fear: ["The noble stares at you in disbelief for asking such a crass question."],
+		food: ["He ensures his satchel is firmly secured, eyes on you the entire time."],
+		magic: ["He gives you a benevolent smile."],
+		magicFamiliar: ["He scoffs arrogantly."],
+	  reception: ["He looks contemptuously over at your familiar."],
+	  suspicion: ["He narrows his eyes at you."],
+	  teacherBody: ["He delicately dabs at his brow with an embroidered handkerchief, clearly anxious about this whole situation."],
+	  teacherClass: ["He gives a delicate sniff, as if implying he may be talking about you."],
+  	teacherMissing: ["He snorts in indignation."],
+	  trip: ["He pointedly looks away from you."],
+  	witness: ["He harumphs particularly indignantly."],
+}
+
+setup.char1.actionLow = {
+		alibi: ["loseTrust"],
+	  familiar: ["gainTrust"],
+		fear: ["loseTrust"],
+	  food: [""],
+		magic: ["gainTrust"],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: [""],
+		witness: [""],
+}
+
+//set his responses at medium trust level
+setup.char1.answerMed = {
+	alibi: ["I've been here with everyone else.", "Not off killing our teacher, I can assure you!"],
+	familiar: ["It certainly is! Isn't it marvelous? I know, I know, it's the most impressive you've ever seen!"],
+	fear: ["What? How dare you ask such a personal question!"],
+	food: ["Hrmph. Yes, of course. I'm not a savage."],
+	magic: ["'Twas ordained from birth, for me - my great-great-great-something or other was a founder. And of course, no doubt you've heard of my family? We're renowned for our mastery of $char1Magic."],
+	magicFamiliar: ["I'm loathe to admit it, but this is beyond me. My family are renowned, it's true, but our speciality is $char1Magic."],
+	reception: ["No, nothing!", "I'm shocked, but no - do you know how much this thing cost?! Useless!"],
+	suspicion: ["Something does seem a bit odd..."],
+	teacherBody: ["I hope not, but fear it is."],
+	teacherClass: ["No, her specialty isn't something my family really wants me studying."],
+	teacherMissing: ["Curious. That doesn't seem like her. Err, from what I've heard, of course."],
+	trip: ["I've been thinking about expanding my studies and this seemed like a good way to test the waters."],
+	witness: ["No, and that worries me."],
+
+}
+
+setup.char1.emoteMid = {
+		alibi: ["He crosses his arms across his chest and gives you an angry glare."],
+		familiar: ["There is a hint of defensiveness in his tone, as if secretly insecure."],
+		fear: ["He glares at you angrily."],
+		food: ["He very deliberately opens his satchel, removing a serving of $char1Food, which he then proceeds to eat without offering you a single bite."],
+		magic: ["He conjures up a brief twist of magic in a haughty display."],
+		magicFamiliar: ["He frowns, clearly troubled by the situation."],
+	reception: ["He looks around, fuming."],
+		suspicion: ["Beneath his arrogant facade, you sense a hint of nervousness."],
+		teacherBody: ["He lets out a faint sigh."],
+		teacherClass: ["You catch a hint of sadness briefly flicker across his handsome features."],
+		teacherMissing: ["He glances around, trying to catch sight of her."],
+		trip: ["He gives a faint smile."],
+		witness: ["He indeed looks worried."],
+}
+
+setup.char1.actionMid = {
+		alibi: ["loseTrust"],
+	  familiar: ["clueFamiliar"],
+		fear: ["loseTrust"],
+	  food: ["clueFood"],
+		magic: ["clueMagic"],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: ["gainTrust"],
+		teacherClass: [""],
+		teacherMissing: ["gainTrust"],
+		trip: ["gainTrust"],
+		witness: [""],
+}
+
+//set his responses at high trust level
+setup.char1.answerHigh = {
+	alibi: ["I promise I've been here with everyone else. Why don't you trust me?", "I can't believe you don't trust me. I've been here with everyone!"],
+	familiar: ["It is, indeed! I'm quite fond of it. Had it since childhood!", "It is, it is! Had it since I was young, despite my parent's pressure to upgrade it."],
+	fear: ["I'll share a secret...I've never been good around $char1Fear."],
+	food: ["I've had the servants pack some of my favorite treat: $char1Food."],
+	magic: ["Well, obviously I've been pushed into $char1Magic because of the whole family lineage thing...but, if I'm honest, I'd rather study another specialty entirely."],
+	magicFamiliar: ["This isn't really my field, but I've heard of a dark spell like this. A REALLY dark spell."],
+	reception: ["No, and I'm getting a bit worried. My familiar is usually really good at this!"],
+	suspicion: ["I don't like it admit it, but I'm flummoxed."],
+	teacherBody: ["It has to be her, but I refuse to believe it!"],
+	teacherClass: ["I'll tell you a secret: I've been looking into taking one of her classes, parental approval be damned!"],
+	teacherMissing: ["I hope nearby!", "I hope nothing happened to her."],
+	trip: ["Don't tell anyone, but I wanted to learn more about her teaching style. Her field of magic is very interesting."],
+	witness: ["I don't know if it's anything, but I remember seeing $gChar anxiously $gHabit. Horrible habit."],
+
+}
+
+setup.char1.emoteHigh = {
+		alibiEmote: ["He gives you a wounded look and lets out a pitiful sigh."],
+		familiar: ["He beams over at his $char1FamiliarDesc $char1Familar, clearly proud of it."],	
+		fear: ["He looks to the ground in embarassment."],
+		food: ["He delicately picks through his satchel before retrieving two of the treats, one of which he generously hands to you."],
+		magic: ["He lets out a small sigh and gives you a wistful smile."],
+		magicFamiliar: ["He seems deeply troubled by the situation."],
+		reception: ["He makes no sign of hiding his worry."],
+		suspicion: ["He looks in worry at his familiar."],
+		teacherBody: ["He seems genuinely troubled."],
+		teacherClass: ["A guilty look flashes across his face as soon as the words leave his lips."],
+		teacherMissing: ["He seems troubled by the thought of harm coming to her."],
+	  trip: ["He blushes at the confession."],
+		witness: ["He wrinkles his nose in disgust."],
+}
+
+setup.char1.actionHigh = {
+		alibi: ["loseTrust"],
+	  familiar: ["clueFamiliar"],
+		fear: ["clueFear"],
+	  food: ["clueFood"],
+		magic: ["clueMagic"],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: ["gainTrust"],
+		witness: ["clueHabit"],
+}
+

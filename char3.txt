@@ -1,0 +1,172 @@
+// ------=={{ C H A R A C T E R   T H R E E }}==------ \\
+
+//setup character basics
+setup.char3 = {
+	name: ["Matiska"],
+	fullname: ["Matiska"],	
+	desc: ["$char3NameDisplay"],
+	descriptions: ["a muscular woman", "a burly young woman"],
+	nameDisplay: ["a muscular woman", "a burly young woman"],
+	intro: ["The young woman gives you a crisp nod."], 
+	dismiss: ["Her attention drifting to more pressing matters, Matiska ends the conversation."],
+}
+
+setup.char3.action = {
+	bus: [""],
+	arrival: [""],
+	ruins: [""],
+	cliffs: [""],
+	forest: [""],
+	henge: [""],
+}
+
+
+//answers vary based on character's trust of player
+//set his responses at low trust level
+setup.char3.answerLow = {
+	alibi: ["Here. With everyone."],
+	familiar: ["It is around here somewhere."],
+	fear: ["No."],
+	food: ["Yes. For later."],
+	magic: ["I would not say I am skilled at any magic, yet."],
+	magicFamiliar: ["This is far beyond my skill."],
+	reception: ["No. It is odd.."],
+	suspicion: ["Unsure."],
+	teacherBody: ["Yes."],
+	teacherClass: ["No."],
+	teacherMissing: ["Unsure."],
+	trip: ["To learn. There is deep, ancient magic up here."],
+	witness: ["Unfortunately, no."],
+	}
+
+setup.char3.emoteLow = {
+		alibi: [""],
+		familiar: [""],
+		fear: [""],
+		food: [""],
+		magic: [""],
+		magicFamiliar: [""],
+	  reception: [""],
+	  suspicion: [""],
+	  teacherBody: [""],
+	  teacherClass: [""],
+  	  teacherMissing: [""],
+	  trip: [""],
+  	witness: [""],
+}
+
+setup.char3.actionLow = {
+		alibi: ["loseTrust"],
+	    familiar: ["clueFamiliar"],
+		fear: ["loseTrust"],
+	    food: [""],
+		magic: ["gainTrust"],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: ["gainTrust"],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: ["gainTrust"],
+		witness: [""],
+}
+
+//set his responses at medium trust level
+setup.char3.answerMed = {
+	alibi: [""],
+	familiar: [""],
+	fear: [""],
+	food: [""],
+	magic: [""],
+	magicFamiliar: [""],
+	reception: [""],
+	suspicion: [""],
+	teacherBody: [""],
+	teacherClass: [""],
+	teacherMissing: [""],
+	trip: [""],
+	witness: [""],
+
+}
+
+setup.char3.emoteMid = {
+		alibi: [""],
+		familiar: [""],
+		fear: [""],
+		food: [""],
+		magic: [""],
+		magicFamiliar: [""],
+	    reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: [""],
+		witness: [""],
+}
+
+setup.char3.actionMid = {
+		alibi: ["loseTrust"],
+	    familiar: ["clueFamiliar"],
+		fear: ["loseTrust"],
+	    food: ["clueFood"],
+		magic: ["clueMagic"],
+		magicFamiliar: ["gainTrust"],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: ["gainTrust"],
+		teacherClass: [""],
+		teacherMissing: ["gainTrust"],
+		trip: ["gainTrust"],
+		witness: [""],
+}
+
+//set his responses at high trust level
+setup.char3.answerHigh = {
+	alibi: [""],
+	familiar: [""],
+	fear: [""],
+	food: [""],
+	magic: [""],
+	magicFamiliar: [""],
+	reception: [""],
+	suspicion: [""],
+	teacherBody: [""],
+	teacherClass: [""],
+	teacherMissing: [""],
+	trip: [""],
+	witness: [""],
+
+}
+
+setup.char3.emoteHigh = {
+		alibiEmote: [""],
+		familiar: [""],	
+		fear: [""],
+		food: [""],
+		magic: [""],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+	  trip: [""],
+		witness: [""],
+}
+
+setup.char3.actionHigh = {
+		alibi: ["loseTrust"],
+	  familiar: ["clueFamiliar"],
+		fear: ["clueFear"],
+	  food: ["clueFood"],
+		magic: ["clueMagic"],
+		magicFamiliar: [""],
+		reception: [""],
+		suspicion: [""],
+		teacherBody: [""],
+		teacherClass: [""],
+		teacherMissing: [""],
+		trip: ["gainTrust"],
+		witness: ["clueAppearance"],
+}

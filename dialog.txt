@@ -1,0 +1,49 @@
+// ------=={{ Dialog: Setup }}==------ \\
+
+//dialog setup
+setup.choiceText = {
+	default: ["Chat with", "Start a conversation with", "Talk to", "Strike up a conversation with", "Try to talk to", "Greet"],
+	shy: ["Talk privately with", "Speak quietly to", "Whisper to"],
+	bold: ["Interrogate"],
+	spells: ["Hex", "Curse", "Dispell", "Enchant", "Cast at"],
+}
+
+setup.dialogLeave = {
+	default: ["Find someone else to speak to", "End your conversation", "Talk to someone else"],
+}
+
+setup.dialogMore = {
+	default: ["I have some more questions...", "Continue conversation", "Ask another question", "Keep chatting"],
+	shy: ["Continue your whispered dialogue"],
+	bold: ["Push for more information"],
+}
+	
+setup.roundEnd = {
+	bus: ["Your conversations wrap up as you reach your destination.", "You arrive at your destination."],
+	ruins: ["An ear-splitting scream suddenly echoes through the air. Your blood runs cold as memories of your dream flood your mind."],
+	cliffs: ["An ear-splitting scream suddenly echoes through the air. Your blood runs cold as memories of your dream flood your mind."],
+	forest: ["You all abruptly realise that night has fallen and quickly head towards the latent wards of the henge."],
+	henge: ["The hilltop darkens as clouds obscure the moon. In the distance you hear a chilling scream."],
+	night1: ["Something spooky!"],
+	night3: ["Too late, the monster has revealed itself!"],
+}
+
+	
+	// ------=={{ Dialog: Questions }}==------ \\
+	
+
+setup.questions = {
+	alibi: ["Where were you when this happened?"],
+	familiar: ["Is that your familiar there?"],		
+  fear: ["Anything you're particularly nervous about?"],
+  food: ["Did you bring any snacks?"],
+	magic: ["What magic do you specialise in?", "What are you here to study?"],
+	magicFamiliar: ["Do you know anything about familiar magic?", "Any idea how to fix this?"],
+  reception: ["Is your familiar receiving anything?", "Has your familiar picked up any resonations?", "Can't receive either?", "Any luck?"],
+	suspicion: ["What do you suspect is going on?", "What do you think all this means?"],
+	teacherBody: ["Do you think this is...her?", "How do we know it's her?"],
+	teacherClass: ["Have you taken classes with this teacher in the past?", "Have you ever had this teacher before?"],
+	teacherMissing: ["Where do you think she is?"],
+	trip: ["What made you sign up for this trip?"],
+  witness: ["Did you witness anything?", "Did you see anything strange?"],
+}
