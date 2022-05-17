@@ -147,10 +147,14 @@ html {
   --boxBackgroundColor: #242630;
   --boxBorderColor: #3B477F;
   --boxOutlineColor: #E9CE9E;
+  
   --fontColor: #EFF0F3 ;
   --fontOutlineColor: #000000;
+  --titleOutlineColor:#E9CE9E;
+  --titleFontColor: #3B477F;
   --buttonFontColor: #EFF0F3;
   --buttonFontSize: 20px;
+  
   --buttonActiveColor1: #f7e78a;
   --buttonBackgroundColor1: #3B477F;
   --buttonBackgroundColor2: #2E47B9;
@@ -160,7 +164,12 @@ html {
   --buttonBorderColor2: #000000;
   --buttonOutlineColor: #1a4f76;
   --sidebarBackgroundColor: #070930;
+  
   --choiceColor: #E9CE9E;
+  --clueColor: #39BBFF;
+  --gainTrustColor: #06E7FF;
+  --loseTrustColor: #e5714f;
+  
   --fullBackGroundColor: #000000;
   --backgroundColor2:#070930; 
   --characterBackground: #242630;
@@ -231,6 +240,15 @@ body {
 	display: none;
 }
 
+.titleText {
+  font-family: 'headerFont';
+  font-size: 74px;
+  color: var(--titleFontColor);
+  text-outline: 20px var(--titleOutlineColor) solid;
+  text-align: center;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+
 .h1 {
   font-family: 'headerFont';
   font-size: 48px;
@@ -275,6 +293,52 @@ body {
   text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
+.clue {
+  color: var(--clueColor);
+  font-family: 'headerFont';
+  font-weight: bold;
+  text-outline: 3px var(--fontOutlineColor) solid;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.gainTrust {
+  color: var(--gainTrustColor);
+  font-family: 'headerFont';
+  font-weight: bold;
+    text-outline: 3px var(--fontOutlineColor) solid;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.loseTrust {
+  color: var(--loseTrustColor);
+  font-family: 'headerFont';
+  font-weight: bold;
+  text-outline: 3px var(--fontOutlineColor) solid;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+.splashContainer {
+  height: auto;
+  width: auto;
+  max-height: 35vw;
+  vertical-align: middle; 
+  border-style: ridge;
+  border: 2px solid var(--boxBorderColor);
+  outline: 2px solid var(--boxOutlineColor);
+  border-radius: 15px 15px 15px 15px;
+  margin: 10px;
+  box-shadow: 0px 5px 15px var(--backgroundColor);
+}
+
+.splash {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+    max-height: 35vw;
+
+}
+
+
 
 .layoutSidebar {
   text-align: left;
@@ -287,6 +351,28 @@ body {
   border-radius: 15px 15px 15px 15px;
   margin: 3px;
   padding: 3px;
+}
+
+.titleImage {
+  position: absolute;
+  vertical-align: middle;
+  justify-content: center;
+  width: 80vw;
+  height: auto;
+  padding: 45px;
+  z-index: 1;
+}
+
+.title {
+  background: var(--characterBackground);
+  background-image: url("splash.png");
+  background-size: 100% 100%, cover;
+  background-repeat: no-repeat;
+  position: relative;
+  width: 85vw;
+  height: 40vw;
+  vertical-align: middle; 
+  z-index: 11;
 }
 
 .layout {
@@ -465,6 +551,7 @@ body {
     text-outline: 1px var(--fontOutlineColor) solid;
   text-align: center;
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  z-index: 10;
 }
 
 .button-1 .macro-button {
@@ -476,10 +563,12 @@ body {
   color: var(--buttonFontColor);
   max-width: 35vw;
   transition: 0.25s linear;
-  padding: 15px;
+  padding: 10px;
+  margin: 5px;
   text-outline: 1px var(--fontOutlineColor) solid;
   text-align: center;
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+    z-index: 10;
 }
 
 .button-1 .macro-button:hover {
@@ -561,7 +650,7 @@ setup.player = {
 }
 
 setup.events = {
-	gainInsight: ["You feel a sudden sharpening in your mind, as if pieces have fallen into place.", "You feel curiously wiser."],
+	insightBuff: ["You feel a sudden sharpening in your mind, as if pieces have fallen into place.", "You feel curiously wiser."],
 	gainBoldness: ["You feel a surge of bravery."],
 	clueFromFamiliar: ["A sharp jolt of magic arcs between you and your familiar. A flash of residual magic reveals"],
 	clueFromExplore: ["Something out of place catches your eye - upon closer inspection it turns out to be"],
@@ -669,7 +758,7 @@ setup.trust = {
 
 //set list of all potential secret/clue pairs. Static ones appear every game
 setup.clues = {
- types: ["magic", "food", "familiar", "habit", "appearance"],
+  types: ["magic", "food", "familiar", "habit", "appearance"],
   convo: ["You've learned a clue!"],	
 	statPage: ["You've discovered", "You've found"],  
 }
@@ -678,6 +767,7 @@ setup.clues = {
 
 setup.secrets = {
  types: ["magic", "food", "familiar", "habit", "appearance"],
+ dialog: ["magic", "food", "familiar"],
 }
 
 //set list of all clues for each secret
@@ -774,7 +864,8 @@ setup.roundEnd = {
 	forest: ["You all abruptly realise that night has fallen and quickly head towards the latent wards of the henge."],
 	henge: ["The hilltop darkens as clouds obscure the moon. In the distance you hear a chilling scream."],
 	loop: ["Something spooky!"],
-	explore: ["Something has happened"],
+	search: ["Something spooky!"],
+	explore: ["Something spooky!"],
 	night3: ["Too late, the monster has revealed itself!"],
 }
 
@@ -783,9 +874,12 @@ setup.roundEnd = {
 	
 
 setup.questions = {
+	types: ["alibi", "familiar", "fear", "food", "magic", "magicFamiliar", "reception", "suspicion", "teacherBody", "teacherClass", "teacherMissing", "trip", "witness"],
+	gainTrust: ["food", "familiar", "trip", "teacherClass"],
+	loseTrust: ["alibi", "fear", "suspicion"],
 	alibi: ["Where were you when this happened?"],
 	familiar: ["Is that your familiar there?"],		
-  fear: ["Anything you're particularly nervous about?"],
+  fear: ["Anything you're particularly nervous about?", "Do you have any deep, dark fears?"],
   food: ["Did you bring any snacks?"],
 	magic: ["What magic do you specialise in?", "What are you here to study?"],
 	magicFamiliar: ["Do you know anything about familiar magic?", "Any idea how to fix this?"],
@@ -872,7 +966,7 @@ setup.char1.actionLow = {
 }
 
 //set his responses at medium trust level
-setup.char1.answerMed = {
+setup.char1.answerMid = {
 	alibi: ["I've been here with everyone else.", "Not off killing our teacher, I can assure you!"],
 	familiar: ["It certainly is! Isn't it marvelous? I know, I know, it's the most impressive you've ever seen!"],
 	fear: ["What? How dare you ask such a personal question!"],
@@ -1024,7 +1118,7 @@ setup.char2.emoteLow = {
 	  suspicion: ["They narrow their eyes at you."],
 	  teacherBody: ["The thaloon heaves a weary sigh."],
 	  teacherClass: ["They seem unbothered by the confusion."],
-  	  teacherMissing: ["Hints of concern can just barely be glimpse beneath their stoic expression."],
+  	  teacherMissing: ["Hints of concern can just barely be glimpsed beneath their stoic expression."],
 	  trip: ["They offer you a faint, tentative smile."],
   	witness: ["The thaloon gives you a wary glance."],
 }
@@ -1046,37 +1140,37 @@ setup.char2.actionLow = {
 }
 
 //set his responses at medium trust level
-setup.char2.answerMed = {
-	alibi: [""],
-	familiar: [""],
-	fear: [""],
-	food: [""],
-	magic: [""],
-	magicFamiliar: [""],
-	reception: [""],
-	suspicion: [""],
-	teacherBody: [""],
-	teacherClass: [""],
-	teacherMissing: [""],
-	trip: [""],
-	witness: [""],
+setup.char2.answerMid = {
+	alibi: ["Are you accusing me of this madness?"],
+	familiar: ["It's quite lovely, is it not? It reminds me of summer rain."],
+	fear: ["How could you ask such a thing?!"],
+	food: ["Ah, yes, and plenty to share."],
+	magic: ["Sometimes I wonder about my place in this Academy. My mastery of $char2Magic is quite weak..."],
+	magicFamiliar: ["No, this is far beyond my abilities."],
+	reception: ["No. It is distressing."],
+	suspicion: ["I have my suspicions..."],
+	teacherBody: ["Tragically, I believe it is."],
+	teacherClass: ["I've long been wanting to learn new magic. Perhaps I'll be better with it than $char2Magic magic..."],
+	teacherMissing: ["I am unsure and it worries me."],
+	trip: ["I am always looking to learn more, and this skyland holds deep secrets."],
+	witness: ["No, but I shall keep my eyes open for trouble."],
 
 }
 
 setup.char2.emoteMid = {
-		alibi: [""],
-		familiar: [""],
-		fear: [""],
-		food: [""],
-		magic: [""],
-		magicFamiliar: [""],
-	    reception: [""],
-		suspicion: [""],
-		teacherBody: [""],
-		teacherClass: [""],
-		teacherMissing: [""],
-		trip: [""],
-		witness: [""],
+		alibi: ["They bare their teeth defensively."],
+		familiar: ["They give their familiar a fond smile."],
+		fear: ["They bare their teeth defensively."],
+		food: ["The thaloon retrieves some $char2Food from their satchel, tentatively offering you a serving."],
+		magic: ["A sigh escapes them."],
+		magicFamiliar: ["They look crestfallen to be of no use."],
+	  reception: ["They do indeed look distressed."],
+		suspicion: ["They do not elaborate more."],
+		teacherBody: ["They close their eyes and stand unmoving for a long, silent span."],
+		teacherClass: ["A hopeful look crosses their simian features."],
+		teacherMissing: ["An expression of concern contorts their simian features."],
+		trip: ["They give you a slight, tentative smile."],
+		witness: ["They stand a bit taller and more alert."],
 }
 
 setup.char2.actionMid = {
@@ -1089,7 +1183,7 @@ setup.char2.actionMid = {
 		reception: [""],
 		suspicion: [""],
 		teacherBody: ["gainTrust"],
-		teacherClass: [""],
+		teacherClass: ["gainTrust"],
 		teacherMissing: ["gainTrust"],
 		trip: ["gainTrust"],
 		witness: [""],
@@ -1097,36 +1191,36 @@ setup.char2.actionMid = {
 
 //set his responses at high trust level
 setup.char2.answerHigh = {
-	alibi: [""],
-	familiar: [""],
-	fear: [""],
-	food: [""],
-	magic: [""],
-	magicFamiliar: [""],
-	reception: [""],
-	suspicion: [""],
-	teacherBody: [""],
-	teacherClass: [""],
-	teacherMissing: [""],
-	trip: [""],
-	witness: [""],
+	alibi: ["I...I thought we were friends..."],
+	familiar: ["Yes, although sometimes I think I don't deserve one so nice."],
+	fear: ["I've never told anyone this before, but I'm terrified of $char2Fear"],
+	food: ["Yes, and plenty to share with a friend!"],
+	magic: ["I've come to the Academy to study $char2Magic, but I seem to be making no progress."],
+	magicFamiliar: ["This is out of my limited depth."],
+	reception: ["No. I'm beginning to get nervous."],
+	suspicion: ["I think you are the only one I can trust."],
+	teacherBody: ["This is a tragedy!"],
+	teacherClass: ["I've been hoping she can help me find my true magical calling."],
+	teacherMissing: ["I'm extremely concerned about her."],
+	trip: ["I read about spirits in these woods blessing people with magical gifts. Since I struggle so much, I thought they might help me..."],
+	witness: ["Now that you mention it, I did notice that $gChar has $gAppearance"],
 
 }
 
 setup.char2.emoteHigh = {
-		alibiEmote: [""],
-		familiar: [""],	
-		fear: [""],
-		food: [""],
-		magic: [""],
-		magicFamiliar: [""],
-		reception: [""],
-		suspicion: [""],
-		teacherBody: [""],
-		teacherClass: [""],
-		teacherMissing: [""],
-	  trip: [""],
-		witness: [""],
+		alibiEmote: ["They look wounded by your very question."],
+		familiar: ["They give a bittersweet smile to $char2FamiliarDesc $char2Familiar"],	
+		fear: ["They glance away, too embarassed to meet your gaze."],
+		food: ["They quickly retrieve a serving of $char2Food from their satchel and happily give you a serving."],
+		magic: ["Their shoulders slump as they let out a long sigh."],
+		magicFamiliar: ["They look anxious and unnerved."],
+		reception: ["Their posture betrays more anxiety than they let out."],
+		suspicion: ["They give you a nervous smile."],
+		teacherBody: ["Tears well up in their eyes."],
+		teacherClass: ["The admission comes followed by a long, pensive silence."],
+		teacherMissing: ["They grip their magestaff tighter, as if trying to focus their limited magic."],
+	  trip: ["A peaceful look crosses their simian features."],
+		witness: ["They look at you hopefully, clearly craving to be useful."],
 }
 
 setup.char2.actionHigh = {
@@ -1171,19 +1265,19 @@ setup.char3.action = {
 //answers vary based on character's trust of player
 //set his responses at low trust level
 setup.char3.answerLow = {
-	alibi: ["Here. With everyone."],
-	familiar: ["It is around here somewhere."],
-	fear: ["No."],
-	food: ["Yes. For later."],
-	magic: ["I would not say I am skilled at any magic, yet."],
-	magicFamiliar: ["This is far beyond my skill."],
-	reception: ["No. It is odd.."],
-	suspicion: ["Unsure."],
-	teacherBody: ["Yes."],
-	teacherClass: ["No."],
-	teacherMissing: ["Unsure."],
-	trip: ["To learn. There is deep, ancient magic up here."],
-	witness: ["Unfortunately, no."],
+	alibi: ["Are you suggesting I did this? Just because I know about this skyland doesn't make me a murderer!"],
+	familiar: ["It's rather headstrong. I'm sure it's around."],
+	fear: ["Me? I'm afraid of NOTHING!"],
+	food: ["Do you know how long our skysailing expeditions last? Only a fool or a child would go on a voyage without rations."],
+	magic: ["Nothing unusual for someone from the Isles."],
+	magicFamiliar: ["I HAVE heard of something like this, but I can't quite remember the details..."],
+	reception: ["No, but surely you can survive without an aetherial link for a few hours?"],
+	suspicion: ["Yes, you, with all your questions!"],
+	teacherBody: ["It certainly seems to be."],
+	teacherClass: ["No, not my field of study."],
+	teacherMissing: ["She's probably just harvesting lichen. There's a particularly rare mournmoss that grows up here."],
+	trip: ["I'm Dannean - why wouldn't I want to go skysailing?"],
+	witness: ["Just you snooping around!"],
 	}
 
 setup.char3.emoteLow = {
@@ -1204,7 +1298,7 @@ setup.char3.emoteLow = {
 
 setup.char3.actionLow = {
 		alibi: ["loseTrust"],
-	    familiar: ["clueFamiliar"],
+	    familiar: ["gainTrust"],
 		fear: ["loseTrust"],
 	    food: [""],
 		magic: ["gainTrust"],
@@ -1219,20 +1313,20 @@ setup.char3.actionLow = {
 }
 
 //set his responses at medium trust level
-setup.char3.answerMed = {
-	alibi: [""],
-	familiar: [""],
-	fear: [""],
-	food: [""],
-	magic: [""],
-	magicFamiliar: [""],
-	reception: [""],
-	suspicion: [""],
-	teacherBody: [""],
-	teacherClass: [""],
-	teacherMissing: [""],
-	trip: [""],
-	witness: [""],
+setup.char3.answerMid = {
+	alibi: ["I've just read about this place a lot! I've never been here before!"],
+	familiar: ["It's rather adventurous. Suits me!"],
+	fear: ["Almost nothing!"],
+	food: ["Yep, plenty of spare supplies to share!"],
+	magic: ["Nothing exceptional, just a student of $char3Magic"],
+	magicFamiliar: ["Yes, I remember something to do with a ritual..."],
+	reception: ["I remember reading about stars casting odd beams down on this skyland."],
+	suspicion: ["I'm starting to suspect it's NONE of us."],
+	teacherBody: ["This...was not done by a mortal."],
+	teacherClass: ["I appreciate her knowledge, but I prefer doing my own research."],
+	teacherMissing: ["This is concerning, especially considering the alignment of the stars..."],
+	trip: ["Have you ever seen a skyland during a millenium conjunction? The starlight is beautiful!"],
+	witness: ["No, and it makes me suspect we may be dealing with supernatural forces..."],
 
 }
 
@@ -1265,24 +1359,24 @@ setup.char3.actionMid = {
 		teacherClass: [""],
 		teacherMissing: ["gainTrust"],
 		trip: ["gainTrust"],
-		witness: [""],
+		witness: ["gainTrust"],
 }
 
 //set his responses at high trust level
 setup.char3.answerHigh = {
-	alibi: [""],
-	familiar: [""],
-	fear: [""],
-	food: [""],
-	magic: [""],
-	magicFamiliar: [""],
-	reception: [""],
-	suspicion: [""],
-	teacherBody: [""],
-	teacherClass: [""],
-	teacherMissing: [""],
-	trip: [""],
-	witness: [""],
+	alibi: ["Look if it WAS me, it wasn't me, you know? Something really powerful is behind this, if you ask me."],
+	familiar: ["It's nice, but part of me thinks we rely on them entirely too much these days."],
+	fear: ["Well, aside from curses and eldritch horrors, there's the usual $char3Fear."],
+	food: ["Yes, but we should save it for later. I'm not liking how things are shaping up."],
+	magic: ["While I'm ok with $char3Magic spells, my true passion is skysailing."],
+	magicFamiliar: ["Yes, I remember the tome, now! It's...not good. Something about the Creature of a Thousand Nights extinguishing other magic. It happened centuries ago."],
+	reception: ["Not a since vibration or resonance. I think we've got something big and supernatural on our hands."],
+	suspicion: ["What we really should be looking for are signs of possession, in my opinion."],
+	teacherBody: ["Yes, it has to be - and it was clearly done by some supernatural force."],
+	teacherClass: ["She's fun, but if I'm being honest, I think I know more about this place than she does."],
+	teacherMissing: ["On a night of a stellar convergence? This is bad. REALLY bad."],
+	trip: ["Look up! Notice the sky! The stars only align like this once a millenium!"],
+	witness: ["Yeah, it was really strange. I saw $gChar with $gAppearance."],
 
 }
 
@@ -1344,35 +1438,35 @@ setup.char4.action = {
 //answers vary based on character's trust of player
 //set his responses at low trust level
 setup.char4.answerLow = {
-	alibi: ["Here. With everyone."],
-	familiar: ["It is around here somewhere."],
-	fear: ["No."],
-	food: ["Yes. For later."],
-	magic: ["I would not say I am skilled at any magic, yet."],
-	magicFamiliar: ["This is far beyond my skill."],
-	reception: ["No. It is odd.."],
-	suspicion: ["Unsure."],
+	alibi: ["Where have YOU been?"],
+	familiar: ["Yes, I have one"],
+	fear: ["Of course, as anyone sensible should."],
+	food: ["Of course."],
+	magic: ["I know magic."],
+	magicFamiliar: ["This is not my specialty."],
+	reception: ["No"],
+	suspicion: ["Hmm, and why would I tell you if I had?"],
 	teacherBody: ["Yes."],
-	teacherClass: ["No."],
+	teacherClass: ["Yes. She has some fascinating theories about this skyland."],
 	teacherMissing: ["Unsure."],
-	trip: ["To learn. There is deep, ancient magic up here."],
-	witness: ["Unfortunately, no."],
+	trip: ["Can't an old lady just enjoy a nice break away from the city?"],
+	witness: ["Oh, I see MANY things."],
 	}
 
 setup.char4.emoteLow = {
-		alibi: ["The thaloon bares their teeth in a quiet challenge."],
-		familiar: ["They lift their chin to indicate their nearby familiar."],
-		fear: ["Their eyes narrow as they regard you suspiciously."],
-		food: ["The thaloon methodically checks their pack to ensure all the fastenings are buckled."],
-		magic: ["They sigh softly, but do not elaborate."],
-		magicFamiliar: ["There is a melancholy note to their vote and their stare drifts away."],
-	  reception: ["Their brow furrows in thought."],
-	  suspicion: ["They narrow their eyes at you."],
-	  teacherBody: ["The thaloon heaves a weary sigh."],
-	  teacherClass: ["They seem unbothered by the confusion."],
-  	  teacherMissing: ["Hints of concern can just barely be glimpse beneath their stoic expression."],
-	  trip: ["They offer you a faint, tentative smile."],
-  	witness: ["The thaloon gives you a wary glance."],
+		alibi: ["She lifts her eyebrows at you in a challenge."],
+		familiar: ["She does not elaborate."],
+		fear: ["She stares back at you, her gaze unnervingly piercing."],
+		food: ["She must be carrying it in a pack or satchel."],
+		magic: ["Her words are accompanied by a slight smile, as if amused by your confusion."],
+		magicFamiliar: ["She admits this matter-of-factly."],
+	  reception: ["She seems unconcerned and merely watches you with a keen stare."],
+	  suspicion: ["Her tone seems amused."],
+	  teacherBody: ["Her short answer is brisk and professional."],
+	  teacherClass: ["Her lips curve in a slight smirk as she pointedly refuses to exaggerate."],
+  	teacherMissing: ["Her tone is clipped and brusque."],
+	  trip: ["She flashes you a playful wink."],
+  	witness: ["She grins smugly, staring at you over the rims of her glasses."],
 }
 
 setup.char4.actionLow = {
@@ -1392,7 +1486,7 @@ setup.char4.actionLow = {
 }
 
 //set his responses at medium trust level
-setup.char4.answerMed = {
+setup.char4.answerMid = {
 	alibi: [""],
 	familiar: [""],
 	fear: [""],
@@ -1453,7 +1547,7 @@ setup.char4.answerHigh = {
 	suspicion: [""],
 	teacherBody: [""],
 	teacherClass: [""],
-	teacherMissing: [""],
+	teacherMissing: ["It's been an interesting experience to return to school at my age. She's an old friend who has made the transition easier."],
 	trip: [""],
 	witness: [""],
 
@@ -1565,7 +1659,7 @@ setup.char5.actionLow = {
 }
 
 //set responses at medium trust level
-setup.char5.answerMed = {
+setup.char5.answerMid = {
 	alibi: [""],
 	familiar: [""],
 	fear: [""],
@@ -1738,7 +1832,11 @@ setup.familiar = {
 // ------=={{ Scene: Bus }}==------ \\
 	
 setup.bus = {
-	qlist: ["magic", "familiar", "food", "fear", "trip", "teacherClass"],
+	qlist: ["magic", "familiar", "food", "trip", "teacherClass"],
+	sQlist: ["magic", "familiar", "food"],
+	gtQlist: ["trip"],
+	ltQlist: ["fear"],
+	rQlist: ["teacherClass"],
 	clist: ["$withPlayer"],
 	intro1: ["The skyship soars away from the dock, shreds of cloud clinging to her prow."],
 	intro2: ["A crisp wind blasts through the boat before warming wards snap into effect, leaving you passengers cozy and snug without compromising the dazzling view."],
@@ -1758,8 +1856,18 @@ setup.bus = {
 
 //no dialog here so far
 setup.arrival = {
-	intro1: ["Arrive at destination."],
-	intro2: ["Groups decide to split up."],
+	line1: ["Far too quickly, the skyship reaches its destination."],
+	line2: ["You students slowly shuffle off the ship, giddy to explore the remote skyland."],
+	line3: ["The captain, a chipper magical construct, rattles off generic safety protocol and reminds you that only the charter organizer has the passspell to summon a return flight."],
+	line4: ["With that, the ship departs, leaving you confusingly alone on a strange island suspended in the sky."],
+	line5: ["The professor was supposed to meet you here at the docks, but she's nowhere to be seen."],
+	line6: ["A search of the surrounding area reveals signs of her arrival and hasty departure:"], 
+	line7: ["the small cabin near the docks has an array of scrolls and papers scattered on its desk. It looks like she was interrupted while grading assignments."],
+	line8: ["The group searches the immediate area, but find no other signs of her."],
+	line9: ["Even more ominous, every single familiar seems suddenly drained and lethargic, as if they have become a pale copy of what they used to be."],
+	line10: ["Without the ability to send and transmit vibrations, you are utterly cut off from communication."],
+	line11: ["After some brief debating, the students split into two parties: "],
+	line12: ["the first to explore the nearby ruins to see if any latent magic can help fix the familiars, while the second begins to head towards the cliffs to see if the elevation helps at all."],
 	sentence1: ["Decide who to go with..."],
 	clist: ["$withPlayer"],
 	ctext1: ["Head to the ruins with", "Walk to the ruins with", "Hike to the ruins with"],
@@ -1774,9 +1882,9 @@ setup.arrival = {
 // ------=={{ Scene: Ruins }}==------ \\
 
 setup.ruins = {
- 	intro1: ["Group reaches ruins."],
-	intro2: ["Try to get familiar service."],
-	sentence1: ["The group has fanned out, following their faintly shimmering familiars.", "Everyone stands a bit apart from one another, and the air is palpable with unease."],
+ 	intro1: ["After a bit of hiking you reach the ruins."],
+	intro2: ["The group fans out, following their faintly shimmering familiars.", "Everyone stands a bit apart from one another, and the air is palpable with unease."],
+	sentence1: ["Nobody seems to have any immediate luck."],
 	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
 	qlist: ["magic", "familiar", "food", "fear", "suspicion", "reception", "magicFamiliar", "teacherMissing", "teacherClass", "trip"],
 	clist: ["$withPLayer"],
@@ -1790,9 +1898,9 @@ setup.ruins = {
 // ------=={{ Scene: Cliffs }}==------ \\
 
 setup.cliffs = { 
-	intro1: ["Group reaches cliffs."],
-	intro2: ["Try to get familiar service."],
-	sentence1: ["The group has fanned out, following their faintly shimmering familiars.", "Everyone stands a bit apart from one another, and the air is palpable with unease."],
+	intro1: ["You tramp up the hillside to the top of the cliffs."],
+	intro2: ["The group fans out, following their faintly shimmering familiars.", "Everyone stands a bit apart from one another, and the air is palpable with unease."],
+	sentence1: ["Nobody seems to have any immediate luck."],
 	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
   qlist: ["magic", "familiar", "food", "fear", "suspicion", "reception", "magicFamiliar", "teacherMissing", "teacherClass", "trip"],
 	clist: ["$withPLayer"],
@@ -1806,27 +1914,28 @@ setup.cliffs = {
 // ------=={{ Scene: Forest }}==------ \\
 
 setup.forest = {
-	intro1: ["Group comes back together in forest."],
-	intro2: ["Finds altar and remains of teacher."],
-	intro3: ["Details about ritual."],
-	sentence1: ["What could have done this?"],
+	intro1: ["After a breathless dash through the woods, the group converges on a gory scene: an ancient stone altar, etched by time and the elements. "],
+	intro2: ["Splashed across its surface is slick, fresh blood, while a few steps away lies an unrecognizable corpse."],
+	intro3: ["The group instantly panics, before the brawny young woman barks over everyone, instructing the group to retreat to a henge on the hilltop with long-latent wards."],
+	sentence1: ["As you walk, you can't help but think: what could have done this?"],
 	sentence2: ["Decide who to chat to...", "Who do you want to speak with?", "Who do you wish to approach?"],
-	qlist: ["magic", "food", "fear", "witness", "suspicion", "alibi", "teacherMissing", "teacherClass", "teacherBody", "reception", "trip"],
+	qlist: ["fear", "witness", "suspicion", "alibi", "teacherMissing", "teacherBody"],
 	clist: ["char1", "char2", "char3", "char4", "char5"],
 	char1: ["$char1NameDisplay"],
 	char2: ["$char2NameDisplay"],
 	char3: ["$char3NameDisplay"],
 	char4: ["$char4NameDisplay"],
 	char5: ["$char5NameDisplay"],
+	rounds: ["3"],
 }
 
 // ------=={{ Scene: Henge }}==------ \\
 
 setup.henge = {
-	intro1: ["Group retreats to hilltop henge."],
-	intro2: ["Set wards for the night."],
-	sentence1: ["Night falls, but everyone lingers near the magefire, reluctant to disperse."],
-	sentence2: ["Who do you speak to for one last conversation before bed?"],
+	intro1: ["The group retreats to hilltop henge and sets wards for the night."],
+	intro2: ["Night falls, but everyone lingers near the magefire, reluctant to disperse."],
+	sentence1: ["A heavy unease has settled upon the group."],
+	sentence2: ["Who do you quitely speak to?"],
 	qlist: ["magic", "food", "fear", "witness", "suspicion", "alibi", "teacherMissing", "teacherClass", "teacherBody", "reception", "trip"],
 	clist: ["char1", "char2", "char3", "char4", "char5"],
 	char1: ["$char1NameDisplay"],
@@ -1870,8 +1979,8 @@ setup.atmos = {
 // ------=={{ Scene: preRitual }}==------ \\
 
 setup.preRitual = {
-	intro1: ["Final scene before endgame."],
-	intro2: ["You can't delay performing the ritual any longer."],
+	intro1: ["You can't delay performing the ritual any longer."],
+	intro2: ["You muster your strength to perform the Spell of a Thousand Truths."],
 	sentence1: ["The ritual needs a target from which to drive away the entity.", "While it uses your combined magic, the ritual is designed to be targeted at one person, banishing the entity."],
 	sentence2: ["Who do you target the ritual at?", "Who is possessed by the entity?", "Who do you target the banishing at?"],
 	qlist: ["$playerSpellsList"],
@@ -2151,7 +2260,7 @@ Macro.add('dialogclose', {
 
 
 //transitions
-</script><tw-passagedata pid="1" name="Dream" tags="hideui noreturn" position="261,105" size="100,100">&lt;&lt;audio &quot;:playing&quot; fadeout&gt;&gt;
+</script><tw-tag name="work" color="purple"></tw-tag><tw-passagedata pid="1" name="Dream" tags="hideui noreturn" position="261,105" size="100,100">&lt;&lt;audio &quot;:playing&quot; fadeout&gt;&gt;
 &lt;&lt;playlist &quot;game&quot; loop play&gt;&gt;
 
 &lt;&lt;set $ingame = 1&gt;&gt;
@@ -2253,6 +2362,7 @@ $intro3 $danger1
 &lt;/div&gt;
 &lt;/div&gt;
 </tw-passagedata><tw-passagedata pid="3" name="forest" tags="" position="625,272" size="100,100">&lt;&lt;dialogclose&gt;&gt;
+&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
 &lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set $rounds = 5&gt;&gt;
 &lt;&lt;set $scene = &quot;forest&quot;&gt;&gt;
@@ -2266,17 +2376,21 @@ $intro3 $danger1
 &lt;div class=&quot;layoutBorder&quot;&gt;
 &lt;div class=&quot;layout&quot;&gt;
 
-&lt;&lt;print setup[_scene].intro1.random()&gt;&gt;
+&lt;&lt;print setup[_scene].intro1.random()&gt;&gt; &lt;&lt;print setup[_scene].intro2.random()&gt;&gt;
 
 &lt;br&gt;&lt;br&gt;
 
-&lt;&lt;print setup[_scene].intro2.random()&gt;&gt;
+&lt;&lt;print setup[_scene].intro3.random()&gt;&gt; 
 
 &lt;br&gt;&lt;br&gt;
 &lt;&lt;print setup[_scene].sentence1.random()&gt;&gt;
 &lt;br&gt;&lt;br&gt;
 
-&lt;&lt;include &quot;Dialog Setup&quot;&gt;&gt;
+&lt;span class=&quot;button-1&quot;&gt;
+&lt;&lt;button &quot;Continue&quot; &quot;henge&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2798,9 +2912,10 @@ _classSentence1...
 &lt;&lt;/script&gt;&gt;
 
 &lt;div class = &quot;layout&quot;&gt;
-&lt;span class=&quot;h1&quot;&gt;
-GAME NAME HERE
-&lt;/span&gt;
+&lt;div class=&quot;title&quot; align=&quot;center&quot;&gt;
+&lt;span class=&quot;titleText&quot;&gt;
+STARCROSSED&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 &lt;span class=&quot;button-1&quot;&gt;
 &lt;&lt;button Play &quot;Dream&quot;&gt;&gt;&lt;&lt;sf&gt;&gt;&lt;&lt;/button&gt;&gt;
@@ -2834,19 +2949,41 @@ GAME NAME HERE
 
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-
+&lt;/div&gt;
 &lt;/div&gt;
 
-</tw-passagedata><tw-passagedata pid="12" name="Credits" tags="noreturn" position="6,526" size="100,100">&lt;div class=&quot;h1&quot;&gt;Art:
+</tw-passagedata><tw-passagedata pid="12" name="Credits" tags="noreturn" position="7,525" size="100,100">&lt;div class=&quot;layout&quot;&gt;
+&lt;div class=&quot;h2&quot;&gt;Art:&lt;br&gt;
+Feeshy
 &lt;br&gt;&lt;br&gt;
-Audio:
+Audio: &lt;br&gt;
+Yazorius&lt;br&gt;
+Itch: https://yazorius.itch.io/
+&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 Design:
+Kate&lt;br&gt;
+Portfolio: https://kateafable.com/
+&lt;br&gt;
+Itch: https://katescapedsgn.itch.io/
+&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 Programming:
+Loressa&lt;br&gt;
+Itch: https://loressa.itch.io/
+&lt;br&gt;
 &lt;br&gt;&lt;br&gt;
-Writing:
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="Title" tags="noreturn hideui" position="1,407" size="100,100">
+Writing:&lt;br&gt;
+Mitchell&lt;br&gt;
+itch.io: https://itch.io/profile/polygon-native
+&lt;br&gt;
+Twitter: @Polygonnative&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
+Loressa&lt;br&gt;
+Itch: https://loressa.itch.io/
+
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="13" name="Title" tags="noreturn hideui" position="9,403" size="100,100">
 
 &lt;&lt;script&gt;&gt;
 	UIBar.stow();
@@ -2855,13 +2992,19 @@ Writing:
 
 &lt;&lt;playlist &quot;menu&quot; loop play&gt;&gt;
 
-&lt;div class=&quot;h1&quot;&gt;
-Game Name and splash screen
+&lt;div align=&quot;center&quot;&gt;
+&lt;div class=&quot;splashContainer&quot; align=&quot;center&quot;&gt;
+&lt;span class=&quot;splash&quot;&gt;
+
+&lt;a data-passage=&quot;Main Menu&quot;&gt;&lt;img class=&quot;splash&quot; src=&quot;titlepic.png&quot;&gt;&lt;/a&gt;
+
+&lt;/span&gt;
 &lt;/div&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button Main &quot;Main Menu&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="14" name="Characters" tags="noreturn" position="4,648" size="100,100">
+&lt;/div&gt;
+
+
+
+</tw-passagedata><tw-passagedata pid="14" name="Characters" tags="noreturn" position="3,648" size="100,100">
 &lt;div align=&quot;center&quot;&gt;
 
 &lt;br&gt;
@@ -2879,7 +3022,7 @@ Cast of Characters
 
 &lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;Lord Fnarfop Yu&lt;/span&gt;
 &lt;br&gt;&lt;br&gt;
-Magic runs in his blue, blue blood. Literally. He&#39;s a short, blue elfin noble with some Napoleonic vibes who deep down knows he&#39;s better than everyone else, but puts on a facade of good humour around the other students. In you he (irritatingly) thinks he sees a kindred spirit, so although he&#39;s an insufferable prick, he&#39;s friendly to the player. As things become more desperate, however, his panicky childish side comes to the fore, whinging and giving orders to his &quot;subordinates&quot; while trying to protect only himself and, to a lesser extent, his friend, the player. Therefore if there is a shapeshifter among you, it may be a hint that he&#39;s been replaced if things are a little too calm or thoughtful.
+Magic runs in his blue, blue blood. Literally. You might think this makes him an excellent student, but all the natural magic cannot help if you do not pay attention in class. Like a lot of nobles, he maintains a loftier-than-thou air, but he seems taken with your attitude so he is less irritating when you are nearby.
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2889,7 +3032,7 @@ Magic runs in his blue, blue blood. Literally. He&#39;s a short, blue elfin nobl
 &lt;div class=&quot;characterText&quot;&gt;
 &lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;Adriash Honde&lt;/span&gt;
 &lt;br&gt;&lt;br&gt;
-A tall and lanky non-binary thaloon (three-armed people who share features with baboons), Adriash is graceful and generally kind but standoffish. They prefer the company of their clan which makes being alone in the woods with a bunch of other folks very anxiety-inducing, but Adriash tries to maintain composure, as they are perhaps the most interested in this place of all the students. If that tension appears to relax, and Adriash starts being more cunning/friendly/decisive, then it&#39;s very likely they have been replaced by the shapeshifter. 
+A tall and lanky non-binary thaloon, Adriash is graceful and generally kind, but standoffish. Without wanting to profile them, thaloon are very clan-oriented, so you understand if being alone in the woods with a collection of strangers makes them anxious. A thaloon&#39;s third arm makes them usually quite strong in the somatic arts, being able to draw many sigils at once.
 &lt;/div&gt;
 &lt;div class=&quot;characterImage&quot;&gt;
 &lt;img class=&quot;characterImageFit&quot; src=&quot;char2.png&quot; /&gt;
@@ -2906,7 +3049,7 @@ A tall and lanky non-binary thaloon (three-armed people who share features with 
 &lt;div class=&quot;characterText&quot;&gt;
 &lt;span class=&quot;h1&quot;&gt;Matiska&lt;/span&gt;
 &lt;br&gt;&lt;br&gt;
-The &quot;Lara Croft&quot; of the group, Matiska is a muscular woman coming from this world&#39;s equivalent of the Pacific Islands (with a bit of viking mixed in). Her long black hair plaited on one side. The situation excites her to begin with, but it becomes clear that there&#39;s nothing natural about the ritual or whoever caused them to be in this situation. She has the most knowledge about magical history in this part of the mountains and so will make astute conjectures about the ritual, the demon, the means of summoning. This makes talking to Matiska a high priority at the stone tablet. However, if she later clams up and urges prudence she&#39;s probably been replaced.
+Matiska comes from the Danne Isles, where the boats they build are hardy, and the people are even more so. She has studied the mountains and the history of the ruins, making her the de facto expert on the excursion. She does not seem very old, but she has implied that her life before joining the Academia was not 100% law-abiding.
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -2915,7 +3058,7 @@ The &quot;Lara Croft&quot; of the group, Matiska is a muscular woman coming from
 &lt;div class=&quot;characterText&quot;&gt;
 &lt;span class=&quot;h1&quot;&gt;Ersatz Atana&lt;/span&gt;
 &lt;br&gt;&lt;br&gt;
-The oldest of the group, resembling Catherine Zeta Jones, Ersatz is an ex-intelligence operative for a nation foreign to that where the Academia resides. Her unearthly accent, mysterious past, and thoughtful quietude make her relatively unhelpful as she has little to share for the first few scenes, but she is the only character who cannot be taken over by the shapeshifter, and if the dice roll lands on her, there will be a unique scene where she returns, injured, to the group and shares that she thinks the interloper has taken one of the other students (roll for one of the other students). Her understanding of espionage will help give the player hints and suggestions on how to discover the shapeshifter. This, I imagine, means she will straight up tell the player what to do if they ask enough times.
+Ersatz is the most experienced of the group, having returned to the Academia after nearly a decade of [REDACTED].
 &lt;/div&gt;
 &lt;div class=&quot;characterImage&quot;&gt;
 &lt;img class=&quot;characterImageFit&quot; src=&quot;char4.png&quot; /&gt;
@@ -2931,7 +3074,7 @@ The oldest of the group, resembling Catherine Zeta Jones, Ersatz is an ex-intell
 &lt;div class=&quot;characterText&quot;&gt;
 &lt;span class=&quot;h1&quot;&gt;Nevry Jackson&lt;/span&gt;
 &lt;br&gt;&lt;br&gt;
-Jackson is the least experienced and youngest of the group; he looks like a red-headed scamp but he&#39;s actually really anxious and eager to please. He lacks social graces and often gets people into sticky situations, so he at first believes that the entire situation might somehow be his fault. However, this attitude barely changes if he is replaced, which means if the game rolls Nevry it&#39;s probably the &quot;hard mode&quot; version of the story.
+Jackson is the least experienced and youngest of the group; he looks like a red-headed scamp but he&#39;s actually really anxious and eager to please. He lacks social graces and often gets people into sticky situations, but he certainly means the best.
 &lt;/div&gt;
 &lt;/div&gt;
 
@@ -3022,13 +3165,13 @@ Jackson is the least experienced and youngest of the group; he looks like a red-
  $char1NameDisplay
  &lt;/span&gt;&lt;br&gt;
 &lt;span class=&quot;h4&quot;&gt;
-Specialty: $char1MagicDisplay
+Specialty: &lt;span class=&quot;choice&quot;&gt;$char1MagicDisplay&lt;/span&gt;
 &lt;br&gt;
-Familiar: $char1FamiliarDescDisplay $char1FamiliarDisplay
+Familiar: &lt;span class=&quot;choice&quot;&gt;$char1FamiliarDescDisplay $char1FamiliarDisplay&lt;/span&gt;
 &lt;br&gt;
-Favorite food: $char1FoodDisplay
+Favorite food: &lt;span class=&quot;choice&quot;&gt;$char1FoodDisplay&lt;/span&gt;
 &lt;br&gt;
-Deepest fear: $char1FearDisplay
+Deepest fear: &lt;span class=&quot;choice&quot;&gt;$char1FearDisplay&lt;/span&gt;
 &lt;/span&gt;
 &lt;&lt;showmeter &#39;char1Meter&#39; &#96;$char1Trust / 10&#96;&gt;&gt;
 &lt;/div&gt;
@@ -3045,13 +3188,13 @@ Deepest fear: $char1FearDisplay
  $char2NameDisplay
  &lt;/span&gt;&lt;br&gt;
 &lt;span class=&quot;h4&quot;&gt;
-Specialty: $char2MagicDisplay
+Specialty: &lt;span class=&quot;choice&quot;&gt;$char2MagicDisplay&lt;/span&gt;
 &lt;br&gt;
-Familiar: $char2FamiliarDescDisplay $char2FamiliarDisplay
+Familiar: &lt;span class=&quot;choice&quot;&gt;$char2FamiliarDescDisplay $char2FamiliarDisplay&lt;/span&gt;
 &lt;br&gt;
-Favorite food: $char2FoodDisplay
+Favorite food: &lt;span class=&quot;choice&quot;&gt;$char2FoodDisplay&lt;/span&gt;
 &lt;br&gt;
-Deepest fear: $char2FearDisplay
+Deepest fear: &lt;span class=&quot;choice&quot;&gt;$char2FearDisplay&lt;/span&gt;
 &lt;/span&gt;
 &lt;&lt;showmeter &#39;char2Meter&#39; &#96;$char2Trust / 10&#96;&gt;&gt;
 &lt;/div&gt;
@@ -3067,13 +3210,13 @@ Deepest fear: $char2FearDisplay
  $char3NameDisplay
  &lt;/span&gt;&lt;br&gt;
 &lt;span class=&quot;h4&quot;&gt;
-Specialty: $char3MagicDisplay
+Specialty: &lt;span class=&quot;choice&quot;&gt;$char3MagicDisplay&lt;/span&gt;
 &lt;br&gt;
-Familiar: $char3FamiliarDescDisplay $char3FamiliarDisplay
+Familiar: &lt;span class=&quot;choice&quot;&gt;$char3FamiliarDescDisplay $char3FamiliarDisplay&lt;/span&gt;
 &lt;br&gt;
-Favorite food: $char3FoodDisplay
+Favorite food: &lt;span class=&quot;choice&quot;&gt;$char3FoodDisplay&lt;/span&gt;
 &lt;br&gt;
-Deepest fear: $char3FearDisplay
+Deepest fear: &lt;span class=&quot;choice&quot;&gt;$char3FearDisplay&lt;/span&gt;
 &lt;/span&gt;
 &lt;&lt;showmeter &#39;char3Meter&#39; &#96;$char3Trust / 10&#96;&gt;&gt;
 &lt;/div&gt;
@@ -3090,13 +3233,13 @@ Deepest fear: $char3FearDisplay
  $char4NameDisplay
  &lt;/span&gt;&lt;br&gt;
 &lt;span class=&quot;h4&quot;&gt;
-Specialty: $char4MagicDisplay
+Specialty: &lt;span class=&quot;choice&quot;&gt;$char4MagicDisplay&lt;/span&gt;
 &lt;br&gt;
-Familiar: $char4FamiliarDescDisplay $char4FamiliarDisplay
+Familiar: &lt;span class=&quot;choice&quot;&gt;$char4FamiliarDescDisplay $char4FamiliarDisplay&lt;/span&gt;
 &lt;br&gt;
-Favorite food: $char4FoodDisplay
+Favorite food: &lt;span class=&quot;choice&quot;&gt;$char4FoodDisplay&lt;/span&gt;
 &lt;br&gt;
-Deepest fear: $char4FearDisplay
+Deepest fear: &lt;span class=&quot;choice&quot;&gt;$char4FearDisplay&lt;/span&gt;
 &lt;/span&gt;
 &lt;&lt;showmeter &#39;char4Meter&#39; &#96;$char4Trust / 10&#96;&gt;&gt;
 &lt;/div&gt;
@@ -3114,13 +3257,13 @@ Deepest fear: $char4FearDisplay
  $char5NameDisplay
  &lt;/span&gt;&lt;br&gt;
 &lt;span class=&quot;h4&quot;&gt;
-Specialty: $char5MagicDisplay
+Specialty: &lt;span class=&quot;choice&quot;&gt;$char5MagicDisplay&lt;/span&gt;
 &lt;br&gt;
-Familiar: $char5FamiliarDescDisplay $char5FamiliarDisplay
+Familiar: &lt;span class=&quot;choice&quot;&gt;$char5FamiliarDescDisplay $char5FamiliarDisplay&lt;/span&gt;
+&lt;br&gt;&lt;/span&gt;
+Favorite food: &lt;span class=&quot;choice&quot;&gt;$char5FoodDisplay&lt;/span&gt;
 &lt;br&gt;
-Favorite food: $char5FoodDisplay
-&lt;br&gt;
-Deepest fear: $char5FearDisplay
+Deepest fear: &lt;span class=&quot;choice&quot;&gt;$char5FearDisplay&lt;/span&gt;
 &lt;/span&gt;
 &lt;&lt;showmeter &#39;char5Meter&#39; &#96;$char5Trust / 10&#96;&gt;&gt;
 &lt;/div&gt;
@@ -3262,9 +3405,7 @@ $wake $portent $center $center1 $setting2 $setting3 $setting4
 </tw-passagedata><tw-passagedata pid="19" name="bus" tags="" position="178,263" size="100,100">&lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set $scene = &quot;bus&quot;&gt;&gt;
 &lt;&lt;set $nextScene = &quot;arrival&quot;&gt;&gt;
-&lt;&lt;run $charChoiceList.delete($dialogTarget)&gt;&gt;
 &lt;&lt;set $charChoices to Array.from($charChoiceList)&gt;&gt;
-&lt;&lt;set $choiceText to Array.from(setup.choiceText.default)&gt;&gt;
 &lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set _text1 = setup.bus.intro1.random()&gt;&gt;
 &lt;&lt;set _text2 = setup.bus.intro2.random()&gt;&gt;
@@ -3272,6 +3413,8 @@ $wake $portent $center $center1 $setting2 $setting3 $setting4
 &lt;&lt;set _text4 = setup.bus.sentence1.random()&gt;&gt;
 &lt;&lt;set _end = setup.roundEnd.bus.random()&gt;&gt;
 &lt;&lt;set _view = setup.bus.view.random()&gt;&gt;
+&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
+&lt;&lt;set $charChoiceList to Array.from($withPlayer)&gt;&gt;
 
 &lt;div class=&quot;layoutAll&quot;&gt;
 &lt;div class=&quot;layout&quot;&gt;
@@ -3293,10 +3436,11 @@ _text4
 
 [[Main Menu]]</tw-passagedata><tw-passagedata pid="21" name="Loss" tags="" position="395,685" size="100,100">Game over man, game over.
 
-[[Main Menu]]</tw-passagedata><tw-passagedata pid="22" name="Dialog" tags="noreturn" position="530,902" size="100,100">
+[[Main Menu]]</tw-passagedata><tw-passagedata pid="22" name="Dialog" tags="noreturn" position="530,903" size="100,100">
 &lt;&lt;set _scene = $scene&gt;&gt;
 &lt;&lt;set _nextScene = $nextScene&gt;&gt;
 &lt;&lt;if $rounds &lt; 1&gt;&gt; 
+	&lt;&lt;set $ritualUsed = 0&gt;&gt;
 	&lt;&lt;set _text = setup.roundEnd[_scene].random()&gt;&gt;
 		&lt;&lt;dialog &#39;Round End&#39; &#39;layoutBorder&#39;&#39;layout&#39;&gt;&gt;
 			_text
@@ -3309,83 +3453,72 @@ _text4
 &lt;&lt;else&gt;&gt;
 &lt;&lt;include &quot;dialog2&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-</tw-passagedata><tw-passagedata pid="23" name="Dialog Setup" tags="noreturn" position="401,903" size="100,100">&lt;&lt;set $dismiss = 0&gt;&gt;
+</tw-passagedata><tw-passagedata pid="23" name="Dialog Setup" tags="noreturn" position="400,903" size="100,100">&lt;&lt;set $dismiss = 0&gt;&gt;
 &lt;&lt;set _scene = $scene&gt;&gt;
 &lt;&lt;set $dialogList to Array.from(setup[_scene].qlist)&gt;&gt;
 
-&lt;&lt;if $charChoiceList.length == 0&gt;&gt;
-	&lt;&lt;set _text = setup.roundEnd[_scene].random()&gt;&gt;
-	&lt;span class=&quot;button-1&quot;&gt;
-	&lt;&lt;button _text $nextScene&gt;&gt;
- 	&lt;&lt;/button&gt;&gt;
-	&lt;/span&gt;
+&lt;&lt;set _charList = $withPlayer&gt;&gt;
+&lt;&lt;set _char1 = _charList.pluck()&gt;&gt;
+&lt;&lt;set _choice1Text1 = setup.choiceText.default.random()&gt;&gt;
+&lt;&lt;set _choice1Text2 = setup.characters[_char1]&gt;&gt;
 
-	
-&lt;&lt;else&gt;&gt;
+&lt;&lt;set _charList = $withPlayer&gt;&gt;
+&lt;&lt;set _char2 = _charList.pluck()&gt;&gt;
+&lt;&lt;set _choice2Text1 = setup.choiceText.default.random()&gt;&gt;
+&lt;&lt;set _choice2Text2 = setup.characters[_char2]&gt;&gt;
 
-&lt;&lt;set _choice1 = $charChoices.pluck()&gt;&gt;
-&lt;&lt;set _choice1text1 = $choiceText.pluck()&gt;&gt;
-&lt;&lt;set _choice1text2 = setup[_scene][_choice1]&gt;&gt;
-&lt;&lt;set _choice1text = &quot;&quot; + _choice1text1 + &quot; &quot; + _choice1text2&gt;&gt;
+&lt;&lt;set _charList = $withPlayer&gt;&gt;
+&lt;&lt;set _char3 = _charList.pluck()&gt;&gt;
+&lt;&lt;set _choice3Text1 = setup.choiceText.default.random()&gt;&gt;
+&lt;&lt;set _choice3Text2 = setup.characters[_char3]&gt;&gt;
 
-&lt;&lt;if $charChoices.length &gt; 0 &gt;&gt;
-&lt;&lt;set _choice2 = $charChoices.pluck()&gt;&gt;
-&lt;&lt;set _choice2text1 = $choiceText.pluck()&gt;&gt;
-&lt;&lt;set _choice2text2 = setup[_scene][_choice2]&gt;&gt;
-&lt;&lt;set _choice2text = &quot;&quot; + _choice2text1 + &quot; &quot; + _choice2text2&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _charList = $withPlayer&gt;&gt;
+&lt;&lt;set _char4 = _charList.pluck()&gt;&gt;
+&lt;&lt;set _choice4Text1 = setup.choiceText.default.random()&gt;&gt;
+&lt;&lt;set _choice4Text2 = setup.characters[_char4]&gt;&gt;
 
-&lt;&lt;if $charChoices.length &gt; 0 &gt;&gt;
-&lt;&lt;set _choice3 = $charChoices.pluck()&gt;&gt;
-&lt;&lt;set _choice3text1 = $choiceText.pluck()&gt;&gt;
-&lt;&lt;set _choice3text2 = setup[_scene][_choice3]&gt;&gt;
-&lt;&lt;set _choice3text = &quot;&quot; + _choice3text1 + &quot; &quot; + _choice3text2&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _charList = $withPlayer&gt;&gt;
+&lt;&lt;set _char5 = _charList.pluck()&gt;&gt;
+&lt;&lt;set _choice5Text1 = setup.choiceText.default.random()&gt;&gt;
+&lt;&lt;set _choice5Text2 = setup.characters[_char5]&gt;&gt;
 
-&lt;&lt;if $charChoices.length &gt; 0 &gt;&gt;
-&lt;&lt;set _choice4 = $charChoices.pluck()&gt;&gt;
-&lt;&lt;set _choice4text1 = $choiceText.pluck()&gt;&gt;
-&lt;&lt;set _choice4text2 = setup[_scene][_choice4]&gt;&gt;
-&lt;&lt;set _choice4text = &quot;&quot; + _choice4text1 + &quot; &quot; + _choice4text2&gt;&gt;
-&lt;&lt;/if&gt;&gt;
 
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button _choice1text &quot;Dialog&quot;&gt;&gt;
- &lt;&lt;set $dialogTarget = _choice1&gt;&gt;
+&lt;&lt;button &quot;_choice1Text1 _choice1Text2&quot; &quot;Dialog&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+ &lt;&lt;set $dialogTarget = _char1&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
 
-&lt;br&gt;&lt;br&gt;
-
-&lt;&lt;if _choice2&gt;&gt;
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button _choice2text &quot;Dialog&quot;&gt;&gt;
- &lt;&lt;set $dialogTarget = _choice2&gt;&gt;
+&lt;&lt;button &quot;_choice2Text1 _choice2Text2&quot; &quot;Dialog&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+ &lt;&lt;set $dialogTarget = _char2&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/if&gt;&gt;
 
-&lt;br&gt;&lt;br&gt;
-
-&lt;&lt;if _choice3&gt;&gt;
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button _choice3text &quot;Dialog&quot;&gt;&gt;
- &lt;&lt;set $dialogTarget = _choice3&gt;&gt;
+&lt;&lt;button &quot;_choice3Text1 _choice3Text2&quot; &quot;Dialog&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+ &lt;&lt;set $dialogTarget = _char3&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if _choice4&gt;&gt;
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button _choice4text &quot;Dialog&quot;&gt;&gt;
- &lt;&lt;set $dialogTarget = _choice4&gt;&gt;
+&lt;&lt;button &quot;_choice4Text1 _choice4Text2&quot; &quot;Dialog&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+ &lt;&lt;set $dialogTarget = _char4&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/if&gt;&gt;
 
-&lt;&lt;/if&gt;&gt;
+&lt;span class=&quot;button-1&quot;&gt;
+&lt;&lt;button &quot;_choice5Text1 _choice5Text2&quot; &quot;Dialog&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+ &lt;&lt;set $dialogTarget = _char5&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
 
-&lt;br&gt;&lt;br&gt;</tw-passagedata><tw-passagedata pid="24" name="dialogSet1" tags="" position="652,903" size="100,100">
+&lt;br&gt;&lt;br&gt;</tw-passagedata><tw-passagedata pid="24" name="dialogSet1" tags="" position="649,903" size="100,100">
 &lt;&lt;set $rounds -= 1&gt;&gt;
 &lt;&lt;set _sceneReturn = setup.dialogLeave.default.random()&gt;&gt;
 &lt;&lt;set _moreQuestions = setup.dialogMore.default.random()&gt;&gt;
@@ -3411,14 +3544,16 @@ _text4
 	&lt;img class=&quot;characterImageFit&quot; @src=$dialogImg /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;characterText&quot;&gt;
-&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
 
+&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
 &quot;$answer1&quot;
 &lt;br&gt;&lt;br&gt;
 $emote1
 &lt;br&gt;&lt;br&gt;
 &lt;&lt;switch $action1&gt;&gt;
 	&lt;&lt;case &quot;loseTrust&quot;&gt;&gt;
+	&lt;&lt;loseTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.trust.loss.random()&gt;&gt;
 		&lt;/span&gt;
@@ -3436,6 +3571,7 @@ $emote1
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;gainTrust&quot;&gt;&gt;
 	&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;gainTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.trust.gain.random()&gt;&gt;
 		&lt;/span&gt;
@@ -3453,6 +3589,7 @@ $emote1
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueMagic&quot;&gt;&gt;
 		&lt;&lt;sfsearch&gt;&gt;
+		&lt;&lt;dialogClue&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -3469,6 +3606,7 @@ $emote1
 				&lt;&lt;set $char5MagicDisplay = $char5Magic&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFood&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
 		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
@@ -3486,6 +3624,7 @@ $emote1
 				&lt;&lt;set $char5FoodDisplay = $char5Food&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueAppearance&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
 		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
@@ -3502,7 +3641,26 @@ $emote1
 			&lt;&lt;case &quot;char5&quot;&gt;&gt;
 				&lt;&lt;set $char5AppearanceDisplay = $char5Appearance&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
+	&lt;&lt;case &quot;clueFear&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
+		&lt;span class=&quot;choice&quot;&gt;
+			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
+		&lt;/span&gt;
+		&lt;&lt;switch _char&gt;&gt;
+			&lt;&lt;case &quot;char1&quot;&gt;&gt;
+				&lt;&lt;set $char1FearDisplay = $char1Fear&gt;&gt;
+			&lt;&lt;case &quot;char2&quot;&gt;&gt;
+				&lt;&lt;set $char2FearDisplay = $char2Fear&gt;&gt;
+			&lt;&lt;case &quot;char3&quot;&gt;&gt;
+				&lt;&lt;set $char3FearDisplay = $char3Fear&gt;&gt;
+			&lt;&lt;case &quot;char4&quot;&gt;&gt;
+				&lt;&lt;set $char4FearDisplay = $char4Fear&gt;&gt;
+			&lt;&lt;case &quot;char5&quot;&gt;&gt;
+				&lt;&lt;set $char5FearDisplay = $char5Fear&gt;&gt;
+		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueHabit&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
 		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
@@ -3520,6 +3678,7 @@ $emote1
 				&lt;&lt;set $char5HabitDisplay = $char5Habit&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFamiliar&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
 		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
@@ -3553,7 +3712,7 @@ $emote1
 &lt;&lt;include &quot;dialogEnd&quot;&gt;&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="25" name="scratch" tags="" position="1436,623" size="100,100">&lt;span onmouseover=&quot;playSound()&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="25" name="scratch" tags="" position="1437,623" size="100,100">&lt;span onmouseover=&quot;playSound()&quot;&gt;
 &lt;span onmouseover=&quot;playSound()&quot;&gt;
 &lt;span class=&quot;big-button&quot;&gt;&lt;&lt;button Continue &quot;Dream&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/span&gt;&lt;/span&gt;
 &lt;&lt;else&gt;&gt;
@@ -3802,7 +3961,15 @@ $dialogchoices
   background-image: url(&quot;sidebarBorder.png&quot;);
   background-size: 94% 100%, cover;
   background-repeat: no-repeat;
-}</tw-passagedata><tw-passagedata pid="26" name="arrival" tags="" position="328,267" size="100,100">&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
+}
+
+&lt;&lt;if $charChoiceList.length == 0&gt;&gt;
+	&lt;&lt;set _text = setup.roundEnd[_scene].random()&gt;&gt;
+	&lt;span class=&quot;button-1&quot;&gt;
+	&lt;&lt;button _text $nextScene&gt;&gt;
+ 	&lt;&lt;/button&gt;&gt;
+	&lt;/span&gt;
+</tw-passagedata><tw-passagedata pid="26" name="arrival" tags="" position="328,267" size="100,100">&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
 &lt;&lt;dialogclose&gt;&gt;
 &lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set $rounds = 5&gt;&gt;
@@ -3812,49 +3979,16 @@ $dialogchoices
 
 &lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
 
-&lt;div class=&quot;layoutBorder&quot;&gt;
+
 &lt;div class=&quot;layout&quot;&gt;
 
-&lt;&lt;print setup[_scene].intro1.pluck()&gt;&gt;
-
+&lt;&lt;print setup[_scene].line1.pluck()&gt;&gt; &lt;&lt;print setup[_scene].line2.pluck()&gt;&gt; &lt;&lt;print setup[_scene].line3.pluck()&gt;&gt; &lt;&lt;print setup[_scene].line4.pluck()&gt;&gt;
 &lt;br&gt;&lt;br&gt;
-
-&lt;&lt;print setup[_scene].intro2.pluck()&gt;&gt;
-
-&lt;br&gt;&lt;br&gt;
-&lt;&lt;print setup[_scene].sentence1.pluck()&gt;&gt;
-
-
-&lt;&lt;set _choice1 = $withPlayer.pluck()&gt;&gt;
-&lt;&lt;set _choice1text = setup.characters[_choice1]&gt;&gt;
-&lt;&lt;set _choice2 = $withPlayer.pluck()&gt;&gt;
-&lt;&lt;set _choice2text = setup.characters[_choice2]&gt;&gt;
-&lt;&lt;set _choice3 = $withPlayer.pluck()&gt;&gt;
-&lt;&lt;set _choice3text = setup.characters[_choice3]&gt;&gt;
-&lt;&lt;set _choice4 = $withPlayer.pluck()&gt;&gt;
-&lt;&lt;set _choice4text = setup.characters[_choice4]&gt;&gt;
-&lt;&lt;set _choice5 = $withPlayer.pluck()&gt;&gt;
-&lt;&lt;set _choice5text = setup.characters[_choice5]&gt;&gt;
-&lt;&lt;set _text1 = setup[_scene].ctext1.pluck()&gt;&gt;
-&lt;&lt;set _text2 = setup[_scene].ctext2.pluck()&gt;&gt;
-
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button &quot;_text1 _choice1text and _choice2text&quot; ruins&gt;&gt;
+&lt;&lt;button Continue &quot;arrival1&quot;&gt;&gt;
 &lt;&lt;sf&gt;&gt;
-		&lt;&lt;set $withPlayer1 = _choice1&gt;&gt;
-		&lt;&lt;set $withPlayer2 = _choice2&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
-
-&lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button &quot;_text2 _choice3text, _choice4text and _choice5text&quot; cliffs&gt;&gt;
-&lt;&lt;sf&gt;&gt;
-		&lt;&lt;set $withPlayer1 = _choice3&gt;&gt;
-		&lt;&lt;set $withPlayer2 = _choice4&gt;&gt;
-		&lt;&lt;set $withPlayer3 = _choice5&gt;&gt;
-&lt;&lt;/button&gt;&gt;
-&lt;/span&gt;
-&lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="27" name="Stats" tags="noreturn" position="8,768" size="100,100">
 &lt;&lt;if $playerBoldness &lt; 2&gt;&gt;
 	&lt;&lt;set $playerBoldnessText = &quot;Timid&quot;&gt;&gt;
@@ -3894,33 +4028,22 @@ $dialogchoices
 
 &lt;div class=&quot;layout&quot;&gt;
 
-
-
-&lt;div class=&quot;h2&quot; align=&quot;left&quot;&gt;
-
 &lt;span class=&quot;h1&quot;&gt;
 $playerName
 &lt;/span&gt;
 &lt;br&gt;&lt;br&gt;
 
 &lt;span class=&quot;h3&quot;&gt;
-
 &lt;div class=&quot;layoutBox&quot;&gt;
 _genderText with $playerHair hair, $playerEyes eyes and $playerFamiliarDesc $playerFamiliar familiar.
 &lt;/div&gt;
 
 &lt;br&gt;&lt;br&gt;
-
-&lt;&lt;if $playerClue1&gt;&gt;
-&lt;&lt;print setup.clues.statPage.random()&gt;&gt; $playerClue1&gt;&gt;&lt;br&gt;&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $playerClue2&gt;&gt;
-&lt;&lt;print setup.clues.statPage.random()&gt;&gt; $playerClue2&gt;&gt;&lt;br&gt;&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $playerClue3&gt;&gt;
-&lt;&lt;print setup.clues.statPage.random()&gt;&gt; $playerClue3&gt;&gt;&lt;br&gt;&lt;br&gt;
-&lt;&lt;/if&gt;&gt;
-
+&lt;div class=&quot;layoutBox&quot;
+Discoveries:
+&lt;br&gt;&lt;br&gt;
+&lt;&lt;print $playerClues&gt;&gt;
+&lt;/div&gt;
 &lt;br&gt;&lt;br&gt;
 &lt;div align=&quot;center&quot;&gt;
 	&lt;&lt;showmeter &#39;playerInsight&#39; &#96;$playerInsight / 10&#96;&gt;&gt;
@@ -4110,7 +4233,7 @@ _sentence2...
 &lt;/div&gt;
 &lt;/div&gt;
 
-</tw-passagedata><tw-passagedata pid="30" name="prebus" tags="" position="51,266" size="100,100">&lt;&lt;if $skippedIntro == 1&gt;&gt;
+</tw-passagedata><tw-passagedata pid="30" name="prebus" tags="" position="49,266" size="100,100">&lt;&lt;if $skippedIntro == 1&gt;&gt;
 &lt;&lt;audio &quot;:playing&quot; fadeout&gt;&gt;
 &lt;&lt;playlist &quot;game&quot; loop play&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -4118,12 +4241,12 @@ _sentence2...
 &lt;&lt;dialogclose&gt;&gt;
 
 &lt;&lt;set $introdone = 1&gt;&gt;
-
-&lt;&lt;set $charChoiceList to $withPlayer&gt;&gt;
+&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
+&lt;&lt;set $charChoiceList to Array.from($withPlayer)&gt;&gt;
 &lt;&lt;include &quot;bus&quot;&gt;&gt;
 &lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
-&lt;&lt;set $rounds = 8&gt;&gt;
-</tw-passagedata><tw-passagedata pid="31" name="cliffs" tags="" position="473,381" size="100,100">
+&lt;&lt;set $rounds = 5&gt;&gt;
+</tw-passagedata><tw-passagedata pid="31" name="cliffs" tags="" position="475,382" size="100,100">
 
 &lt;&lt;set $dismiss = 0&gt;&gt;
 &lt;&lt;set $scene = &quot;cliffs&quot;&gt;&gt;
@@ -4159,6 +4282,7 @@ _sentence2...
 &lt;&lt;set _choice3text = setup.characters[_choice1]&gt;&gt;
 
 
+
 &lt;&lt;set _text1 = setup.choiceText.default.random()&gt;&gt;
 &lt;&lt;set _text2 = setup.choiceText.default.random()&gt;&gt;
 &lt;&lt;set _text3 = setup.choiceText.default.random()&gt;&gt;
@@ -4185,7 +4309,8 @@ _sentence2...
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="henge" tags="" position="788,271" size="100,100">&lt;&lt;dialogclose&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="32" name="henge" tags="" position="788,270" size="100,100">&lt;&lt;dialogclose&gt;&gt;
+&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
 &lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
 &lt;&lt;if hasVisited(&quot;henge&quot;) == 0&gt;&gt;
 &lt;&lt;set $rounds = 3&gt;&gt;
@@ -4198,6 +4323,7 @@ $rounds
 &lt;&lt;set $charChoices to Array.from($charChoiceList)&gt;&gt;
 &lt;&lt;set $choiceText to Array.from(setup.choiceText.default)&gt;&gt;
 &lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
+&lt;&lt;set _choices = setup.henge.choices.pluck()&gt;&gt;
 
 &lt;div class=&quot;layout&quot;&gt;
 
@@ -4207,16 +4333,17 @@ $rounds
 &lt;br&gt;&lt;br&gt;
 
 	&lt;span class=&quot;button-1&quot;&gt;
-		&lt;&lt;button _setup.henge.choices.random() &quot;loop&quot;&gt;&gt;
+		&lt;&lt;button _choices &quot;loop&quot;&gt;&gt;
 		&lt;&lt;sf&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/span&gt;
+	
 
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="33" name="loop" tags="" position="915,272" size="100,100">&lt;&lt;dialogclose&gt;&gt;
+&lt;&lt;set $rounds = 5&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="loop" tags="" position="915,271" size="100,100">&lt;&lt;dialogclose&gt;&gt;
+&lt;&lt;set $searched = 0&gt;&gt;
 &lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
 &lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
-&lt;&lt;set $rounds = 3&gt;&gt;
 &lt;&lt;set $scene = &quot;loop&quot;&gt;&gt;
 &lt;&lt;set _scene = &quot;loop&quot;&gt;&gt;
 &lt;&lt;set $nextScene = &quot;loop&quot;&gt;&gt;
@@ -4244,6 +4371,8 @@ $rounds
 	&lt;span class=&quot;button-1&quot;&gt;
 		&lt;&lt;button _explore &quot;explore&quot;&gt;&gt;
 		&lt;&lt;sf&gt;&gt;
+		&lt;&lt;set $rounds -= 1&gt;&gt;		
+		&lt;&lt;set $roundsUsed += 1&gt;&gt;	
 		&lt;&lt;/button&gt;&gt;
 	&lt;/span&gt;
 
@@ -4257,27 +4386,44 @@ $rounds
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
 
-	
+
+&lt;&lt;if $ritualUsed == 0&gt;&gt;
 &lt;/span&gt;
 	&lt;span class=&quot;button-1&quot;&gt;
 		&lt;&lt;button _ritual &quot;preRitual&quot;&gt;&gt;
 		&lt;&lt;sf&gt;&gt;
 		&lt;&lt;/button&gt;&gt;
 	&lt;/span&gt;
-
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="explore" tags="" position="1048,224" size="100,100">&lt;&lt;dialogclose&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="34" name="explore" tags="" position="1048,226" size="100,100">
+&lt;&lt;dialogclose&gt;&gt;
 &lt;&lt;set $groupText = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set $scene = &quot;explore&quot;&gt;&gt;
 &lt;&lt;set _scene = &quot;explore&quot;&gt;&gt;
-&lt;&lt;set $nextScene = &quot;loop&quot;&gt;&gt;
+&lt;&lt;set $nextScene = &quot;explore&quot;&gt;&gt;
 &lt;&lt;set $charChoices to $withPlayer&gt;&gt;
-&lt;&lt;searchChoice&gt;&gt;
 &lt;&lt;exploreChoice&gt;&gt;
 &lt;&lt;set _group = setup.actions.talk.returnChoice.random()&gt;&gt;
 &lt;&lt;set $groupText = setup.actions.talk.returnText.random()&gt;&gt;
+&lt;&lt;set _search = setup.actions.search.choice.random()&gt;&gt;
 
 &lt;div class=&quot;layout&quot;&gt;
+
+&lt;&lt;if $rounds &lt; 1&gt;&gt; 
+	&lt;&lt;set $ritualUsed=0&gt;&gt;
+	&lt;&lt;set _text = setup.roundEnd.search.random()&gt;&gt;
+		&lt;&lt;dialog &#39;Round End&#39; &#39;layoutBorder&#39;&#39;layout&#39;&gt;&gt;
+			_text
+			&lt;&lt;onclose&gt;&gt;
+				&lt;&lt;goto &quot;loop&quot;&gt;&gt;
+				&lt;&lt;set $rounds = 5&gt;&gt;
+				&lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
+		&lt;&lt;/dialog&gt;&gt;
+&lt;&lt;else&gt;&gt;
+
+
+
 
 &lt;&lt;print setup[_scene].scene1.random()&gt;&gt; &lt;&lt;print setup[_scene].scene2.random()&gt;&gt; &lt;&lt;print setup[_scene].scene3.random()&gt;&gt;
 
@@ -4285,28 +4431,33 @@ $rounds
 
 &lt;br&gt;&lt;br&gt;
 
+&lt;&lt;if $searched == 0&gt;&gt;
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button _search&gt;&gt;
-&lt;&lt;sf&gt;&gt;
-&lt;&lt;popup &quot;search&quot;&gt;&gt;
-&lt;&lt;/button&gt;&gt;
+	&lt;&lt;button &quot;Search for clues&quot; &quot;search&quot;&gt;&gt;
+		&lt;&lt;sf&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;exploreChoice&gt;&gt;
 
-	&lt;span class=&quot;button-1&quot;&gt;
-		&lt;&lt;button _explore &quot;explore&quot;&gt;&gt;
-		&lt;&lt;sf&gt;&gt;
-		&lt;&lt;/button&gt;&gt;
-	&lt;/span&gt;
-
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button _group &quot;loop&quot;&gt;&gt;
-&lt;&lt;sf&gt;&gt;
-&lt;&lt;/button&gt;&gt;
+	&lt;&lt;button _explore &quot;explore&quot;&gt;&gt;
+		&lt;&lt;sf&gt;&gt;
+		&lt;&lt;set $roundsUsed += 1&gt;&gt;
+		&lt;&lt;set $searched = 0&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="35" name="preRitual" tags="" position="1176,280" size="100,100">&lt;&lt;dialogclose&gt;&gt;
+&lt;span class=&quot;button-1&quot;&gt;
+	&lt;&lt;button _group &quot;loop&quot;&gt;&gt;
+		&lt;&lt;sf&gt;&gt;
+	&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata><tw-passagedata pid="35" name="preRitual" tags="" position="1174,280" size="100,100">&lt;&lt;set $ritualUsed = 1&gt;&gt;
+&lt;&lt;dialogclose&gt;&gt;
 &lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
 &lt;&lt;set $lastchoice = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set $rounds = 3&gt;&gt;
@@ -4332,15 +4483,15 @@ $rounds
 
 &lt;div class=&quot;layout&quot;&gt;
 
-&lt;&lt;print setup[_scene].intro1.pluck()&gt;&gt;
+&lt;&lt;print setup[_scene].intro1.random()&gt;&gt;
 
 &lt;br&gt;&lt;br&gt;
 
-&lt;&lt;print setup[_scene].intro2.pluck()&gt;&gt;
+&lt;&lt;print setup[_scene].intro2.random()&gt;&gt;
 
 &lt;br&gt;&lt;br&gt;
-&lt;&lt;print setup[_scene].sentence1.pluck()&gt;&gt;
-&lt;&lt;print setup[_scene].sentence2.pluck()&gt;&gt;
+&lt;&lt;print setup[_scene].sentence1.random()&gt;&gt;
+&lt;&lt;print setup[_scene].sentence2.random()&gt;&gt;
 
 &lt;br&gt;&lt;br&gt;
 
@@ -4478,40 +4629,51 @@ There are several other students with you. You&#39;ve never met them before. Sel
 &lt;div class=&quot;layout&quot;&gt;
 
 &lt;&lt;if $ritualAttempt == 1&gt;&gt;
-&lt;&lt;print setup.end.solve.attempt1.random()&gt;&gt;
+&lt;&lt;set _endRitual = setup.end.solve.attempt1.random()&gt;&gt;
 &lt;&lt;else&gt;&gt;
-&lt;&lt;print setup.end.solve.attempts.random()&gt;&gt;
+&lt;&lt;set _endRitual = setup.end.solve.attempts.random()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $talkWin == 1&gt;&gt;
-&lt;&lt;print setup.end.battle.talkWin.random()&gt;&gt;
+&lt;&lt;set $endTalk = setup.end.battle.talkWin.random()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $talkLose == 1&gt;&gt;
-&lt;&lt;print setup.end.battle.talkLose.random()&gt;&gt;
+&lt;&lt;set $endTalk = setup.end.battle.talkLose.random()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;switch $roundsUsed&gt;&gt;
 &lt;&lt;case &lt;30&gt;&gt;
-	&lt;&lt;print setup.end.rounds.low.random()&gt;&gt;
+	&lt;&lt;set _endRounds setup.end.rounds.low.random()&gt;&gt;
 &lt;&lt;case &lt;40&gt;&gt;
-	&lt;&lt;print setup.end.rounds.lowmid.random()&gt;&gt;
+	&lt;&lt;_endRounds setup.end.rounds.lowmid.random()&gt;&gt;
 &lt;&lt;case &lt;50&gt;&gt;
-	&lt;&lt;print setup.end.rounds.mid.random()&gt;&gt;
+	&lt;&lt;_endRounds setup.end.rounds.mid.random()&gt;&gt;
 &lt;&lt;case &lt;60&gt;&gt;
-	&lt;&lt;print setup.end.rounds.highmid.random()&gt;&gt;
+	&lt;&lt;_endRounds setup.end.rounds.highmid.random()&gt;&gt;
 &lt;&lt;case &gt;59&gt;&gt;
-	&lt;&lt;print setup.end.rounds.high.random()&gt;&gt;
+	&lt;&lt;_endRounds setup.end.rounds.high.random()&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
 &lt;&lt;switch $playerTrustSum&gt;&gt;
 &lt;&lt;case &lt;20&gt;&gt;
-	&lt;&lt;print setup.end.trust.low.random()&gt;&gt;
+	&lt;&lt;_endTrust setup.end.trust.low.random()&gt;&gt;
 &lt;&lt;case &lt;40 &gt;&gt;
-	&lt;&lt;print setup.end.trust.mid.random()&gt;&gt;
+	&lt;&lt;_endTrust setup.end.trust.mid.random()&gt;&gt;
 &lt;&lt;case &gt;39&gt;&gt;
-	&lt;&lt;print setup.end.trust.high.random()&gt;&gt;
+	&lt;&lt;_endTrust setup.end.trust.high.random()&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;set endText = _endRitual _endTalk _endRounds _endTrust&gt;&gt;
+
+&lt;&lt;run $playerLog.push(_endText)&gt;&gt;
+
+&lt;span class=&quot;button-1&quot;&gt;
+&lt;&lt;button Main Menu &quot;Main Menu&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+ &lt;&lt;set $gameDone = 1&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="dialog2" tags="" position="524,1014" size="100,100">&lt;&lt;set _char = $dialogTarget&gt;&gt;
 &lt;&lt;set _dialogName = setup[_char].fullname&gt;&gt;
 &lt;&lt;switch _char&gt;&gt;
@@ -4557,7 +4719,7 @@ There are several other students with you. You&#39;ve never met them before. Sel
 	&lt;&lt;include &quot;dialog3&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="41" name="dialog3" tags="" position="529,1133" size="100,100">
+</tw-passagedata><tw-passagedata pid="41" name="dialog3" tags="" position="528,1134" size="100,100">
 
 &lt;&lt;set _char = $dialogTarget&gt;&gt;
 &lt;&lt;set _text = setup[_char].intro.random()&gt;&gt;
@@ -4577,8 +4739,16 @@ There are several other students with you. You&#39;ve never met them before. Sel
 		&lt;&lt;set _charTrust = $char5Trust&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
-&lt;&lt;set _choice1 = $dialogChoices.pluck()&gt;&gt;
+&lt;&lt;set $dismiss = 0&gt;&gt;
+&lt;&lt;set _scene = $scene&gt;&gt;
+&lt;&lt;set $dialogList to Array.from(setup[_scene].qlist)&gt;&gt;
+
+
+&lt;&lt;set $choiceList = [&quot;sQlist&quot;, &quot;gtQlist&quot;, &quot;ltQlist&quot;, &quot;rQlist&quot;]&gt;&gt;
+&lt;&lt;set _type = $choiceList.pluck()&gt;&gt;
+&lt;&lt;set _choice1 = setup[_scene][_type].random()&gt;&gt;
 &lt;&lt;set _choice1text = setup.questions[_choice1].random()&gt;&gt;
+
 &lt;&lt;if _charTrust &lt; 4 &gt;&gt;
 		&lt;&lt;set $answer1 = setup[_char].answerLow[_choice1].random()&gt;&gt;
 		&lt;&lt;set $emote1 = setup[_char].emoteLow[_choice1].random()&gt;&gt;
@@ -4586,21 +4756,23 @@ There are several other students with you. You&#39;ve never met them before. Sel
 		&lt;&lt;set $last = 1&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if _charTrust &lt; 8&gt;&gt;
-		&lt;&lt;set $answer1 = setup[_char].answerLow[_choice1].random()&gt;&gt;
-		&lt;&lt;set $emote1 = setup[_char].emoteLow[_choice1].random()&gt;&gt;
-		&lt;&lt;set $action1 = setup[_char].actionLow[_choice1].random()&gt;&gt;
-		&lt;&lt;set $last = 2&gt;&gt;
+		&lt;&lt;set $answer1 = setup[_char].answerMid[_choice1].random()&gt;&gt;
+		&lt;&lt;set $emote1 = setup[_char].emoteMid[_choice1].random()&gt;&gt;
+		&lt;&lt;set $action1 = setup[_char].actionMid[_choice1].random()&gt;&gt;
+		&lt;&lt;set $last = 1&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if _charTrust &gt; 6&gt;&gt;
-		&lt;&lt;set $answer1 = setup[_char].answerLow[_choice1].random()&gt;&gt;
-		&lt;&lt;set $emote1 = setup[_char].emoteLow[_choice1].random()&gt;&gt;
-		&lt;&lt;set $action1 = setup[_char].actionLow[_choice1].random()&gt;&gt;
+		&lt;&lt;set $answer1 = setup[_char].answerHigh[_choice1].random()&gt;&gt;
+		&lt;&lt;set $emote1 = setup[_char].emoteHigh[_choice1].random()&gt;&gt;
+		&lt;&lt;set $action1 = setup[_char].actionHigh[_choice1].random()&gt;&gt;
 		&lt;&lt;set $last = 1&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $dialogChoices.length &gt; 0&gt;&gt;
-&lt;&lt;set _choice2 = $dialogChoices.pluck()&gt;&gt;
+&lt;&lt;if $choiceList&gt;&gt;
+&lt;&lt;set _type = $choiceList.pluck()&gt;&gt;
+&lt;&lt;set _choice2 = setup[_scene][_type].random()&gt;&gt;
 &lt;&lt;set _choice2text = setup.questions[_choice2].random()&gt;&gt;
+
 &lt;&lt;if _charTrust &lt; 4 &gt;&gt;
 		&lt;&lt;set $answer2 = setup[_char].answerLow[_choice2].random()&gt;&gt;
 		&lt;&lt;set $emote2 = setup[_char].emoteLow[_choice2].random()&gt;&gt;
@@ -4608,22 +4780,25 @@ There are several other students with you. You&#39;ve never met them before. Sel
 		&lt;&lt;set $last = 2&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if _charTrust &lt; 8&gt;&gt;
-		&lt;&lt;set $answer2 = setup[_char].answerLow[_choice2].random()&gt;&gt;
-		&lt;&lt;set $emote2 = setup[_char].emoteLow[_choice2].random()&gt;&gt;
-		&lt;&lt;set $action2 = setup[_char].actionLow[_choice2].random()&gt;&gt;
+		&lt;&lt;set $answer2 = setup[_char].answerMid[_choice2].random()&gt;&gt;
+		&lt;&lt;set $emote2 = setup[_char].emoteMid[_choice2].random()&gt;&gt;
+		&lt;&lt;set $action2 = setup[_char].actionMid[_choice2].random()&gt;&gt;
 		&lt;&lt;set $last = 2&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if _charTrust &gt; 6&gt;&gt;
-		&lt;&lt;set $answer2 = setup[_char].answerLow[_choice2].random()&gt;&gt;
-		&lt;&lt;set $emote2 = setup[_char].emoteLow[_choice2].random()&gt;&gt;
-		&lt;&lt;set $action2 = setup[_char].actionLow[_choice2].random()&gt;&gt;
+		&lt;&lt;set $answer2 = setup[_char].answerHigh[_choice2].random()&gt;&gt;
+		&lt;&lt;set $emote2 = setup[_char].emoteHigh[_choice2].random()&gt;&gt;
+		&lt;&lt;set $action2 = setup[_char].actionHigh[_choice2].random()&gt;&gt;
 		&lt;&lt;set $last = 2&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $dialogChoices.length &gt; 0 &gt;&gt;
-&lt;&lt;set _choice3 = $dialogChoices.pluck()&gt;&gt;
+&lt;&lt;if $choiceList&gt;&gt;
+&lt;&lt;set $choiceList = [&quot;sQlist&quot;, &quot;gtQlist&quot;, &quot;ltQlist&quot;, &quot;rQlist&quot;]&gt;&gt;
+&lt;&lt;set _type = $choiceList.pluck()&gt;&gt;
+&lt;&lt;set _choice3 = setup[_scene][_type].random()&gt;&gt;
 &lt;&lt;set _choice3text = setup.questions[_choice3].random()&gt;&gt;
+
 &lt;&lt;if _charTrust &lt; 4 &gt;&gt;
 		&lt;&lt;set $answer3 = setup[_char].answerLow[_choice3].random()&gt;&gt;
 		&lt;&lt;set $emote3 = setup[_char].emoteLow[_choice3].random()&gt;&gt;
@@ -4631,22 +4806,25 @@ There are several other students with you. You&#39;ve never met them before. Sel
 		&lt;&lt;set $last = 3&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if _charTrust &lt; 8&gt;&gt;
-		&lt;&lt;set $answer3 = setup[_char].answerLow[_choice3].random()&gt;&gt;
-		&lt;&lt;set $emote3 = setup[_char].emoteLow[_choice3].random()&gt;&gt;
-		&lt;&lt;set $action3 = setup[_char].actionLow[_choice3].random()&gt;&gt;
-		&lt;&lt;set $last = 2&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if _charTrust &gt; 6&gt;&gt;
-		&lt;&lt;set $answer3 = setup[_char].answerLow[_choice3].random()&gt;&gt;
-		&lt;&lt;set $emote3 = setup[_char].emoteLow[_choice3].random()&gt;&gt;
-		&lt;&lt;set $action3 = setup[_char].actionLow[_choice3].random()&gt;&gt;
+		&lt;&lt;set $answer3 = setup[_char].answerMid[_choice3].random()&gt;&gt;
+		&lt;&lt;set $emote3 = setup[_char].emoteMid[_choice3].random()&gt;&gt;
+		&lt;&lt;set $action3 = setup[_char].actionMid[_choice3].random()&gt;&gt;
 		&lt;&lt;set $last = 3&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+&lt;&lt;if _charTrust &gt; 6&gt;&gt;
+		&lt;&lt;set $answer3 = setup[_char].answerHigh[_choice3].random()&gt;&gt;
+		&lt;&lt;set $emote3 = setup[_char].emoteHigh[_choice3].random()&gt;&gt;
+		&lt;&lt;set $action3 = setup[_char].actionHigh[_choice3].random()&gt;&gt;
+		&lt;&lt;set $last = 3&gt;&gt;
+&lt;&lt;/if&gt;&gt;	
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;if $dialogChoices.length &gt; 0&gt;&gt;
-&lt;&lt;set _choice4 = $dialogChoices.pluck()&gt;&gt;
+&lt;&lt;if $choiceList&gt;&gt;
+&lt;&lt;set $choiceList = [&quot;sQlist&quot;, &quot;gtQlist&quot;, &quot;ltQlist&quot;, &quot;rQlist&quot;]&gt;&gt;
+&lt;&lt;set _type = $choiceList.pluck()&gt;&gt;
+&lt;&lt;set _choice4 = setup[_scene][_type].random()&gt;&gt;
 &lt;&lt;set _choice4text = setup.questions[_choice4].random()&gt;&gt;
+
 &lt;&lt;if _charTrust &lt; 4 &gt;&gt;
 		&lt;&lt;set $answer4 = setup[_char].answerLow[_choice4].random()&gt;&gt;
 		&lt;&lt;set $emote4 = setup[_char].emoteLow[_choice4].random()&gt;&gt;
@@ -4654,17 +4832,17 @@ There are several other students with you. You&#39;ve never met them before. Sel
 		&lt;&lt;set $last = 4&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if _charTrust &lt; 8&gt;&gt;
-		&lt;&lt;set $answer4 = setup[_char].answerLow[_choice4].random()&gt;&gt;
-		&lt;&lt;set $emote4 = setup[_char].emoteLow[_choice4].random()&gt;&gt;
-		&lt;&lt;set $action4 = setup[_char].actionLow[_choice4].random()&gt;&gt;
+		&lt;&lt;set $answer4 = setup[_char].answerMid[_choice4].random()&gt;&gt;
+		&lt;&lt;set $emote4 = setup[_char].emoteMid[_choice4].random()&gt;&gt;
+		&lt;&lt;set $action4 = setup[_char].actionMid[_choice4].random()&gt;&gt;
 		&lt;&lt;set $last = 4&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;if _charTrust &gt; 6&gt;&gt;
-		&lt;&lt;set $answer4 = setup[_char].answerLow[_choice4].random()&gt;&gt;
-		&lt;&lt;set $emote4 = setup[_char].emoteLow[_choice4].random()&gt;&gt;
-		&lt;&lt;set $action4 = setup[_char].actionLow[_choice4].random()&gt;&gt;
+		&lt;&lt;set $answer4 = setup[_char].answerHigh[_choice4].random()&gt;&gt;
+		&lt;&lt;set $emote4 = setup[_char].emoteHigh[_choice4].random()&gt;&gt;
+		&lt;&lt;set $action4 = setup[_char].actionHigh[_choice4].random()&gt;&gt;
 		&lt;&lt;set $last = 4&gt;&gt;
-&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;	
 &lt;&lt;/if&gt;&gt;
 
 &lt;br&gt;&lt;br&gt;
@@ -4720,7 +4898,6 @@ _text
 
 </tw-passagedata><tw-passagedata pid="42" name="dialogSet3" tags="" position="652,1130" size="100,100">
 &lt;&lt;set $rounds -= 1&gt;&gt;
-ROUNDS: $rounds
 &lt;&lt;set _sceneReturn = setup.dialogLeave.default.random()&gt;&gt;
 &lt;&lt;set _moreQuestions = setup.dialogMore.default.random()&gt;&gt;
 
@@ -4745,15 +4922,16 @@ ROUNDS: $rounds
 	&lt;img class=&quot;characterImageFit&quot; @src=$dialogImg /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;characterText&quot;&gt;
-&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
-&lt;/div&gt;
 
+&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
 &quot;$answer3&quot;
 &lt;br&gt;&lt;br&gt;
 $emote3
 &lt;br&gt;&lt;br&gt;
 &lt;&lt;switch $action3&gt;&gt;
 	&lt;&lt;case &quot;loseTrust&quot;&gt;&gt;
+	&lt;&lt;loseTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.trust.loss.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4770,6 +4948,8 @@ $emote3
 				&lt;&lt;set $char5Trust -= 1&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;gainTrust&quot;&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;gainTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.trust.gain.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4786,6 +4966,8 @@ $emote3
 				&lt;&lt;set $char5Trust += 1&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueMagic&quot;&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
+		&lt;&lt;dialogClue&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4802,6 +4984,8 @@ $emote3
 				&lt;&lt;set $char5MagicDisplay = $char5Magic&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFood&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4818,6 +5002,8 @@ $emote3
 				&lt;&lt;set $char5FoodDisplay = $char5Food&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueAppearance&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4833,7 +5019,27 @@ $emote3
 			&lt;&lt;case &quot;char5&quot;&gt;&gt;
 				&lt;&lt;set $char5AppearanceDisplay = $char5Appearance&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
+	&lt;&lt;case &quot;clueFear&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
+		&lt;span class=&quot;choice&quot;&gt;
+			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
+		&lt;/span&gt;
+		&lt;&lt;switch _char&gt;&gt;
+			&lt;&lt;case &quot;char1&quot;&gt;&gt;
+				&lt;&lt;set $char1FearDisplay = $char1Fear&gt;&gt;
+			&lt;&lt;case &quot;char2&quot;&gt;&gt;
+				&lt;&lt;set $char2FearDisplay = $char2Fear&gt;&gt;
+			&lt;&lt;case &quot;char3&quot;&gt;&gt;
+				&lt;&lt;set $char3FearDisplay = $char3Fear&gt;&gt;
+			&lt;&lt;case &quot;char4&quot;&gt;&gt;
+				&lt;&lt;set $char4FearDisplay = $char4Fear&gt;&gt;
+			&lt;&lt;case &quot;char5&quot;&gt;&gt;
+				&lt;&lt;set $char5FearDisplay = $char5Fear&gt;&gt;
+		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueHabit&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4850,6 +5056,8 @@ $emote3
 				&lt;&lt;set $char5HabitDisplay = $char5Habit&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFamiliar&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4874,13 +5082,16 @@ $emote3
 			&lt;&lt;case &quot;char5&quot;&gt;&gt;
 				&lt;&lt;set $char5FamiliarDisplay = $char5Familiar&gt;&gt;
 				&lt;&lt;set $char5FamiliarDescDisplay = $char5FamiliarDesc&gt;&gt;
+				    
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;include &quot;dialogEnd&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="dialogSet2" tags="" position="653,1012" size="100,100">
+&lt;&lt;include &quot;dialogEnd&quot;&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="43" name="dialogSet2" tags="" position="653,1012" size="100,100">
 &lt;&lt;set $rounds -= 1&gt;&gt;
-ROUNDS: $rounds
 &lt;&lt;set _sceneReturn = setup.dialogLeave.default.random()&gt;&gt;
 &lt;&lt;set _moreQuestions = setup.dialogMore.default.random()&gt;&gt;
 
@@ -4905,15 +5116,16 @@ ROUNDS: $rounds
 	&lt;img class=&quot;characterImageFit&quot; @src=$dialogImg /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;characterText&quot;&gt;
-&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
-&lt;/div&gt;
 
+&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
 &quot;$answer2&quot;
 &lt;br&gt;&lt;br&gt;
 $emote2
 &lt;br&gt;&lt;br&gt;
 &lt;&lt;switch $action2&gt;&gt;
 	&lt;&lt;case &quot;loseTrust&quot;&gt;&gt;
+	&lt;&lt;loseTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.trust.loss.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4930,6 +5142,8 @@ $emote2
 				&lt;&lt;set $char5Trust -= 1&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;gainTrust&quot;&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;gainTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.trust.gain.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4946,6 +5160,8 @@ $emote2
 				&lt;&lt;set $char5Trust += 1&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueMagic&quot;&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
+		&lt;&lt;dialogClue&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4962,6 +5178,8 @@ $emote2
 				&lt;&lt;set $char5MagicDisplay = $char5Magic&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFood&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4978,6 +5196,8 @@ $emote2
 				&lt;&lt;set $char5FoodDisplay = $char5Food&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueAppearance&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -4993,7 +5213,27 @@ $emote2
 			&lt;&lt;case &quot;char5&quot;&gt;&gt;
 				&lt;&lt;set $char5AppearanceDisplay = $char5Appearance&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
+	&lt;&lt;case &quot;clueFear&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
+		&lt;span class=&quot;choice&quot;&gt;
+			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
+		&lt;/span&gt;
+		&lt;&lt;switch _char&gt;&gt;
+			&lt;&lt;case &quot;char1&quot;&gt;&gt;
+				&lt;&lt;set $char1FearDisplay = $char1Fear&gt;&gt;
+			&lt;&lt;case &quot;char2&quot;&gt;&gt;
+				&lt;&lt;set $char2FearDisplay = $char2Fear&gt;&gt;
+			&lt;&lt;case &quot;char3&quot;&gt;&gt;
+				&lt;&lt;set $char3FearDisplay = $char3Fear&gt;&gt;
+			&lt;&lt;case &quot;char4&quot;&gt;&gt;
+				&lt;&lt;set $char4FearDisplay = $char4Fear&gt;&gt;
+			&lt;&lt;case &quot;char5&quot;&gt;&gt;
+				&lt;&lt;set $char5FearDisplay = $char5Fear&gt;&gt;
+		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueHabit&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5010,6 +5250,8 @@ $emote2
 				&lt;&lt;set $char5HabitDisplay = $char5Habit&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFamiliar&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5034,11 +5276,15 @@ $emote2
 			&lt;&lt;case &quot;char5&quot;&gt;&gt;
 				&lt;&lt;set $char5FamiliarDisplay = $char5Familiar&gt;&gt;
 				&lt;&lt;set $char5FamiliarDescDisplay = $char5FamiliarDesc&gt;&gt;
+				    
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;include &quot;dialogEnd&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="dialogEnd" tags="" position="778,902" size="100,100">&lt;&lt;set _sceneReturn = setup.dialogLeave.default.random()&gt;&gt;
+&lt;&lt;include &quot;dialogEnd&quot;&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="dialogEnd" tags="" position="779,902" size="100,100">&lt;&lt;set _sceneReturn = setup.dialogLeave.default.random()&gt;&gt;
 &lt;&lt;set _moreQuestions = setup.dialogMore.default.random()&gt;&gt;
 
 &lt;&lt;if $dismiss == 0&gt;&gt;
@@ -5056,7 +5302,9 @@ $emote2
 	&lt;/div&gt;
 
 
-&lt;&lt;set $dismiss = 0&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="view" tags="" position="175,374" size="100,100">&lt;&lt;set $withPlayer = [&quot;&quot;]&gt;&gt;
+&lt;&lt;set $dismiss = 0&gt;&gt;
+&lt;&lt;set $rounds -= 1&gt;&gt;		
+&lt;&lt;set $roundsUsed += 1&gt;&gt;	</tw-passagedata><tw-passagedata pid="45" name="view" tags="" position="175,375" size="100,100">&lt;&lt;set $withPlayer = [&quot;&quot;]&gt;&gt;
 &lt;&lt;set $rounds -= 1&gt;&gt;
 &lt;&lt;set _scene = $scene&gt;&gt;
 &lt;&lt;set _nextScene = $nextScene&gt;&gt;
@@ -5101,14 +5349,16 @@ _text1 _text2 _text3
 &lt;/span&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;/div&gt;
-</tw-passagedata><tw-passagedata pid="46" name="search" tags="" position="1045,337" size="100,100">&lt;&lt;set $rounds -= 1&gt;&gt;
+</tw-passagedata><tw-passagedata pid="46" name="search" tags="" position="1049,335" size="100,100">&lt;&lt;set $roundsUsed += 1&gt;&gt;
+
 
 &lt;div class=&quot;layoutBorder&quot;&gt;
 &lt;div class=&quot;layout&quot;&gt;
 
 
-&lt;&lt;set _scene = &quot;loop&quot;&gt;&gt;
-&lt;&lt;set _nextScene = &quot;loop&quot;&gt;&gt;
+&lt;&lt;set $scene = &quot;search&quot;&gt;&gt;
+&lt;&lt;set _scene = &quot;search&quot;&gt;&gt;
+&lt;&lt;set $nextScene = &quot;explore&quot;&gt;&gt;
 &lt;&lt;set _clue = setup.clues.items.types.random()&gt;&gt;
 &lt;&lt;set _clueText = setup.clues.items[_clue].random()&gt;&gt;
 &lt;&lt;set _search = setup.actions.search.search.random()&gt;&gt;
@@ -5118,14 +5368,14 @@ _text1 _text2 _text3
 &lt;&lt;set _search = setup.actions.search.choice.random()&gt;&gt;
 
 &lt;&lt;if $rounds &lt; 1&gt;&gt; 
-	&lt;&lt;set _text = setup.roundEnd[_scene].random()&gt;&gt;
+	&lt;&lt;set $ritualUsed=0&gt;&gt;
+	&lt;&lt;set _text = setup.roundEnd.search.random()&gt;&gt;
 		&lt;&lt;dialog &#39;Round End&#39; &#39;layoutBorder&#39;&#39;layout&#39;&gt;&gt;
 			_text
 			&lt;&lt;onclose&gt;&gt;
 				&lt;&lt;goto $nextScene&gt;&gt;
-				&lt;&lt;set $rounds = 0&gt;&gt;
+				&lt;&lt;set $rounds = 5&gt;&gt;
 				&lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
-				&lt;&lt;set $charChoiceList to Array.from(setup[_nextScene].clist)&gt;&gt;
 		&lt;&lt;/dialog&gt;&gt;
 &lt;&lt;else&gt;&gt;
 
@@ -5135,16 +5385,10 @@ _search
 &lt;&lt;switch _randomEvent&gt;&gt;
 	&lt;&lt;case 10&gt;&gt;
 	&lt;&lt;sfsearch&gt;&gt;
-			&lt;span class=&quot;choice&quot;&gt;
-		_discovery _clueText.
-		&lt;/span&gt;
-		&lt;&lt;run $playerClues.push(_clueText)&gt;&gt;
+		&lt;&lt;searchClue&gt;&gt;
 	&lt;&lt;case 9&gt;&gt;
 	&lt;&lt;sfsearch&gt;&gt;
-			&lt;span class=&quot;choice&quot;&gt;
-		_discovery _clueText.
-		&lt;/span&gt;
-		&lt;&lt;run $playerClues.push(_clueText)&gt;&gt;
+		&lt;&lt;searchClue&gt;&gt;
 	&lt;&lt;case 8&gt;&gt;
 		_fail
 	&lt;&lt;case 7&gt;&gt;
@@ -5164,22 +5408,19 @@ _search
 &lt;&lt;/switch&gt;&gt;
 &lt;br&gt;&lt;br&gt;
 &lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button _search&gt;&gt;
-&lt;&lt;dialogclose&gt;&gt;
-&lt;&lt;popup &quot;search&quot;&gt;&gt;
-&lt;&lt;/button&gt;&gt;
-&lt;/span&gt;
-
-&lt;span class=&quot;button-1&quot;&gt;
-&lt;&lt;button Done&gt;&gt;
+&lt;&lt;button Done &quot;explore&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
 &lt;&lt;dialogclose&gt;&gt;
 &lt;&lt;/button&gt;&gt;
 &lt;/span&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="47" name="dialogSet4" tags="" position="653,1247" size="100,100">
+&lt;/div&gt;
+&lt;&lt;set $searched = 1&gt;&gt;
+&lt;&lt;set $rounds -= 1&gt;&gt;		
+&lt;&lt;set $roundsUsed += 1&gt;&gt;		
+</tw-passagedata><tw-passagedata pid="47" name="dialogSet4" tags="" position="653,1247" size="100,100">
 &lt;&lt;set $rounds -= 1&gt;&gt;
-ROUNDS: $rounds
 &lt;&lt;set _sceneReturn = setup.dialogLeave.default.random()&gt;&gt;
 &lt;&lt;set _moreQuestions = setup.dialogMore.default.random()&gt;&gt;
 
@@ -5204,15 +5445,16 @@ ROUNDS: $rounds
 	&lt;img class=&quot;characterImageFit&quot; @src=$dialogImg /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;characterText&quot;&gt;
-&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
-&lt;/div&gt;
 
+&lt;span class=&quot;h1&quot; align=&quot;center&quot;&gt;_dialogName&lt;/span&gt;
+&lt;br&gt;&lt;br&gt;
 &quot;$answer4&quot;
 &lt;br&gt;&lt;br&gt;
 $emote4
 &lt;br&gt;&lt;br&gt;
 &lt;&lt;switch $action4&gt;&gt;
 	&lt;&lt;case &quot;loseTrust&quot;&gt;&gt;
+	&lt;&lt;loseTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.trust.loss.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5229,8 +5471,10 @@ $emote4
 				&lt;&lt;set $char5Trust -= 1&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;gainTrust&quot;&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;gainTrustPopup&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
-			&lt;&lt;print setup.trust.loss.random()&gt;&gt;
+			&lt;&lt;print setup.trust.gain.random()&gt;&gt;
 		&lt;/span&gt;
 		&lt;&lt;switch _char&gt;&gt;
 			&lt;&lt;case &quot;char1&quot;&gt;&gt;
@@ -5245,6 +5489,8 @@ $emote4
 				&lt;&lt;set $char5Trust += 1&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueMagic&quot;&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
+		&lt;&lt;dialogClue&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5261,6 +5507,8 @@ $emote4
 				&lt;&lt;set $char5MagicDisplay = $char5Magic&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFood&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5277,6 +5525,8 @@ $emote4
 				&lt;&lt;set $char5FoodDisplay = $char5Food&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueAppearance&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5292,7 +5542,27 @@ $emote4
 			&lt;&lt;case &quot;char5&quot;&gt;&gt;
 				&lt;&lt;set $char5AppearanceDisplay = $char5Appearance&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
+	&lt;&lt;case &quot;clueFear&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
+		&lt;span class=&quot;choice&quot;&gt;
+			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
+		&lt;/span&gt;
+		&lt;&lt;switch _char&gt;&gt;
+			&lt;&lt;case &quot;char1&quot;&gt;&gt;
+				&lt;&lt;set $char1FearDisplay = $char1Fear&gt;&gt;
+			&lt;&lt;case &quot;char2&quot;&gt;&gt;
+				&lt;&lt;set $char2FearDisplay = $char2Fear&gt;&gt;
+			&lt;&lt;case &quot;char3&quot;&gt;&gt;
+				&lt;&lt;set $char3FearDisplay = $char3Fear&gt;&gt;
+			&lt;&lt;case &quot;char4&quot;&gt;&gt;
+				&lt;&lt;set $char4FearDisplay = $char4Fear&gt;&gt;
+			&lt;&lt;case &quot;char5&quot;&gt;&gt;
+				&lt;&lt;set $char5FearDisplay = $char5Fear&gt;&gt;
+		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueHabit&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5309,6 +5579,8 @@ $emote4
 				&lt;&lt;set $char5HabitDisplay = $char5Habit&gt;&gt;
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;case &quot;clueFamiliar&quot;&gt;&gt;
+			&lt;&lt;dialogClue&gt;&gt;
+		&lt;&lt;sfsearch&gt;&gt;
 		&lt;span class=&quot;choice&quot;&gt;
 			&lt;&lt;print setup.clues.convo.random()&gt;&gt;
 		&lt;/span&gt;
@@ -5333,11 +5605,15 @@ $emote4
 			&lt;&lt;case &quot;char5&quot;&gt;&gt;
 				&lt;&lt;set $char5FamiliarDisplay = $char5Familiar&gt;&gt;
 				&lt;&lt;set $char5FamiliarDescDisplay = $char5FamiliarDesc&gt;&gt;
+				    
 		&lt;&lt;/switch&gt;&gt;
 	&lt;&lt;/switch&gt;&gt;
 
 
-&lt;&lt;include &quot;dialogEnd&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="widgets" tags="widget" position="1283,479.5" size="100,100">&lt;&lt;widget &quot;sf&quot;&gt;&gt;
+&lt;&lt;include &quot;dialogEnd&quot;&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="48" name="widgets" tags="widget" position="1281,480.5" size="100,100">&lt;&lt;widget &quot;sf&quot;&gt;&gt;
 &lt;&lt;set _click = setup.audio.click.random()&gt;&gt;
 &lt;&lt;audio _click play&gt;&gt;
 &lt;&lt;/widget&gt;&gt;
@@ -5355,44 +5631,129 @@ $emote4
 	&lt;&lt;set _explore = setup.actions.explore.choice.random()&gt;&gt;
 &lt;&lt;/widget&gt;&gt;
 
-&lt;&lt;widget &quot;randomClue&quot;&gt;&gt;
+
+
+&lt;&lt;widget &quot;searchClue&quot;&gt;&gt;
 &lt;&lt;sfsearch&gt;&gt;
 	&lt;&lt;set _clue = setup.clues.items.types.random()&gt;&gt;
 	&lt;&lt;set _clueText = setup.clues.items[_clue].random()&gt;&gt;
-	&lt;span class=&quot;choice&quot;&gt;
-	&lt;br&gt;&lt;br&gt;
-	_clueText
-	&lt;/span&gt;
+	&lt;&lt;set _discovery = setup.actions.search.success.random()&gt;&gt;
+	&lt;&lt;dialog &#39;searchSuccess &#39;layout&#39;&gt;&gt;
+	&lt;div class=&quot;layout&quot;&gt;
+		&lt;span class=&quot;clue&quot;&gt;
+		_discovery _clueText
+		&lt;/span&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;span class=&quot;button-1&quot;&gt;
+		&lt;&lt;button Done &quot;explore&quot;&gt;&gt;&lt;&lt;/button&gt;&gt;
+		&lt;/span&gt;
+		&lt;/div&gt;
+		&lt;&lt;onclose&gt;&gt;
+			&lt;&lt;goto $nextScene&gt;&gt;
+			&lt;&lt;set $rounds +=1 &gt;&gt;
+	&lt;&lt;/dialog&gt;&gt;		
 	&lt;&lt;run $playerClues.push(_clueText)&gt;&gt;
 &lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;gainInsight&quot;&gt;&gt;
-&lt;&lt;sfsearch&gt;&gt;
-	&lt;span class=&quot;choice&quot;&gt;
-	&lt;br&gt;&lt;br&gt;
-	&lt;&lt;print setup.events.gainInsight.random()&gt;&gt;
-	&lt;/span&gt;
+	&lt;&lt;sfsearch&gt;&gt;
 	&lt;&lt;set $playerInsight += 1&gt;&gt;
+	&lt;&lt;dialog &#39;Insight&#39; &#39;layout&#39;&gt;&gt;
+	&lt;div class=&quot;layout&quot;&gt;
+		&lt;span class=&quot;skill&quot;&gt;
+	&lt;&lt;print setup.events.insightBuff.random()&gt;&gt;
+		&lt;/span&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;span class=&quot;button-1&quot;&gt;
+		&lt;&lt;button Done&gt;&gt;&lt;&lt;/button&gt;&gt;
+		&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;&lt;/dialog&gt;&gt;		
 &lt;&lt;/widget&gt;&gt;
 
+
 &lt;&lt;widget &quot;exploreClue&quot;&gt;&gt;
-&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
 	&lt;&lt;set _clue = setup.clues.types.random()&gt;&gt;
 	&lt;&lt;set _clueText1 = setup.events.clueFromExplore.random()&gt;&gt;
 	&lt;&lt;set _clueText2 = setup.clues.observations[_clue].random()&gt;&gt;
 	&lt;&lt;run $playerClues.push(_clueText2)&gt;&gt;
-	&lt;br&gt;&lt;br&gt;
-	&lt;span class=&quot;choice&quot;&gt;_clueText1 _clueText2&lt;/span&gt;
+	&lt;&lt;dialog &#39;Clue&#39; &#39;layout&#39;&gt;&gt;
+	&lt;div class=&quot;layout&quot;&gt;
+		&lt;span class=&quot;clue&quot;&gt;
+	 	_clueText1 _clueText2
+		&lt;/span&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;span class=&quot;button-1&quot;&gt;
+		&lt;&lt;button Done&gt;&gt;&lt;&lt;/button&gt;&gt;
+		&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;&lt;/dialog&gt;&gt;		
 &lt;&lt;/widget&gt;&gt;
 
+&lt;&lt;widget &quot;dialogClue&quot;&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;dialog &#39;Clue&#39; &#39;layout&#39;&gt;&gt;
+	&lt;div class=&quot;layout&quot;&gt;
+		&lt;span class=&quot;clue&quot;&gt;
+		You have learned a new secret about $dialogTarget!
+		&lt;/span&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;span class=&quot;button-1&quot;&gt;
+		&lt;&lt;button Done&gt;&gt;&lt;&lt;/button&gt;&gt;
+		&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;&lt;/dialog&gt;&gt;		
+&lt;&lt;/widget&gt;&gt;
+
+
 &lt;&lt;widget &quot;familiarClue&quot;&gt;&gt;
-&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
 	&lt;&lt;set _clue = setup.clues.types.random()&gt;&gt;
 	&lt;&lt;set _clueText1 = setup.events.clueFromFamiliar.random()&gt;&gt;
 	&lt;&lt;set _clueText2 = setup.clues.observations[_clue].random()&gt;&gt;
 	&lt;&lt;run $playerClues.push(_clueText2)&gt;&gt;
-	&lt;br&gt;&lt;br&gt;
-	&lt;span class=&quot;choice&quot;&gt;_clueText1 _clueText2&lt;/span&gt;
+	&lt;&lt;dialog &#39;Clue&#39; &#39;layout&#39;&gt;&gt;
+	&lt;div class=&quot;layout&quot;&gt;
+		&lt;span class=&quot;clue&quot;&gt;
+	 	_clueText1 _clueText2
+		&lt;/span&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;span class=&quot;button-1&quot;&gt;
+		&lt;&lt;button Done&gt;&gt;&lt;&lt;/button&gt;&gt;
+		&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;&lt;/dialog&gt;&gt;		
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;gainTrustPopup&quot;&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;dialog &#39;Trust&#39; &#39;layout&#39;&gt;&gt;
+	&lt;div class=&quot;layout&quot;&gt;
+		&lt;span class=&quot;gainTrust&quot;&gt;
+	&lt;&lt;print setup.events.gainTrust.random()&gt;&gt;
+		&lt;/span&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;span class=&quot;button-1&quot;&gt;
+		&lt;&lt;button Done&gt;&gt;&lt;&lt;/button&gt;&gt;
+		&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;&lt;/dialog&gt;&gt;		
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;loseTrustPopup&quot;&gt;&gt;
+	&lt;&lt;sfsearch&gt;&gt;
+	&lt;&lt;dialog &#39;Trust&#39; &#39;layout&#39;&gt;&gt;
+		&lt;div class=&quot;layout&quot;&gt;
+		&lt;span class=&quot;loseTrust&quot;&gt;
+		&lt;&lt;print setup.events.loseTrust.random()&gt;&gt;
+		&lt;/span&gt;
+		&lt;br&gt;&lt;br&gt;
+		&lt;span class=&quot;button-1&quot;&gt;
+		&lt;&lt;button Done&gt;&gt;&lt;&lt;/button&gt;&gt;
+		&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;&lt;/dialog&gt;&gt;		
 &lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;exploreAtmo&quot;&gt;&gt;
@@ -5411,7 +5772,7 @@ $emote4
 &lt;&lt;set _randomEvent = random(1, 5)&gt;&gt;
 &lt;&lt;switch _randomEvent&gt;&gt;
 	&lt;&lt;case 1&gt;&gt;
-		&lt;&lt;gainInsight&gt;&gt;
+		&lt;&lt;test123&gt;&gt;
 	&lt;&lt;case 2&gt;&gt;
 		&lt;&lt;busAtmo&gt;&gt;
 	&lt;&lt;case 3&gt;&gt;
@@ -5485,6 +5846,89 @@ setup.battle.talk.entity = {
 	choice1: [&quot;Address the entity&quot;],
 	answer1: [&quot;&quot;],
 }
+</tw-passagedata><tw-passagedata pid="50" name="To do" tags="work" position="1464,310.5" size="100,100">- add credits
+- clean up intro display
+- add more intro text variety
+- add character answers
+- verify, debug full playthrough
+- test balance
+- test victory conditions
+- add introdone check to main menu for random generation
+- add flavor text
+- clean up stats
+- add log of past games played
+
+if time:
+- add rock/paper/scissors word battle
+- add achievements
+- add volume toggle</tw-passagedata><tw-passagedata pid="51" name="scratch text" tags="" position="1315,657.5" size="100,100">“According to the spellbook, this requires utmost trust and strong bonds between each caster.”</tw-passagedata><tw-passagedata pid="52" name="arrival1" tags="" position="325,377.5" size="100,100">&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
+&lt;&lt;dialogclose&gt;&gt;
+&lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
+&lt;&lt;set $rounds = 5&gt;&gt;
+&lt;&lt;set _scene = &quot;arrival&quot;&gt;&gt;
+&lt;&lt;set $scene = &quot;arrival&quot;&gt;&gt;
+&lt;&lt;set $nextScene = &quot;ruins&quot;&gt;&gt;
+
+&lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
+&lt;div class=&quot;layout&quot;&gt;
+&lt;&lt;print setup[_scene].line5.pluck()&gt;&gt;&lt;&lt;print setup[_scene].line6.pluck()&gt;&gt;&lt;&lt;print setup[_scene].line7.pluck()&gt;&gt;&lt;&lt;print setup[_scene].line8.pluck()&gt;&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;span class=&quot;button-1&quot;&gt;
+&lt;&lt;button Continue &quot;arrival2&quot;&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="53" name="arrival2" tags="" position="327,490.5" size="100,100">&lt;&lt;set $withPlayer = [&quot;char1&quot;, &quot;char2&quot;, &quot;char3&quot;, &quot;char4&quot;, &quot;char5&quot;]&gt;&gt;
+&lt;&lt;dialogclose&gt;&gt;
+&lt;&lt;set $lastChoice = [&quot;&quot;]&gt;&gt;
+&lt;&lt;set $rounds = 5&gt;&gt;
+&lt;&lt;set _scene = &quot;arrival&quot;&gt;&gt;
+&lt;&lt;set $scene = &quot;arrival&quot;&gt;&gt;
+&lt;&lt;set $nextScene = &quot;ruins&quot;&gt;&gt;
+
+&lt;&lt;set $dialogTarget = [&quot;&quot;]&gt;&gt;
+
+&lt;div class=&quot;layout&quot;&gt;
+&lt;&lt;print setup[_scene].line9.pluck()&gt;&gt;&lt;&lt;print setup[_scene].line10.pluck()&gt;&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;&lt;print setup[_scene].line11.pluck()&gt;&gt;
+&lt;&lt;print setup[_scene].line12.pluck()&gt;&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;&lt;print setup[_scene].sentence1.pluck()&gt;&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;&lt;set _choice1 = $withPlayer.pluck()&gt;&gt;
+&lt;&lt;set _choice1text = setup.characters[_choice1]&gt;&gt;
+&lt;&lt;set _choice2 = $withPlayer.pluck()&gt;&gt;
+&lt;&lt;set _choice2text = setup.characters[_choice2]&gt;&gt;
+&lt;&lt;set _choice3 = $withPlayer.pluck()&gt;&gt;
+&lt;&lt;set _choice3text = setup.characters[_choice3]&gt;&gt;
+&lt;&lt;set _choice4 = $withPlayer.pluck()&gt;&gt;
+&lt;&lt;set _choice4text = setup.characters[_choice4]&gt;&gt;
+&lt;&lt;set _choice5 = $withPlayer.pluck()&gt;&gt;
+&lt;&lt;set _choice5text = setup.characters[_choice5]&gt;&gt;
+&lt;&lt;set _text1 = setup[_scene].ctext1.pluck()&gt;&gt;
+&lt;&lt;set _text2 = setup[_scene].ctext2.pluck()&gt;&gt;
+
+&lt;span class=&quot;button-1&quot;&gt;
+&lt;&lt;button &quot;_text1 _choice1text and _choice2text&quot; ruins&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+		&lt;&lt;set $withPlayer1 = _choice1&gt;&gt;
+		&lt;&lt;set $withPlayer2 = _choice2&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+
+&lt;span class=&quot;button-1&quot;&gt;
+&lt;&lt;button &quot;_text2 _choice3text, _choice4text and _choice5text&quot; cliffs&gt;&gt;
+&lt;&lt;sf&gt;&gt;
+		&lt;&lt;set $withPlayer1 = _choice3&gt;&gt;
+		&lt;&lt;set $withPlayer2 = _choice4&gt;&gt;
+		&lt;&lt;set $withPlayer3 = _choice5&gt;&gt;
+&lt;&lt;/button&gt;&gt;
+&lt;/span&gt;
+&lt;/div&gt;
 </tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
